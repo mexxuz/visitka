@@ -148,17 +148,28 @@
   @media (hover: hover) { .navs button:hover { background: rgba(255,255,255,.2); } }
 
   .work {
-    margin: 20px 20px 0; background: var(--dark-2); border: 1px solid var(--dark-line);
-    border-radius: 20px; padding: 16px; display: flex; gap: 13px;
+    margin: 10px 20px 0; background: var(--dark-2); border: 1px solid var(--dark-line);
+    border-radius: 22px; padding: 16px; display: flex; gap: 14px; align-items: flex-start;
   }
   .work .mk {
-    width: 40px; height: 40px; flex: none; border-radius: 13px;
-    background: var(--grad); color: #17171a;
-    display: grid; place-items: center; font: 700 15px "Inter Tight", sans-serif;
+    width: 52px; height: 52px; flex: none; border-radius: 16px;
+    display: grid; place-items: center; overflow: hidden;
   }
-  .work h3 { margin: 0 0 4px; font: 600 15.5px "Inter Tight", sans-serif; letter-spacing: -.015em; }
-  .work p { margin: 0; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.55); }
-  .work .st { display: block; margin-top: 8px; font-size: 11.5px; color: rgba(255,255,255,.4); }
+  .work .mk svg { width: 30px; height: 30px; }
+  /* Знак «Сарафана» — нить доверия с кружками */
+  .work .mk.sarafan { background: rgba(47,123,255,.16); }
+  /* Знак «Взаимно» — сердце из двух лент */
+  .work .mk.vzaimno { background: linear-gradient(145deg, rgba(139,116,255,.22), rgba(240,80,140,.22)); }
+  .work .mk.vzaimno svg { width: 36px; height: 26px; }
+  .work .mk.ps { background: rgba(255,255,255,.08); color: #fff; }
+  .work .tx { min-width: 0; }
+  .work h3 { margin: 0 0 5px; font: 600 16.5px "Inter Tight", sans-serif; letter-spacing: -.015em; }
+  .work p { margin: 0; font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,.58); }
+  .work .st {
+    display: inline-block; margin-top: 10px; font-size: 11.5px; color: rgba(255,255,255,.55);
+    background: rgba(255,255,255,.08); border-radius: 999px; padding: 4px 10px;
+  }
+  .work .st.live { color: #7ee6b0; background: rgba(60,220,150,.12); }
 
   .foot { display: flex; gap: 8px; margin: 10px 8px 0; }
   .foot a {
@@ -264,22 +275,38 @@
     <h2 style="margin-top:26px">Проекты</h2>
 
     <div class="work">
-      <span class="mk" aria-hidden="true">В</span>
-      <div>
+      <span class="mk sarafan" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none"><path d="M8 5v18" stroke="rgba(120,170,255,.45)" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="3" fill="none" stroke="#5f9bff" stroke-width="2"/><circle cx="8" cy="15.5" r="3.5" fill="#5f9bff"/><circle cx="8" cy="23" r="3" fill="none" stroke="rgba(120,170,255,.45)" stroke-width="2"/><path d="M14 15.5h9" stroke="#5f9bff" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <div class="tx">
+        <h3>Сарафан</h3>
+        <p>Закрытая сеть в Telegram: люди рекомендуют знакомых как специалистов. Поиск идёт по своему кругу и показывает цепочку — через кого вы знакомы.</p>
+        <span class="st">Прототип готов</span>
+      </div>
+    </div>
+
+    <div class="work">
+      <span class="mk vzaimno" aria-hidden="true">
+        <svg viewBox="0 0 64 44" fill="none" stroke-width="5" stroke-linecap="round"><path d="M32 12C30 7.5 26.5 5 22.5 5C16.5 5 12.5 10 13.5 17C15 26.5 25.5 33.5 36 41" stroke="#9b85ff"/><path d="M32 12C34 7.5 37.5 5 41.5 5C47.5 5 51.5 10 50.5 17C49 26.5 38.5 33.5 28 41" stroke="#ff5c9e"/></svg>
+      </span>
+      <div class="tx">
         <h3>Взаимно</h3>
-        <p>Знакомства в Telegram для Ташкента: проверка по селфи, безопасность для девушек, подборка дня.</p>
+        <p>Знакомства в Telegram для Ташкента: проверка по селфи, безопасность для девушек и подборка дня вместо бесконечной ленты.</p>
         <span class="st">Скоро запуск</span>
       </div>
     </div>
 
     <div class="work">
-      <span class="mk" aria-hidden="true">PS</span>
-      <div>
+      <span class="mk ps" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3.5h12V9"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 13.5h4"/><path d="M6 14h12v6.5H6z"/></svg>
+      </span>
+      <div class="tx">
         <h3>PS · Автоматизация</h3>
         <p>Переменная печать в CorelDRAW: данные из Excel, штрихкоды, «Честный знак», вывод с белилами.</p>
-        <span class="st">Работает у типографий</span>
+        <span class="st live">Работает у типографий</span>
       </div>
     </div>
+
   </section>
 
   <div class="foot">
