@@ -3,305 +3,240 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <title>Макс — дизайн, печать, ИИ</title>
 <meta name="description" content="Дизайн и макеты, печать и производство, ИИ для рекламы, Telegram-боты. Ташкент.">
 <meta property="og:title" content="Макс — дизайн, печать, ИИ">
 <meta property="og:description" content="Дизайн и макеты, печать и производство, ИИ для рекламы, Telegram-боты. Ташкент.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Onest:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root {
-    --bg: #08080b;
-    --bg-2: #101016;
-    --ink: #ffffff;
-    --ink-2: #9d9daa;
-    --glass: rgba(255,255,255,.055);
-    --glass-2: rgba(255,255,255,.09);
-    --edge: rgba(255,255,255,.10);
-    --edge-2: rgba(255,255,255,.16);
-    --grad: linear-gradient(95deg, #3d7bff 0%, #9b4dff 46%, #ff3d8a 100%);
-    --glow-1: rgba(61,123,255,.55);
-    --glow-2: rgba(255,61,138,.45);
-    --r: 28px;
-    --shadow: 0 24px 60px rgba(0,0,0,.55);
+    --bg: #ffffff;
+    --surface: #f5f5f7;
+    --ink: #0a0a0b;
+    --ink-2: #8a8a91;
+    --line: #ebebee;
+    --line-2: #dededf;
+    --grad: linear-gradient(90deg, #4a7dff 0%, #a45bff 52%, #ff4d8d 100%);
+    --r: 26px;
   }
-  :root[data-theme="light"] {
-    --bg: #eceef4;
-    --bg-2: #ffffff;
-    --ink: #0d0d12;
-    --ink-2: #5a5a66;
-    --glass: rgba(255,255,255,.86);
-    --glass-2: #ffffff;
-    --edge: rgba(13,13,18,.10);
-    --edge-2: rgba(13,13,18,.2);
-    --glow-1: rgba(61,123,255,.22);
-    --glow-2: rgba(255,61,138,.18);
-    --shadow: 0 20px 44px rgba(20,20,40,.14);
+  :root[data-theme="dark"] {
+    --bg: #0b0b0c;
+    --surface: #141416;
+    --ink: #f6f6f7;
+    --ink-2: #86868e;
+    --line: #232326;
+    --line-2: #303035;
   }
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #eceef4; --bg-2: #ffffff; --ink: #0d0d12; --ink-2: #5a5a66;
-      --glass: rgba(255,255,255,.86); --glass-2: #ffffff;
-      --edge: rgba(13,13,18,.10); --edge-2: rgba(13,13,18,.2);
-      --glow-1: rgba(61,123,255,.22); --glow-2: rgba(255,61,138,.18);
-      --shadow: 0 20px 44px rgba(20,20,40,.14);
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0b0c; --surface: #141416; --ink: #f6f6f7; --ink-2: #86868e;
+      --line: #232326; --line-2: #303035;
     }
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; min-height: 100vh;
+    margin: 0;
     background: var(--bg);
     color: var(--ink);
     font: 400 16px/1.5 "Onest", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  /* Свечение за листом — как подсветка под стеклом */
-  body::before {
-    content: ""; position: fixed; inset: -20% -30% auto -30%; height: 70vh; z-index: 0;
-    background:
-      radial-gradient(42% 46% at 22% 30%, var(--glow-1), transparent 70%),
-      radial-gradient(46% 42% at 82% 12%, var(--glow-2), transparent 72%);
-    filter: blur(20px); pointer-events: none;
-  }
-  body::after {
-    content: ""; position: fixed; inset: auto -25% -25% -25%; height: 45vh; z-index: 0;
-    background:
-      radial-gradient(50% 60% at 30% 100%, var(--glow-2), transparent 72%),
-      radial-gradient(45% 55% at 85% 95%, var(--glow-1), transparent 72%);
-    opacity: .5; filter: blur(26px); pointer-events: none;
   }
   a { color: inherit; text-decoration: none; }
-  :focus-visible { outline: 2px solid #9b4dff; outline-offset: 3px; border-radius: 12px; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 10px; }
 
   .wrap {
-    position: relative; z-index: 1;
-    max-width: 480px; margin: 0 auto;
-    padding: max(18px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+    max-width: 460px; margin: 0 auto;
+    padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
   }
 
-  /* Карточка с фото — главный экран */
-  .card-photo {
+  /* Фото — единственное тёмное пятно на странице, всегда чёрно-белое */
+  .photo {
     position: relative; border-radius: var(--r); overflow: hidden;
-    aspect-ratio: 4 / 5; box-shadow: var(--shadow);
-    background: #15151c;
-    display: flex; flex-direction: column; justify-content: flex-end;
+    aspect-ratio: 3 / 4; background: #dcdcde;
+    display: flex; align-items: flex-end;
   }
-  .card-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .card-photo .nophoto {
+  .photo img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; filter: grayscale(1) contrast(1.06);
+  }
+  .photo .stub {
     position: absolute; inset: 0;
-    background:
-      radial-gradient(60% 60% at 25% 20%, rgba(61,123,255,.65), transparent 70%),
-      radial-gradient(60% 60% at 80% 35%, rgba(255,61,138,.55), transparent 70%),
-      radial-gradient(70% 70% at 50% 100%, rgba(155,77,255,.55), transparent 70%),
-      #15151c;
+    background: linear-gradient(150deg, #efeff1 0%, #c9c9cd 48%, #8f8f96 100%);
     display: grid; place-items: center;
-    font-family: "Geologica", sans-serif; font-weight: 700; font-size: 120px; color: rgba(255,255,255,.9);
-    letter-spacing: -.04em;
+    font: 700 132px/1 "Inter Tight", sans-serif; color: rgba(255,255,255,.62);
+    letter-spacing: -.05em;
   }
-  .card-photo .shade {
-    position: absolute; inset: 40% 0 0; z-index: 1;
-    background: linear-gradient(180deg, transparent, rgba(0,0,0,.72) 72%);
+  .photo .veil {
+    position: absolute; inset: 45% 0 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.66) 80%);
   }
-  .card-photo .chip {
-    position: absolute; top: 14px; right: 14px; z-index: 2;
-    background: rgba(10,10,14,.5); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,.18); color: #fff;
-    border-radius: 999px; padding: 7px 13px; font-size: 12.5px; font-weight: 500;
+  .photo .who { position: relative; z-index: 2; padding: 22px; color: #fff; }
+  .photo h1 {
+    font: 700 38px/1 "Inter Tight", sans-serif; letter-spacing: -.035em; margin: 0 0 5px;
   }
-  .card-photo .meta { position: relative; z-index: 2; padding: 20px; color: #fff; }
-  .card-photo h1 {
-    font-family: "Geologica", sans-serif; font-weight: 700; font-size: 40px; line-height: 1;
-    letter-spacing: -.035em; margin: 0 0 6px;
-  }
-  .card-photo .at { font-size: 14px; color: rgba(255,255,255,.72); }
-
-  .about {
-    margin-top: 14px; padding: 16px 18px;
-    background: var(--glass); border: 1px solid var(--edge); border-radius: 22px;
-    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    font-size: 15.5px; color: var(--ink);
-  }
-  .about span { color: var(--ink-2); }
-
-  .tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  .tags i {
-    font-style: normal; font-size: 13px; font-weight: 500; color: var(--ink-2);
-    border: 1px solid var(--edge); border-radius: 999px; padding: 7px 14px;
-    background: var(--glass);
+  .photo .at { font-size: 14px; color: rgba(255,255,255,.7); }
+  .photo .where {
+    position: absolute; z-index: 2; top: 14px; left: 14px;
+    font-size: 12.5px; font-weight: 500; color: #fff;
+    background: rgba(0,0,0,.34); border-radius: 999px; padding: 6px 12px;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   }
 
-  .cta {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    margin-top: 14px; min-height: 58px; border-radius: 999px;
+  .lede {
+    margin: 22px 2px 0; font-size: 16px; line-height: 1.55; color: var(--ink-2);
+  }
+  .lede b { color: var(--ink); font-weight: 500; }
+
+  .act { display: flex; gap: 10px; align-items: center; margin-top: 20px; }
+  .write {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    min-height: 54px; border-radius: 999px;
     background: var(--grad); color: #fff;
-    font-family: "Geologica", sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -.01em;
-    box-shadow: 0 12px 30px rgba(120,60,220,.38);
-    transition: transform .16s ease, box-shadow .16s ease;
+    font: 600 16.5px "Inter Tight", sans-serif; letter-spacing: -.01em;
+    transition: transform .16s ease, opacity .16s ease;
   }
-  .cta svg { width: 19px; height: 19px; }
-  .cta:active { transform: scale(.985); box-shadow: 0 8px 20px rgba(120,60,220,.3); }
-  @media (hover: hover) { .cta:hover { box-shadow: 0 16px 38px rgba(120,60,220,.5); } }
+  .write:active { transform: scale(.985); }
+  @media (hover: hover) { .write:hover { opacity: .92; } }
+  .round {
+    width: 54px; height: 54px; flex: none; border-radius: 50%;
+    border: 1px solid var(--line-2); display: grid; place-items: center;
+    transition: border-color .16s ease, background .16s ease;
+  }
+  .round svg { width: 20px; height: 20px; }
+  @media (hover: hover) { .round:hover { background: var(--surface); border-color: var(--ink-2); } }
 
   h2 {
-    font-family: "Geologica", sans-serif; font-weight: 600; font-size: 13px;
-    text-transform: uppercase; letter-spacing: .1em; color: var(--ink-2);
-    margin: 30px 4px 12px;
+    font: 600 12px/1 "Inter Tight", sans-serif; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--ink-2); margin: 34px 2px 12px;
   }
 
-  .stack { display: grid; gap: 10px; }
-  .tile {
-    display: block; position: relative;
-    background: var(--glass); border: 1px solid var(--edge); border-radius: 22px;
-    padding: 16px 18px;
-    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    transition: background .18s ease, border-color .18s ease, transform .18s ease;
+  .rows { border-top: 1px solid var(--line); }
+  .row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 17px 2px; border-bottom: 1px solid var(--line);
+    transition: padding-left .18s ease;
   }
-  a.tile:active { transform: scale(.99); }
-  @media (hover: hover) { a.tile:hover { background: var(--glass-2); border-color: var(--edge-2); } }
-  .tile-top { display: flex; align-items: center; gap: 12px; }
-  .ic {
-    width: 38px; height: 38px; flex: none; border-radius: 12px;
-    display: grid; place-items: center; color: #fff;
-    background: var(--grad);
-  }
-  .ic svg { width: 19px; height: 19px; }
-  .tile h3 {
-    font-family: "Geologica", sans-serif; font-weight: 600; font-size: 16.5px; letter-spacing: -.015em;
-    margin: 0; line-height: 1.25;
-  }
-  .tile p { margin: 10px 0 0; color: var(--ink-2); font-size: 14.5px; }
-  .tile .foot {
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    margin-top: 12px; font-size: 13.5px; color: var(--ink-2);
-  }
-  .tile .foot em {
-    font-style: normal; font-weight: 600;
-    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .tile .badge {
-    display: inline-block; font-size: 12px; font-weight: 500; color: var(--ink-2);
-    border: 1px solid var(--edge); border-radius: 999px; padding: 4px 10px; margin-bottom: 8px;
+  @media (hover: hover) { a.row:hover { padding-left: 8px; } }
+  .row .txt { flex: 1; min-width: 0; }
+  .row h3 { font: 600 17px/1.25 "Inter Tight", sans-serif; letter-spacing: -.015em; margin: 0 0 4px; }
+  .row p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink-2); }
+  .row .price { display: block; margin-top: 7px; font-size: 13px; color: var(--ink-2); }
+  .row .arr {
+    width: 32px; height: 32px; flex: none; border-radius: 50%;
+    border: 1px solid var(--line-2); display: grid; place-items: center;
+    color: var(--ink-2); font-size: 14px; line-height: 1;
   }
 
-  .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .links a {
-    display: flex; flex-direction: column; gap: 3px;
-    background: var(--glass); border: 1px solid var(--edge); border-radius: 20px; padding: 16px 18px;
-    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    font-family: "Geologica", sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -.01em;
-    transition: background .18s ease, border-color .18s ease, transform .18s ease;
+  .work { padding: 18px 2px; border-bottom: 1px solid var(--line); }
+  .work .mark { font-size: 12px; color: var(--ink-2); }
+  .work h3 { font: 600 17px/1.25 "Inter Tight", sans-serif; letter-spacing: -.015em; margin: 6px 0 4px; }
+  .work p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink-2); }
+
+  .contacts { display: grid; gap: 10px; margin-top: 4px; }
+  .contacts a {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--surface); border-radius: 18px; padding: 16px 18px;
+    font: 600 16px "Inter Tight", sans-serif; letter-spacing: -.01em;
+    transition: background .16s ease;
   }
-  .links a span { font-family: "Onest", sans-serif; font-weight: 400; font-size: 13px; color: var(--ink-2); }
-  .links a:active { transform: scale(.99); }
-  @media (hover: hover) { .links a:hover { background: var(--glass-2); border-color: var(--edge-2); } }
+  .contacts a span { font: 400 14px "Onest", sans-serif; color: var(--ink-2); }
+  @media (hover: hover) { .contacts a:hover { background: var(--line); } }
 
-  footer { margin-top: 26px; text-align: center; color: var(--ink-2); font-size: 12.5px; }
+  footer { margin-top: 28px; text-align: center; font-size: 12.5px; color: var(--ink-2); }
 
-  /* Появление при загрузке — по очереди, сверху вниз */
-  .rise { animation: rise .5s cubic-bezier(.22,.9,.3,1) both; }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  .d1 { animation-delay: .04s } .d2 { animation-delay: .1s } .d3 { animation-delay: .16s }
-  .d4 { animation-delay: .22s } .d5 { animation-delay: .28s }
+  body.in-telegram .wrap { padding-top: 8px; }
 
-  body.in-telegram .wrap { padding-top: 10px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
 
 <main class="wrap">
 
-  <div class="card-photo rise d1">
-    <!-- Фото: положите photo.jpg рядом со страницей и раскомментируйте строку ниже -->
+  <div class="photo">
+    <!-- Фото: положите photo.jpg рядом и раскомментируйте строку -->
     <!-- <img src="photo.jpg" alt="Макс"> -->
-    <div class="nophoto" aria-hidden="true">М</div>
-    <div class="shade"></div>
-    <div class="chip">Ташкент</div>
-    <div class="meta">
+    <div class="stub" aria-hidden="true">М</div>
+    <div class="veil"></div>
+    <div class="where">Ташкент</div>
+    <div class="who">
       <h1>Макс</h1>
-      <div class="at">@iMexx · дизайн · печать · ИИ</div>
+      <div class="at">@iMexx</div>
     </div>
   </div>
 
-  <div class="about rise d2">
-    Делаю макеты и печатаю тиражи. <span>А ещё собираю ботов и ролики на нейросетях — там, где это экономит время и деньги.</span>
+  <p class="lede"><b>Делаю макеты и печатаю тиражи.</b> Собираю Telegram-ботов и ролики на нейросетях — там, где это экономит время и деньги.</p>
+
+  <div class="act">
+    <a class="write" href="https://t.me/iMexx">Написать</a>
+    <a class="round" href="https://t.me/i_mexx" aria-label="Канал">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l6 4V6L7 10H4z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
+    </a>
   </div>
 
-  <div class="tags rise d2">
-    <i>Макеты под печать</i><i>Переменные данные</i><i>УФ-печать</i><i>Telegram-боты</i>
-  </div>
+  <h2>Услуги</h2>
+  <div class="rows">
 
-  <a class="cta rise d3" href="https://t.me/iMexx">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-    Написать в Telegram
-  </a>
-
-  <h2 class="rise d4">Услуги</h2>
-  <div class="stack rise d4">
-
-    <a class="tile" href="https://t.me/iMexx">
-      <div class="tile-top">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4 5 5-9.5 9.5-5.5 1.5 1.5-5.5z"/><path d="m12.5 6.5 5 5"/></svg></span>
+    <a class="row" href="https://t.me/iMexx">
+      <div class="txt">
         <h3>Дизайн и макеты</h3>
+        <p>Фирменный стиль, упаковка, этикетка. Макет собираю под ту печать, на которой он пойдёт.</p>
+        <span class="price">Цена по запросу</span>
       </div>
-      <p>Фирменный стиль, упаковка, этикетка. Макет сразу собираю под ту печать, на которой он пойдёт.</p>
-      <div class="foot"><span>Цена по запросу</span><em>Обсудить →</em></div>
+      <span class="arr">→</span>
     </a>
 
-    <a class="tile" href="https://t.me/iMexx">
-      <div class="tile-top">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></span>
+    <a class="row" href="https://t.me/iMexx">
+      <div class="txt">
         <h3>Печать и производство</h3>
+        <p>Тиражи с переменными данными: нумерация, штрихкоды, QR и «Честный знак». УФ-печать с белилами.</p>
+        <span class="price">Цена по запросу</span>
       </div>
-      <p>Тиражи с переменными данными: нумерация, штрихкоды, QR и «Честный знак». УФ-печать с белилами.</p>
-      <div class="foot"><span>Цена по запросу</span><em>Обсудить →</em></div>
+      <span class="arr">→</span>
     </a>
 
-    <a class="tile" href="https://t.me/iMexx">
-      <div class="tile-top">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+    <a class="row" href="https://t.me/iMexx">
+      <div class="txt">
         <h3>ИИ для рекламы</h3>
+        <p>Видео и картинки на нейросетях: от идеи и сценария до готового ролика.</p>
+        <span class="price">Цена по запросу</span>
       </div>
-      <p>Видео и картинки на нейросетях: от идеи и сценария до готового ролика для соцсетей.</p>
-      <div class="foot"><span>Цена по запросу</span><em>Обсудить →</em></div>
+      <span class="arr">→</span>
     </a>
 
-    <a class="tile" href="https://t.me/iMexx">
-      <div class="tile-top">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span>
+    <a class="row" href="https://t.me/iMexx">
+      <div class="txt">
         <h3>Telegram-боты и мини-приложения</h3>
+        <p>Заказы, запись, рассылки и личный кабинет внутри Telegram. Эта визитка — тоже такое приложение.</p>
+        <span class="price">Цена по запросу</span>
       </div>
-      <p>Заказы, запись, рассылки и личный кабинет внутри Telegram. Эта визитка — тоже такое приложение.</p>
-      <div class="foot"><span>Цена по запросу</span><em>Обсудить →</em></div>
+      <span class="arr">→</span>
     </a>
   </div>
 
-  <h2 class="rise d5">Проекты</h2>
-  <div class="stack rise d5">
-    <div class="tile">
-      <span class="badge">Скоро запуск</span>
+  <h2>Проекты</h2>
+  <div class="rows">
+    <div class="work">
+      <div class="mark">Скоро запуск</div>
       <h3>Взаимно</h3>
       <p>Знакомства в Telegram для Ташкента: проверка по селфи, безопасность для девушек, подборка дня.</p>
     </div>
-    <div class="tile">
-      <span class="badge">Работает у типографий</span>
+    <div class="work">
+      <div class="mark">Работает у типографий</div>
       <h3>PS · Автоматизация</h3>
       <p>Переменная печать в CorelDRAW: данные из Excel, штрихкоды, «Честный знак», вывод с белилами.</p>
     </div>
   </div>
 
-  <h2 class="rise d5">Связь</h2>
-  <div class="links rise d5">
-    <a href="https://t.me/iMexx">Написать <span>@iMexx</span></a>
+  <h2>Связь</h2>
+  <div class="contacts">
+    <a href="https://t.me/iMexx">Написать в Telegram <span>@iMexx</span></a>
     <a href="https://t.me/i_mexx">Канал <span>@i_mexx</span></a>
   </div>
 
