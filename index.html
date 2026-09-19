@@ -3,282 +3,220 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
 <title>Макс — дизайн, печать, ИИ</title>
 <meta name="description" content="Дизайн и макеты, печать и производство, ИИ для рекламы, Telegram-боты. Ташкент.">
 <meta property="og:title" content="Макс — дизайн, печать, ИИ">
-<meta property="og:description" content="Дизайн и макеты, печать и производство, ИИ для рекламы, Telegram-боты. Ташкент.">
+<meta property="og:description" content="Макеты, тиражи и автоматизация. Ташкент.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root {
-    --page: #efeff0;
-    --ink: #0b0b0c;
-    --ink-2: #86868c;
-    --dark: #0d0d0e;
-    --dark-2: #1a1a1c;
-    --dark-line: #2a2a2d;
-    --chip: rgba(255,255,255,.14);
-    --grad: linear-gradient(90deg, #ffd27a 0%, #ff9d86 26%, #ff7fb0 52%, #c79cff 76%, #8ec5ff 100%);
+    --cy: #03d6f4;
+    --badge: linear-gradient(90deg, #9b16c8 0%, #03d6f4 100%);
+    --dark: #0a0e12;
+    --teal: #0b3a44;
+    --panel: #12181d;
+    --line: #23303a;
+    --paper: #f2f4f5;
+    --ink: #10161b;
+    --muted: #aab2bd;
   }
-  :root[data-theme="dark"] { --page: #050506; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #050506; } }
-
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; background: var(--page); color: var(--ink);
-    font: 400 16px/1.5 "Onest", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+    margin: 0; background: var(--dark); color: #fff;
+    font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
-  :focus-visible { outline: 2px solid #ff7fb0; outline-offset: 2px; border-radius: 12px; }
-  .app { max-width: 440px; margin: 0 auto; overflow: hidden; }
+  :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+  .app { max-width: 520px; margin: 0 auto; overflow: hidden; }
 
-  /* Верхняя строка */
-  .top {
-    display: flex; align-items: center; gap: 10px;
-    padding: max(12px, env(safe-area-inset-top)) 14px 12px;
-  }
-  .top .ava {
-    width: 30px; height: 30px; border-radius: 50%; flex: none; overflow: hidden;
-    background: #cfcfd2 linear-gradient(140deg, #dcdcdf, #9a9aa0);
-    display: grid; place-items: center; font: 600 13px "Inter Tight", sans-serif; color: #fff;
-  }
-  .top .ava img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
-  .top .nick { flex: 1; text-align: center; font-size: 14px; color: var(--ink); font-weight: 500; }
-  .top .pill {
-    background: var(--dark); color: #fff; border-radius: 999px;
-    padding: 8px 14px; font: 600 12.5px "Inter Tight", sans-serif;
+  h1, h2, h3 { font-family: "Montserrat", sans-serif; letter-spacing: -.01em; margin: 0; }
+  .cy { color: var(--cy); }
+
+  .badge {
+    display: inline-block; background: var(--badge); color: #fff;
+    font: 600 10.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px;
   }
 
-  /* Фото и панель поверх него */
-  .hero { position: relative; margin: 0 8px; }
-  .hero .shot { border-radius: 30px; overflow: hidden; background: #d6d6d9; }
-  .hero .shot { aspect-ratio: 1 / 1; position: relative; }
-  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08); }
-  .hero .stub {
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 22px; border: 2px solid var(--cy); background: transparent;
+    color: #fff; font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
+    transition: background .18s ease, color .18s ease;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn:active { background: var(--cy); color: var(--dark); }
+  @media (hover: hover) { .btn:hover { background: var(--cy); color: var(--dark); } }
+  .btn.solid { background: var(--cy); color: var(--dark); }
+  @media (hover: hover) { .btn.solid:hover { background: transparent; color: #fff; } }
+
+  /* Шапка с фотографией */
+  .hero { position: relative; }
+  .hero .shot { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #0c1216; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .hero .fade {
     position: absolute; inset: 0;
-    background: linear-gradient(160deg, #e6e6e8 0%, #b9b9be 45%, #7e7e86 100%);
-    display: grid; place-items: center;
-    font: 700 150px/1 "Inter Tight", sans-serif; color: rgba(255,255,255,.55); letter-spacing: -.05em;
+    background: linear-gradient(180deg, rgba(10,14,18,.55) 0%, rgba(10,14,18,.08) 34%, rgba(10,14,18,.92) 86%, var(--dark) 100%);
   }
+  .hero .top {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: max(14px, env(safe-area-inset-top)) 18px 0;
+    font: 600 13px "Montserrat", sans-serif;
+  }
+  .hero .top .nick { color: rgba(255,255,255,.85); }
+  .hero .top a { color: var(--cy); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; }
+  .hero .copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 0 18px 4px; }
+  .hero h1 {
+    font-weight: 800; font-size: clamp(34px, 9.6vw, 46px); line-height: 1.04;
+    margin: 12px 0 0; text-transform: uppercase;
+  }
+  .hero .sub { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; max-width: 32ch; }
 
-  .panel {
-    position: relative; z-index: 2; margin: -34px 0 0;
-    background: var(--dark);
-    border-radius: 28px;
-    padding: 20px 18px 18px; color: #fff;
-  }
-  .panel .line { display: flex; align-items: flex-start; gap: 12px; }
-  .panel h1 {
-    font: 700 clamp(34px, 10vw, 44px)/0.95 "Inter Tight", sans-serif;
-    letter-spacing: -.04em; margin: 0; flex: 1;
-  }
-  .panel .at { font-size: 13px; color: rgba(255,255,255,.6); margin-top: 7px; }
-  .panel .bits { display: flex; gap: 8px; padding-top: 4px; }
-  .panel .bits a {
-    width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
-    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.16); color: #fff;
-    transition: background .16s ease;
-  }
-  .panel .bits a.accent { background: var(--grad); border-color: transparent; color: #17171a; }
-  .panel .bits svg { width: 17px; height: 17px; }
-  @media (hover: hover) { .panel .bits a:hover { background: rgba(255,255,255,.26); } .panel .bits a.accent:hover { filter: brightness(1.06); } }
+  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 22px 18px 26px; background: var(--dark); }
 
-  .panel p.about { margin: 12px 0 0; font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,.72); }
+  /* Полоса цифр */
+  .nums {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: linear-gradient(120deg, var(--dark) 0%, var(--teal) 100%);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .nums div { padding: 18px 10px; text-align: center; }
+  .nums div + div { border-left: 1px solid rgba(255,255,255,.08); }
+  .nums b { display: block; font: 800 26px/1 "Montserrat", sans-serif; color: var(--cy); }
+  .nums span { font-size: 11.5px; color: var(--muted); letter-spacing: .03em; }
 
-  .stats { display: flex; gap: 18px; margin-top: 16px; }
-  .stats div b { display: block; font: 700 21px/1 "Inter Tight", sans-serif; letter-spacing: -.02em; }
-  .stats div span { font-size: 11.5px; color: rgba(255,255,255,.55); }
+  /* Разделы */
+  section { padding: 34px 18px; }
+  section.light { background: var(--paper); color: var(--ink); }
+  section.deep { background: linear-gradient(160deg, var(--dark) 0%, var(--teal) 150%); }
+  .h2 { font-weight: 800; font-size: clamp(25px, 7vw, 32px); line-height: 1.1; text-transform: uppercase; }
+  .lead { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; }
+  section.light .lead { color: #5c6772; }
 
-  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
-  .chips i {
-    font-style: normal; font-size: 11.5px; color: rgba(255,255,255,.8);
-    background: var(--chip); border-radius: 999px; padding: 6px 11px;
+  /* Услуги */
+  .svc { margin-top: 24px; }
+  .svc a { display: block; padding: 18px 0; border-top: 1px solid #dfe3e6; transition: padding-left .2s ease; }
+  .svc a:last-child { border-bottom: 1px solid #dfe3e6; }
+  @media (hover: hover) { .svc a:hover { padding-left: 8px; } }
+  .svc .n { font: 700 11.5px "Montserrat", sans-serif; color: var(--cy); letter-spacing: .1em; }
+  .svc h3 { font-weight: 700; font-size: 18px; margin: 6px 0; }
+  .svc p { margin: 0; font-size: 14.5px; color: #5c6772; }
+  .svc .go {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+    font: 700 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; color: var(--ink);
   }
+  .svc .go i { font-style: normal; color: var(--cy); }
 
-  .go {
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 16px; min-height: 48px; border-radius: 999px;
-    background: var(--grad); color: #17171a;
-    font: 600 16px "Inter Tight", sans-serif; letter-spacing: -.01em;
-    transition: transform .16s ease, filter .16s ease;
-  }
-  .go:active { transform: scale(.985); }
-  @media (hover: hover) { .go:hover { filter: brightness(1.05); } }
-
-  /* Чёрный блок */
-  .dark {
-    background: var(--dark); color: #fff; border-radius: 30px; margin: 8px;
-    padding: 22px 0 24px;
-  }
-  .dark h2 {
-    font: 600 12px/1 "Inter Tight", sans-serif; text-transform: uppercase; letter-spacing: .1em;
-    color: rgba(255,255,255,.45); margin: 0 20px 14px;
-  }
-  .scroller {
-    display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 2px;
-    scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;
-  }
-  .scroller::-webkit-scrollbar { display: none; }
-  .svc {
-    flex: 0 0 210px; scroll-snap-align: start;
-    background: var(--dark-2); border: 1px solid var(--dark-line); border-radius: 20px;
-    padding: 16px; display: flex; flex-direction: column; gap: 8px; min-height: 178px;
-  }
-  .svc .ic {
-    width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center;
-    background: rgba(255,255,255,.08); color: #fff;
-  }
-  .svc .ic svg { width: 17px; height: 17px; }
-  .svc h3 { margin: 4px 0 0; font: 600 15.5px/1.25 "Inter Tight", sans-serif; letter-spacing: -.015em; }
-  .svc p { margin: 0; font-size: 13px; line-height: 1.4; color: rgba(255,255,255,.55); }
-  .svc .fo { margin-top: auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,.45); }
-  .svc .fo em { font-style: normal; color: #fff; }
-
-  .navs { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
-  .navs button {
-    width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
-    background: rgba(255,255,255,.1); border: 1px solid var(--dark-line); color: #fff;
-    display: grid; place-items: center; font-size: 14px; line-height: 1;
-    transition: background .16s ease;
-  }
-  @media (hover: hover) { .navs button:hover { background: rgba(255,255,255,.2); } }
-
+  /* Проекты */
   .work {
-    margin: 10px 20px 0; background: var(--dark-2); border: 1px solid var(--dark-line);
-    border-radius: 22px; padding: 16px; display: flex; gap: 14px; align-items: flex-start;
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--panel); border: 1px solid var(--line); padding: 16px; margin-top: 12px;
   }
-  .work .mk {
-    width: 52px; height: 52px; flex: none; border-radius: 16px;
-    display: grid; place-items: center; overflow: hidden;
-  }
+  .work .mk { width: 52px; height: 52px; flex: none; display: grid; place-items: center; }
+  .work .mk.sarafan { background: rgba(47,123,255,.14); }
+  .work .mk.vzaimno { background: linear-gradient(145deg, rgba(139,116,255,.2), rgba(240,80,140,.2)); }
+  .work .mk.ps { background: rgba(3,214,244,.12); color: var(--cy); }
   .work .mk svg { width: 30px; height: 30px; }
-  /* Знак «Сарафана» — нить доверия с кружками */
-  .work .mk.sarafan { background: rgba(47,123,255,.16); }
-  /* Знак «Взаимно» — сердце из двух лент */
-  .work .mk.vzaimno { background: linear-gradient(145deg, rgba(139,116,255,.22), rgba(240,80,140,.22)); }
   .work .mk.vzaimno svg { width: 36px; height: 26px; }
-  .work .mk.ps { background: rgba(255,255,255,.08); color: #fff; }
-  .work .tx { min-width: 0; }
-  .work h3 { margin: 0 0 5px; font: 600 16.5px "Inter Tight", sans-serif; letter-spacing: -.015em; }
-  .work p { margin: 0; font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,.58); }
+  .work h3 { font-weight: 700; font-size: 17px; margin-bottom: 5px; }
+  .work p { margin: 0; font-size: 14px; color: var(--muted); }
   .work .st {
-    display: inline-block; margin-top: 10px; font-size: 11.5px; color: rgba(255,255,255,.55);
-    background: rgba(255,255,255,.08); border-radius: 999px; padding: 4px 10px;
+    display: inline-block; margin-top: 10px; font: 600 10.5px "Raleway", sans-serif;
+    letter-spacing: .05em; padding: 4px 9px; color: #cfe9ef; background: rgba(255,255,255,.07);
   }
-  .work .st.live { color: #7ee6b0; background: rgba(60,220,150,.12); }
+  .work .st.live { color: var(--dark); background: var(--cy); }
 
-  .foot { display: flex; gap: 8px; margin: 10px 8px 0; }
-  .foot a {
-    flex: 1; background: var(--dark); color: #fff; border-radius: 22px; padding: 16px 18px;
-    display: flex; flex-direction: column; gap: 3px;
-    font: 600 15.5px "Inter Tight", sans-serif; letter-spacing: -.01em;
-    transition: filter .16s ease;
-  }
-  .foot a span { font: 400 12.5px "Onest", sans-serif; color: rgba(255,255,255,.5); }
-  @media (hover: hover) { .foot a:hover { filter: brightness(1.25); } }
+  /* Подвал */
+  footer { background: #2c313a; padding: 30px 18px max(30px, env(safe-area-inset-bottom)); }
+  footer .t { font: 600 11.5px "Raleway", sans-serif; color: #98a1ad; letter-spacing: .05em; }
+  footer .big { font: 800 24px/1.25 "Montserrat", sans-serif; margin: 6px 0 0; }
+  footer .big a:active { color: var(--cy); }
+  @media (hover: hover) { footer .big a:hover { color: var(--cy); } }
+  footer .row { margin-top: 22px; }
+  footer .fine { margin-top: 26px; font-size: 12px; color: #767f8b; }
 
-  footer { text-align: center; font-size: 12px; color: var(--ink-2); padding: 20px 0 max(20px, env(safe-area-inset-bottom)); }
-
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
-
 <div class="app">
 
-  <div class="top">
-    <span class="ava"><img src="photo.jpg" alt=""></span>
-    <span class="nick">@iMexx</span>
-    <a class="pill" href="https://t.me/i_mexx">Канал</a>
-  </div>
-
-  <div class="hero">
+  <header class="hero">
     <div class="shot">
       <img src="photo.jpg" alt="Макс">
+      <div class="fade"></div>
     </div>
-
-    <div class="panel">
-      <div class="line">
-        <div>
-          <h1>Макс</h1>
-          <div class="at">@iMexx · Ташкент</div>
-        </div>
-        <div class="bits">
-          <a class="accent" href="https://t.me/iMexx" aria-label="Написать">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-          </a>
-          <a href="https://t.me/i_mexx" aria-label="Канал">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l6 4V6L7 10H4z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <p class="about">Делаю макеты и печатаю тиражи. Собираю Telegram-ботов и ролики на нейросетях — там, где это экономит время и деньги.</p>
-
-      <div class="stats">
-        <div><b>4</b><span>Услуги</span></div>
-        <div><b>2</b><span>Проекта</span></div>
-        <div><b>105</b><span>Подписчиков</span></div>
-      </div>
-
-      <div class="chips">
-        <i>Макеты под печать</i><i>Переменные данные</i><i>УФ-печать</i><i>Боты</i>
-      </div>
-
-      <a class="go" href="https://t.me/iMexx">Написать</a>
+    <div class="top">
+      <span class="nick">@iMexx</span>
+      <a href="https://t.me/i_mexx">Канал</a>
     </div>
+    <div class="copy">
+      <span class="badge">Ташкент · дизайн и производство</span>
+      <h1>Макс</h1>
+      <p class="sub">Макеты, тиражи и <span class="cy">автоматизация</span> — от эскиза до готовой пачки в руках.</p>
+    </div>
+  </header>
+
+  <div class="cta-row">
+    <a class="btn solid" href="https://t.me/iMexx">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      Написать
+    </a>
+    <a class="btn" href="https://t.me/i_mexx">Канал</a>
   </div>
 
-  <section class="dark">
-    <h2>Услуги</h2>
+  <div class="nums">
+    <div><b>4</b><span>услуги</span></div>
+    <div><b>2</b><span>проекта</span></div>
+    <div><b>105</b><span>подписчиков</span></div>
+  </div>
 
-    <div class="scroller" id="scroller">
+  <section class="light">
+    <h2 class="h2">Что я <span class="cy">делаю</span></h2>
+    <p class="lead">Четыре направления. Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
 
-      <a class="svc" href="https://t.me/iMexx">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4 5 5-9.5 9.5-5.5 1.5 1.5-5.5z"/><path d="m12.5 6.5 5 5"/></svg></span>
+    <div class="svc">
+      <a href="https://t.me/iMexx">
+        <div class="n">01</div>
         <h3>Дизайн и макеты</h3>
-        <p>Фирменный стиль, упаковка, этикетка. Макет — под ту печать, на которой он пойдёт.</p>
-        <div class="fo"><span>По запросу</span><em>→</em></div>
+        <p>Фирменный стиль, упаковка, этикетка. Макет собираю под ту печать, на которой он пойдёт.</p>
+        <span class="go">Обсудить <i>→</i></span>
       </a>
-
-      <a class="svc" href="https://t.me/iMexx">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></span>
+      <a href="https://t.me/iMexx">
+        <div class="n">02</div>
         <h3>Печать и производство</h3>
-        <p>Нумерация, штрихкоды, QR и «Честный знак». УФ-печать с белилами.</p>
-        <div class="fo"><span>По запросу</span><em>→</em></div>
+        <p>Тиражи с переменными данными: нумерация, штрихкоды, QR и «Честный знак». УФ-печать с белилами.</p>
+        <span class="go">Обсудить <i>→</i></span>
       </a>
-
-      <a class="svc" href="https://t.me/iMexx">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+      <a href="https://t.me/iMexx">
+        <div class="n">03</div>
         <h3>ИИ для рекламы</h3>
-        <p>Видео и картинки на нейросетях: от идеи до готового ролика.</p>
-        <div class="fo"><span>По запросу</span><em>→</em></div>
+        <p>Видео и картинки на нейросетях: от идеи и сценария до готового ролика.</p>
+        <span class="go">Обсудить <i>→</i></span>
       </a>
-
-      <a class="svc" href="https://t.me/iMexx">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span>
-        <h3>Боты и мини-приложения</h3>
-        <p>Заказы, запись, рассылки. Эта визитка — тоже мини-приложение.</p>
-        <div class="fo"><span>По запросу</span><em>→</em></div>
+      <a href="https://t.me/iMexx">
+        <div class="n">04</div>
+        <h3>Telegram-боты и мини-приложения</h3>
+        <p>Заказы, запись, рассылки, личный кабинет. Эта визитка — тоже мини-приложение.</p>
+        <span class="go">Обсудить <i>→</i></span>
       </a>
     </div>
+  </section>
 
-    <div class="navs">
-      <button type="button" data-dir="-1" aria-label="Предыдущая услуга">←</button>
-      <button type="button" data-dir="1" aria-label="Следующая услуга">→</button>
-    </div>
-
-    <h2 style="margin-top:26px">Проекты</h2>
+  <section class="deep">
+    <h2 class="h2">Мои <span class="cy">проекты</span></h2>
+    <p class="lead">Делаю не только на заказ — есть и свои продукты.</p>
 
     <div class="work">
       <span class="mk sarafan" aria-hidden="true">
         <svg viewBox="0 0 28 28" fill="none"><path d="M8 5v18" stroke="rgba(120,170,255,.45)" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="3" fill="none" stroke="#5f9bff" stroke-width="2"/><circle cx="8" cy="15.5" r="3.5" fill="#5f9bff"/><circle cx="8" cy="23" r="3" fill="none" stroke="rgba(120,170,255,.45)" stroke-width="2"/><path d="M14 15.5h9" stroke="#5f9bff" stroke-width="2" stroke-linecap="round"/></svg>
       </span>
-      <div class="tx">
+      <div>
         <h3>Сарафан</h3>
         <p>Закрытая сеть в Telegram: люди рекомендуют знакомых как специалистов. Поиск идёт по своему кругу и показывает цепочку — через кого вы знакомы.</p>
         <span class="st">Прототип готов</span>
@@ -289,7 +227,7 @@
       <span class="mk vzaimno" aria-hidden="true">
         <svg viewBox="0 0 64 44" fill="none" stroke-width="5" stroke-linecap="round"><path d="M32 12C30 7.5 26.5 5 22.5 5C16.5 5 12.5 10 13.5 17C15 26.5 25.5 33.5 36 41" stroke="#9b85ff"/><path d="M32 12C34 7.5 37.5 5 41.5 5C47.5 5 51.5 10 50.5 17C49 26.5 38.5 33.5 28 41" stroke="#ff5c9e"/></svg>
       </span>
-      <div class="tx">
+      <div>
         <h3>Взаимно</h3>
         <p>Знакомства в Telegram для Ташкента: проверка по селфи, безопасность для девушек и подборка дня вместо бесконечной ленты.</p>
         <span class="st">Скоро запуск</span>
@@ -298,60 +236,40 @@
 
     <div class="work">
       <span class="mk ps" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3.5h12V9"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 13.5h4"/><path d="M6 14h12v6.5H6z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3.5h12V9"/><rect x="3" y="9" width="18" height="8" rx="1"/><path d="M6 13.5h4"/><path d="M6 14h12v6.5H6z"/></svg>
       </span>
-      <div class="tx">
+      <div>
         <h3>PS · Автоматизация</h3>
         <p>Переменная печать в CorelDRAW: данные из Excel, штрихкоды, «Честный знак», вывод с белилами.</p>
         <span class="st live">Работает у типографий</span>
       </div>
     </div>
-
   </section>
 
-  <div class="foot">
-    <a href="https://t.me/iMexx">Написать <span>@iMexx</span></a>
-    <a href="https://t.me/i_mexx">Канал <span>@i_mexx</span></a>
-  </div>
+  <footer>
+    <div class="t">Напишите мне</div>
+    <div class="big"><a href="https://t.me/iMexx">@iMexx</a></div>
 
-  <footer>© 2026 Макс · Ташкент</footer>
+    <div class="row">
+      <div class="t">Канал</div>
+      <div class="big"><a href="https://t.me/i_mexx">@i_mexx</a></div>
+    </div>
+
+    <div class="row"><a class="btn" href="https://t.me/iMexx">Обсудить задачу</a></div>
+    <div class="fine">© 2026 Макс · Ташкент</div>
+  </footer>
 </div>
 
 <script>
-// Карусель услуг
+// Внутри Telegram: полный экран, шапка в цвет страницы, ссылки не уводят в браузер
 (function () {
-  var s = document.getElementById('scroller');
-  document.querySelectorAll('.navs button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      s.scrollBy({ left: Number(b.dataset.dir) * 220, behavior: 'smooth' });
-    });
-  });
-})();
-
-// Внутри Telegram: тема мессенджера, полный экран, ссылки открываются в самом Telegram
-(function () {
-  var demo = new URLSearchParams(location.search).get('demo-tg');
-  if (demo) document.documentElement.setAttribute('data-theme', demo === 'dark' ? 'dark' : 'light');
-
   var tg = window.Telegram && window.Telegram.WebApp;
   if (!tg || !tg.platform || tg.platform === 'unknown') return;
-
-  document.documentElement.setAttribute('data-theme', tg.colorScheme === 'dark' ? 'dark' : 'light');
 
   tg.ready();
   tg.expand();
   if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
-
-  function paint() {
-    var bg = getComputedStyle(document.body).backgroundColor;
-    try { tg.setHeaderColor(bg); tg.setBackgroundColor(bg); } catch (e) {}
-  }
-  paint();
-
-  tg.onEvent('themeChanged', function () {
-    document.documentElement.setAttribute('data-theme', tg.colorScheme === 'dark' ? 'dark' : 'light');
-    paint();
-  });
+  try { tg.setHeaderColor('#0a0e12'); tg.setBackgroundColor('#0a0e12'); } catch (e) {}
 
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href]');
