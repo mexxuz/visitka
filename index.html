@@ -321,23 +321,50 @@
   if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
   try { tg.setHeaderColor('#0a0e12'); tg.setBackgroundColor('#0a0e12'); } catch (e) {}
 
+  // ?diag=1 — показать, что за версия Telegram и какие способы открытия ей доступны
+  if (new URLSearchParams(location.search).has('diag')) {
+    var box = document.createElement('div');
+    box.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;z-index:99;background:#03d6f4;color:#0a0e12;'
+      + 'font:600 12px/1.45 monospace;padding:10px;white-space:pre-wrap;';
+    box.textContent = [
+      'платформа: ' + tg.platform,
+      'версия: ' + tg.version,
+      'openTelegramLink: ' + (typeof tg.openTelegramLink),
+      'openLink: ' + (typeof tg.openLink),
+      'поддержка 6.1: ' + (tg.isVersionAtLeast ? tg.isVersionAtLeast('6.1') : 'неизвестно'),
+      'поддержка 7.0: ' + (tg.isVersionAtLeast ? tg.isVersionAtLeast('7.0') : 'неизвестно')
+    ].join('
+');
+    document.body.appendChild(box);
+  }
+
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href]');
     if (!a) return;
     var href = a.getAttribute('href');
-    if (!href || href === '#') return;
+    if (!href || href === '#' || href.charAt(0) === '?') return;   // «остаться на сайте» и прочее — как есть
+
     try { if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light'); } catch (err) {}
 
     var inner = /^https?:\/\/(t\.me|telegram\.me)\//i.test(href);
     var outer = /^https?:\/\//i.test(href);
-    if (!inner && !outer) return;                       // «?web=1» и прочее — обычным порядком
+    if (!inner && !outer) return;
 
-    try {
-      if (inner && typeof tg.openTelegramLink === 'function') { e.preventDefault(); tg.openTelegramLink(href); return; }
-      if (outer && typeof tg.openLink === 'function') { e.preventDefault(); tg.openLink(href); return; }
-    } catch (err) {
-      location.href = href;                              // Telegram не смог — открываем сами
-    }
+    // Старые версии Telegram этих способов не знают — тогда не мешаем ссылке открыться самой
+    var can = function (v) { try { return tg.isVersionAtLeast ? tg.isVersionAtLeast(v) : false; } catch (err) { return false; } };
+    var opener = inner
+      ? (can('6.1') && typeof tg.openTelegramLink === 'function' ? tg.openTelegramLink.bind(tg) : null)
+      : (can('6.1') && typeof tg.openLink === 'function' ? tg.openLink.bind(tg) : null);
+    if (!opener) return;
+
+    e.preventDefault();
+    var done = false;
+    try { opener(href); done = true; } catch (err) {}
+
+    // Подстраховка: если мессенджер промолчал и мы всё ещё на месте — открываем сами
+    setTimeout(function () {
+      if (document.visibilityState === 'visible') { location.href = href; }
+    }, done ? 900 : 0);
   });
 })();
 </script>
