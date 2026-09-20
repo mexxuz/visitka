@@ -137,7 +137,7 @@
     display: flex; gap: 14px; align-items: flex-start;
     background: var(--panel); border: 1px solid var(--line); padding: 16px; margin-top: 12px;
   }
-  .work .mk { width: 52px; height: 52px; flex: none; display: grid; place-items: center; }
+  .work .mk { width: 52px; height: 52px; flex: none; display: grid; place-items: center; object-fit: cover; }
   .work .mk.sarafan { background: rgba(47,123,255,.14); }
   .work .mk.vzaimno { background: linear-gradient(145deg, rgba(139,116,255,.2), rgba(240,80,140,.2)); }
   .work .mk.ps { background: rgba(3,214,244,.12); color: var(--cy); }
@@ -264,9 +264,7 @@
     <p class="lead">Кроме заказов делаю и своё.</p>
 
     <a class="work" href="https://t.me/sarafanibot">
-      <span class="mk sarafan" aria-hidden="true">
-        <svg viewBox="0 0 28 28" fill="none"><path d="M8 5v18" stroke="rgba(120,170,255,.45)" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="3" fill="none" stroke="#5f9bff" stroke-width="2"/><circle cx="8" cy="15.5" r="3.5" fill="#5f9bff"/><circle cx="8" cy="23" r="3" fill="none" stroke="rgba(120,170,255,.45)" stroke-width="2"/><path d="M14 15.5h9" stroke="#5f9bff" stroke-width="2" stroke-linecap="round"/></svg>
-      </span>
+      <img class="mk" src="sarafan-icon.png" alt="" width="52" height="52">
       <div>
         <h3>Сарафан</h3>
         <p>Нужен мастер — спрашиваешь у своих. Тут то же самое, только в Telegram: сразу видно, кто из знакомых его советует.</p>
@@ -276,9 +274,7 @@
     </a>
 
     <a class="work" href="https://t.me/vzaimnodatingbot">
-      <span class="mk vzaimno" aria-hidden="true">
-        <svg viewBox="0 0 64 44" fill="none" stroke-width="5" stroke-linecap="round"><path d="M32 12C30 7.5 26.5 5 22.5 5C16.5 5 12.5 10 13.5 17C15 26.5 25.5 33.5 36 41" stroke="#9b85ff"/><path d="M32 12C34 7.5 37.5 5 41.5 5C47.5 5 51.5 10 50.5 17C49 26.5 38.5 33.5 28 41" stroke="#ff5c9e"/></svg>
-      </span>
+      <img class="mk" src="vzaimno-icon.png" alt="" width="52" height="52">
       <div>
         <h3>Взаимно</h3>
         <p>Работа, дом, работа — а знакомиться негде. Каждый вечер приложение само присылает несколько человек, которые вам подходят, и объясняет, почему именно они.</p>
