@@ -162,6 +162,16 @@
   .terms i { font-style: normal; color: var(--cy); flex: none; }
   .terms b { color: #fff; font-weight: 600; }
 
+
+  .trial {
+    margin-top: 24px; border: 1px solid var(--cy); background: rgba(3,214,244,.06);
+    padding: 20px 18px; display: grid; gap: 14px;
+  }
+  .trial .big { font: 800 22px/1.15 "Montserrat", sans-serif; }
+  .trial .big span { color: var(--cy); }
+  .trial p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .trial .btn { width: 100%; }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -179,7 +189,7 @@
   <div class="cta-row">
     <a class="btn solid" href="#buy">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-      Купить
+      7 дней бесплатно
     </a>
     <a class="btn" href="#what">Возможности</a>
   </div>
@@ -304,6 +314,16 @@
     <h2>Сколько стоит</h2>
     <p>Подписка на месяц, ключ привязывается к компьютеру. Установку и первый тираж проходим вместе.</p>
 
+
+    <div class="trial">
+      <div class="big"><span>7 дней</span> бесплатно</div>
+      <p>Пробный ключ на неделю — со всеми возможностями. Поставим вместе, пройдём ваш настоящий тираж. Понравится — продолжим, нет — просто перестанет работать.</p>
+      <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%207%20%D0%B4%D0%BD%D0%B5%D0%B9.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D1%87%D1%82%D0%BE%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+        Взять на пробу
+      </a>
+    </div>
+
     <div class="plans">
       <div class="plan">
         <div class="name">База</div>
@@ -334,7 +354,7 @@
     </div>
 
     <div class="terms">
-      <div><i>→</i><span><b>Оплата раз в месяц.</b> Ключ действует до даты, которая в нём записана.</span></div>
+      <div><i>→</i><span><b>Оплата раз в месяц, переводом на карту.</b> Ключ действует до даты, которая в нём записана.</span></div>
       <div><i>→</i><span><b>Продление — новый ключ.</b> Вставляете его в панель, переустанавливать ничего не нужно.</span></div>
       <div><i>→</i><span><b>Не продлили — программа не запускается,</b> но макеты и уже выведенные файлы остаются у вас целыми.</span></div>
       <div><i>→</i><span><b>С базы на полную — тоже ключом.</b> Недостающая часть включается сразу, без переустановки.</span></div>
