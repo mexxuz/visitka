@@ -93,7 +93,7 @@
   /* Разделы */
   section { padding: 34px 18px; }
   section.light { background: var(--paper); color: var(--ink); }
-  section.deep { background: linear-gradient(160deg, var(--dark) 0%, var(--teal) 150%); }
+  section.deep { background: linear-gradient(160deg, var(--dark) 0%, var(--teal) 150%); padding-bottom: max(38px, env(safe-area-inset-bottom)); }
   .h2 { font-weight: 800; font-size: clamp(25px, 7vw, 32px); line-height: 1.1; text-transform: uppercase; }
   .lead { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; }
   section.light .lead { color: #5c6772; }
@@ -130,15 +130,6 @@
     letter-spacing: .05em; padding: 4px 9px; color: #cfe9ef; background: rgba(255,255,255,.07);
   }
   .work .st.live { color: var(--dark); background: var(--cy); }
-
-  /* Подвал */
-  footer { background: #2c313a; padding: 30px 18px max(30px, env(safe-area-inset-bottom)); }
-  footer .t { font: 600 11.5px "Raleway", sans-serif; color: #98a1ad; letter-spacing: .05em; }
-  footer .big { font: 800 24px/1.25 "Montserrat", sans-serif; margin: 6px 0 0; }
-  footer .big a:active { color: var(--cy); }
-  @media (hover: hover) { footer .big a:hover { color: var(--cy); } }
-  footer .row { margin-top: 22px; }
-  footer .fine { margin-top: 26px; font-size: 12px; color: #767f8b; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -246,18 +237,6 @@
     </div>
   </section>
 
-  <footer>
-    <div class="t">Напишите мне</div>
-    <div class="big"><a href="https://t.me/iMexx">@iMexx</a></div>
-
-    <div class="row">
-      <div class="t">Канал</div>
-      <div class="big"><a href="https://t.me/i_mexx">@i_mexx</a></div>
-    </div>
-
-    <div class="row"><a class="btn" href="https://t.me/iMexx">Обсудить задачу</a></div>
-    <div class="fine">© 2026 Макс · Ташкент</div>
-  </footer>
 </div>
 
 <script>
