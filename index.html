@@ -317,15 +317,19 @@
     // Сайт открыт в браузере
     document.body.classList.add('web');
 
-    // На телефоне уводим в Telegram: там визитка выглядит как часть мессенджера.
-    // Прыжок делается один раз за сеанс, ?web=1 остаётся способом остаться на сайте.
+    // На телефоне уводим в Telegram: сначала пробуем открыть само приложение,
+    // потом — обычный адрес t.me на случай, если приложение не отозвалось.
     var phone = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    var asked = new URLSearchParams(location.search).has('web');
-    var jumped;
-    try { jumped = sessionStorage.getItem('tg-jump'); } catch (e) { jumped = '1'; }
-    if (phone && !asked && !jumped) {
-      try { sessionStorage.setItem('tg-jump', '1'); } catch (e) {}
-      setTimeout(function () { location.href = 'https://t.me/imexxbot/visitka'; }, 700);
+    var stay = new URLSearchParams(location.search).has('web');
+    var recent = false;
+    try { recent = Date.now() - Number(sessionStorage.getItem('tg-jump') || 0) < 20000; } catch (e) {}
+
+    if (phone && !stay && !recent) {
+      try { sessionStorage.setItem('tg-jump', String(Date.now())); } catch (e) {}
+      var deep = 'tg://resolve?domain=imexxbot&appname=visitka';
+      var web = 'https://t.me/imexxbot/visitka';
+      setTimeout(function () { location.href = deep; }, 300);
+      setTimeout(function () { if (!document.hidden) location.href = web; }, 1400);
     }
     return;
   }
