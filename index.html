@@ -172,6 +172,10 @@
     font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
   }
   .toTg a svg { width: 16px; height: 16px; }
+  .toTg a.stay {
+    background: none; color: var(--muted); border: 0; min-height: 0; padding: 0 4px;
+    font: 500 12px "Raleway", sans-serif; text-transform: none; letter-spacing: 0;
+  }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -302,6 +306,7 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
     Открыть в Telegram
   </a>
+  <a class="stay" href="?web=1">Остаться на сайте</a>
 </div>
 
 <script>
@@ -309,7 +314,19 @@
 (function () {
   var tg = window.Telegram && window.Telegram.WebApp;
   if (!tg || !tg.platform || tg.platform === 'unknown') {
-    document.body.classList.add('web');   // сайт открыт в браузере — показываем переход в Telegram
+    // Сайт открыт в браузере
+    document.body.classList.add('web');
+
+    // На телефоне уводим в Telegram: там визитка выглядит как часть мессенджера.
+    // Прыжок делается один раз за сеанс, ?web=1 остаётся способом остаться на сайте.
+    var phone = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    var asked = new URLSearchParams(location.search).has('web');
+    var jumped;
+    try { jumped = sessionStorage.getItem('tg-jump'); } catch (e) { jumped = '1'; }
+    if (phone && !asked && !jumped) {
+      try { sessionStorage.setItem('tg-jump', '1'); } catch (e) {}
+      setTimeout(function () { location.href = 'https://t.me/imexxbot/visitka'; }, 700);
+    }
     return;
   }
 
