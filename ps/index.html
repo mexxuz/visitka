@@ -143,6 +143,19 @@
   }
   .files span b { color: #fff; font-weight: 600; }
 
+
+  /* Цены */
+  .plans { margin-top: 24px; display: grid; gap: 12px; }
+  .plan { border: 1px solid var(--line); background: var(--panel); padding: 20px 18px; }
+  .plan.best { border-color: var(--cy); }
+  .plan .name { font: 700 12px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
+  .plan .price { font: 800 30px/1 "Montserrat", sans-serif; margin: 10px 0 2px; }
+  .plan .per { font-size: 13px; color: var(--muted); }
+  .plan ul { list-style: none; margin: 16px 0 18px; padding: 0; display: grid; gap: 8px; }
+  .plan li { display: flex; gap: 9px; font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .plan li i { font-style: normal; color: var(--cy); }
+  .plan .btn { width: 100%; }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -282,12 +295,37 @@
   </section>
 
   <section class="buy" id="buy">
-    <h2>Купить</h2>
-    <p>Напишите — расскажу про цену, покажу работу на ваших макетах и помогу с установкой. Сообщение уже заготовлено, останется отправить.</p>
-    <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%20CorelDRAW%20%E2%80%94%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D1%86%D0%B5%D0%BD%D1%83%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-      Написать о покупке
-    </a>
+    <h2>Сколько стоит</h2>
+    <p>Подписка на месяц, ключ привязывается к компьютеру. Установку и первый тираж проходим вместе.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <div class="name">База</div>
+        <div class="price">100 000 <span class="per">сум / месяц</span></div>
+        <ul>
+          <li><i>→</i><span>Нумерация и данные из Excel, CSV, txt</span></li>
+          <li><i>→</i><span>Штрихкоды, QR и DataMatrix в макете</span></li>
+          <li><i>→</i><span>Раскладка на лист с метками реза</span></li>
+          <li><i>→</i><span>Вывод в PDF и печать</span></li>
+        </ul>
+        <a class="btn" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%20CorelDRAW%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%91%D0%B0%D0%B7%D0%B0%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">Взять базу</a>
+      </div>
+
+      <div class="plan best">
+        <div class="name">Полная</div>
+        <div class="price">200 000 <span class="per">сум / месяц</span></div>
+        <ul>
+          <li><i>→</i><span>Всё, что в базе</span></li>
+          <li><i>→</i><span>Белила для УФ-печати: отдельный слой и TIFF</span></li>
+          <li><i>→</i><span>Офсетные обороты и смещение при переворачивании</span></li>
+          <li><i>→</i><span>Проверка макета перед выводом и краски</span></li>
+        </ul>
+        <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%20CorelDRAW%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+          Взять полную
+        </a>
+      </div>
+    </div>
   </section>
 </div>
 
