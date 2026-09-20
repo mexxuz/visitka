@@ -150,6 +150,10 @@
     letter-spacing: .05em; padding: 4px 9px; color: #cfe9ef; background: rgba(255,255,255,.07);
   }
   .work .st.live { color: var(--dark); background: var(--cy); }
+  .work .wa { align-self: center; color: var(--cy); font-size: 16px; flex: none; }
+  a.work { transition: border-color .18s ease, background .18s ease; }
+  a.work:active { border-color: var(--cy); background: #161d23; }
+  @media (hover: hover) { a.work:hover { border-color: var(--cy); background: #161d23; } }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -237,7 +241,7 @@
     <h2 class="h2">Мои <span class="cy">проекты</span></h2>
     <p class="lead">Кроме заказов делаю и своё.</p>
 
-    <div class="work">
+    <a class="work" href="https://t.me/sarafanibot">
       <span class="mk sarafan" aria-hidden="true">
         <svg viewBox="0 0 28 28" fill="none"><path d="M8 5v18" stroke="rgba(120,170,255,.45)" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="3" fill="none" stroke="#5f9bff" stroke-width="2"/><circle cx="8" cy="15.5" r="3.5" fill="#5f9bff"/><circle cx="8" cy="23" r="3" fill="none" stroke="rgba(120,170,255,.45)" stroke-width="2"/><path d="M14 15.5h9" stroke="#5f9bff" stroke-width="2" stroke-linecap="round"/></svg>
       </span>
@@ -246,9 +250,10 @@
         <p>Нужен мастер — спрашиваешь у своих. Тут то же самое, только в Telegram: сразу видно, кто из знакомых его советует.</p>
         <span class="st">Прототип готов</span>
       </div>
-    </div>
+      <span class="wa">→</span>
+    </a>
 
-    <div class="work">
+    <a class="work" href="https://t.me/vzaimnodatingbot">
       <span class="mk vzaimno" aria-hidden="true">
         <svg viewBox="0 0 64 44" fill="none" stroke-width="5" stroke-linecap="round"><path d="M32 12C30 7.5 26.5 5 22.5 5C16.5 5 12.5 10 13.5 17C15 26.5 25.5 33.5 36 41" stroke="#9b85ff"/><path d="M32 12C34 7.5 37.5 5 41.5 5C47.5 5 51.5 10 50.5 17C49 26.5 38.5 33.5 28 41" stroke="#ff5c9e"/></svg>
       </span>
@@ -257,7 +262,8 @@
         <p>Работа, дом, работа — а знакомиться негде. Каждый вечер приложение само присылает несколько человек, которые вам подходят, и объясняет, почему именно они.</p>
         <span class="st">Скоро запуск</span>
       </div>
-    </div>
+      <span class="wa">→</span>
+    </a>
 
     <div class="work">
       <span class="mk ps" aria-hidden="true">
