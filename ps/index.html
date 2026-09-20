@@ -122,6 +122,27 @@
   .buy p { color: var(--muted); font-size: 14.5px; margin: 12px 0 18px; }
   .buy .btn { width: 100%; }
 
+
+  /* Показ возможностей */
+  .demo { margin-top: 26px; }
+  .demo + .demo { margin-top: 34px; }
+  .demo h3 { font-weight: 700; font-size: 19px; margin-bottom: 6px; }
+  .demo p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.5; }
+  section.light .demo p { color: #5c6772; }
+  section.deep .demo p { color: var(--muted); }
+  .demo .frame { background: #0b1116; border: 1px solid var(--line); padding: 10px; }
+  .demo svg { display: block; width: 100%; height: auto; }
+  .demo .tag {
+    display: inline-block; margin-bottom: 8px; font: 700 11px "Montserrat", sans-serif;
+    letter-spacing: .1em; color: var(--cy); text-transform: uppercase;
+  }
+  .files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .files span {
+    font: 500 12.5px "Raleway", sans-serif; color: var(--muted);
+    border: 1px solid var(--line); background: var(--panel); padding: 7px 11px;
+  }
+  .files span b { color: #fff; font-weight: 600; }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -141,7 +162,7 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
       Купить
     </a>
-    <a class="btn" href="#how">Как работает</a>
+    <a class="btn" href="#what">Возможности</a>
   </div>
 
   <div class="nums">
@@ -150,52 +171,110 @@
     <div><b>3</b><span>файла на лист</span></div>
   </div>
 
-  <section class="light">
-    <h2 class="h2">Тираж, где каждый <span class="cy">экземпляр свой</span></h2>
-    <p class="sub">Номера, имена, коды — программа проставляет их сама и сразу готовит лист к печати.</p>
+  <section class="light" id="what">
+    <h2 class="h2">Что происходит <span class="cy">внутри</span></h2>
+    <p class="sub">Четыре вещи, которые обычно делают руками. Здесь они происходят сами.</p>
 
-    <div class="feats">
-      <div class="feat">
-        <div class="n">01</div>
-        <h3>Полдня работы — в минуты</h3>
-        <p>Нумерация, данные из таблицы, штрихкоды и QR подставляются во весь тираж разом. Вручную — это вечер вёрстки и риск опечатки.</p>
-      </div>
-      <div class="feat">
-        <div class="n">02</div>
-        <h3>Лист считается сам</h3>
-        <p>Задаёте формат и отступы — программа раскладывает изделия, показывает, сколько влезло, и ставит метки реза.</p>
-      </div>
-      <div class="feat">
-        <div class="n">03</div>
-        <h3>Файлы, которые примет печать</h3>
-        <p>TIFF, PDF или сразу на принтер. Для УФ-печати рядом ложится слой белил, совпадающий с основой точь-в-точь.</p>
+    <div class="demo">
+      <span class="tag">01 · Данные</span>
+      <h3>Каждый экземпляр — свой</h3>
+      <p>Берёт номера и данные из таблицы и подставляет в макет: номер, имя, код. Тираж хоть на десять тысяч штук — работа одна и та же.</p>
+      <div class="frame"><svg viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Данные из таблицы подставляются в каждый экземпляр">
+  <rect x="16" y="24" width="250" height="28" fill="#1d4470"/>
+  <text x="28" y="43" fill="#cfe9ef" font-size="12" letter-spacing="1">ТАБЛИЦА С ДАННЫМИ</text>
+  <rect x="16" y="60" width="250" height="30" fill="#11171c"/>
+    <text x="28" y="80" fill="#7d8894" font-size="13" font-family="monospace">1</text>
+    <text x="58" y="80" fill="#cfd6de" font-size="13">Иванов А.</text>
+    <text x="188" y="80" fill="#03d6f4" font-size="13" font-family="monospace">000123</text><rect x="16" y="94" width="250" height="30" fill="#151b21"/>
+    <text x="28" y="114" fill="#7d8894" font-size="13" font-family="monospace">2</text>
+    <text x="58" y="114" fill="#cfd6de" font-size="13">Петров С.</text>
+    <text x="188" y="114" fill="#03d6f4" font-size="13" font-family="monospace">000124</text><rect x="16" y="128" width="250" height="30" fill="#11171c"/>
+    <text x="28" y="148" fill="#7d8894" font-size="13" font-family="monospace">3</text>
+    <text x="58" y="148" fill="#cfd6de" font-size="13">Сидорова М.</text>
+    <text x="188" y="148" fill="#03d6f4" font-size="13" font-family="monospace">000125</text>
+  <path d="M292 110h44" stroke="#03d6f4" stroke-width="2"/>
+  <path d="M330 104l10 6-10 6z" fill="#03d6f4"/>
+  <g>
+    <rect x="392" y="34" width="210" height="130" fill="#0f151a" stroke="#2b3944"/>
+    <rect x="404" y="46" width="186" height="106" fill="#131b21"/>
+    <text x="416" y="76" fill="#7d8894" font-size="11" letter-spacing="2">CENTRAL PARK</text>
+    <text x="416" y="116" fill="#ffffff" font-size="30" font-family="monospace" letter-spacing="2" id="tickNum">000 123</text>
+    <text x="416" y="138" fill="#03d6f4" font-size="11">Иванов А.</text>
+  </g>
+  <rect x="380" y="46" width="210" height="130" fill="none" stroke="#223039"/>
+  <rect x="368" y="58" width="210" height="130" fill="none" stroke="#1b2831"/>
+  <text x="392" y="196" fill="#7d8894" font-size="12">…и так весь тираж, хоть 10 000 штук</text>
+</svg></div>
+    </div>
+
+    <div class="demo">
+      <span class="tag">02 · Раскладка</span>
+      <h3>Лист собирается сам</h3>
+      <p>Указываете формат листа и зазоры — программа расставляет изделия, считает количество и ставит метки реза по углам.</p>
+      <div class="frame"><svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Раскладка изделий на печатный лист">
+  <rect x="36" y="20" width="568" height="276" fill="#0d141a" stroke="#223039"/>
+  <rect x="60" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="69" fill="#4d6577" font-size="10" font-family="monospace">001</text><rect x="128" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="69" fill="#4d6577" font-size="10" font-family="monospace">002</text><rect x="196" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="69" fill="#4d6577" font-size="10" font-family="monospace">003</text><rect x="264" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="69" fill="#4d6577" font-size="10" font-family="monospace">004</text><rect x="332" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="69" fill="#4d6577" font-size="10" font-family="monospace">005</text><rect x="400" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="69" fill="#4d6577" font-size="10" font-family="monospace">006</text><rect x="468" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="69" fill="#4d6577" font-size="10" font-family="monospace">007</text><rect x="536" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="69" fill="#4d6577" font-size="10" font-family="monospace">008</text><rect x="60" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="115" fill="#4d6577" font-size="10" font-family="monospace">009</text><rect x="128" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="115" fill="#4d6577" font-size="10" font-family="monospace">010</text><rect x="196" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="115" fill="#4d6577" font-size="10" font-family="monospace">011</text><rect x="264" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="115" fill="#4d6577" font-size="10" font-family="monospace">012</text><rect x="332" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="115" fill="#4d6577" font-size="10" font-family="monospace">013</text><rect x="400" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="115" fill="#4d6577" font-size="10" font-family="monospace">014</text><rect x="468" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="115" fill="#4d6577" font-size="10" font-family="monospace">015</text><rect x="536" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="115" fill="#4d6577" font-size="10" font-family="monospace">016</text><rect x="60" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="161" fill="#4d6577" font-size="10" font-family="monospace">017</text><rect x="128" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="161" fill="#4d6577" font-size="10" font-family="monospace">018</text><rect x="196" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="161" fill="#4d6577" font-size="10" font-family="monospace">019</text><rect x="264" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="161" fill="#4d6577" font-size="10" font-family="monospace">020</text><rect x="332" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="161" fill="#4d6577" font-size="10" font-family="monospace">021</text><rect x="400" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="161" fill="#4d6577" font-size="10" font-family="monospace">022</text><rect x="468" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="161" fill="#4d6577" font-size="10" font-family="monospace">023</text><rect x="536" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="161" fill="#4d6577" font-size="10" font-family="monospace">024</text><rect x="60" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="207" fill="#4d6577" font-size="10" font-family="monospace">025</text><rect x="128" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="207" fill="#4d6577" font-size="10" font-family="monospace">026</text><rect x="196" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="207" fill="#4d6577" font-size="10" font-family="monospace">027</text><rect x="264" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="207" fill="#4d6577" font-size="10" font-family="monospace">028</text><rect x="332" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="207" fill="#4d6577" font-size="10" font-family="monospace">029</text><rect x="400" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="207" fill="#4d6577" font-size="10" font-family="monospace">030</text><rect x="468" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="207" fill="#4d6577" font-size="10" font-family="monospace">031</text><rect x="536" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="207" fill="#4d6577" font-size="10" font-family="monospace">032</text><rect x="60" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="253" fill="#4d6577" font-size="10" font-family="monospace">033</text><rect x="128" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="253" fill="#4d6577" font-size="10" font-family="monospace">034</text><rect x="196" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="253" fill="#4d6577" font-size="10" font-family="monospace">035</text><rect x="264" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="253" fill="#4d6577" font-size="10" font-family="monospace">036</text><rect x="332" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="253" fill="#4d6577" font-size="10" font-family="monospace">037</text><rect x="400" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="253" fill="#4d6577" font-size="10" font-family="monospace">038</text><rect x="468" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="253" fill="#4d6577" font-size="10" font-family="monospace">039</text><rect x="536" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="253" fill="#4d6577" font-size="10" font-family="monospace">040</text><path d="M60 44h-12M60 44v-12" stroke="#03d6f4" stroke-width="1.5"/><path d="M598 44h12M598 44v-12" stroke="#03d6f4" stroke-width="1.5"/><path d="M60 268h-12M60 268v12" stroke="#03d6f4" stroke-width="1.5"/><path d="M598 268h12M598 268v12" stroke="#03d6f4" stroke-width="1.5"/>
+  <text x="36" y="312" fill="#7d8894" font-size="12">Лист 900 × 600 мм</text>
+  <text x="604" y="312" fill="#03d6f4" font-size="12" text-anchor="end">40 шт. на листе · зазор 2 мм</text>
+</svg></div>
+    </div>
+
+    <div class="demo">
+      <span class="tag">03 · Коды</span>
+      <h3>Коды рисуются в макете</h3>
+      <p>Штрихкоды, QR и DataMatrix строятся прямо в CorelDRAW — в нужном размере и сразу пригодные для сканера.</p>
+      <div class="frame"><svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Штрихкод, QR и DataMatrix">
+  <rect x="22" y="28" width="2" height="70" fill="#e8edf2"/><rect x="30" y="28" width="3" height="70" fill="#e8edf2"/><rect x="42" y="28" width="2" height="70" fill="#e8edf2"/><rect x="50" y="28" width="5" height="70" fill="#e8edf2"/><rect x="62" y="28" width="2" height="70" fill="#e8edf2"/><rect x="70" y="28" width="5" height="70" fill="#e8edf2"/><rect x="84" y="28" width="5" height="70" fill="#e8edf2"/><rect x="95" y="28" width="2" height="70" fill="#e8edf2"/><rect x="103" y="28" width="5" height="70" fill="#e8edf2"/><rect x="114" y="28" width="2" height="70" fill="#e8edf2"/><rect x="122" y="28" width="2" height="70" fill="#e8edf2"/><rect x="131" y="28" width="2" height="70" fill="#e8edf2"/><rect x="140" y="28" width="5" height="70" fill="#e8edf2"/><rect x="154" y="28" width="5" height="70" fill="#e8edf2"/><rect x="168" y="28" width="5" height="70" fill="#e8edf2"/><rect x="179" y="28" width="3" height="70" fill="#e8edf2"/><rect x="188" y="28" width="2" height="70" fill="#e8edf2"/><rect x="196" y="28" width="5" height="70" fill="#e8edf2"/><rect x="207" y="28" width="3" height="70" fill="#e8edf2"/>
+  <text x="22" y="118" fill="#7d8894" font-size="12">EAN · UPC · Code 128 · GS1 · ITF-14</text>
+  <rect x="242" y="22" width="11" height="11" fill="#e8edf2"/><rect x="253" y="22" width="11" height="11" fill="#e8edf2"/><rect x="264" y="22" width="11" height="11" fill="#e8edf2"/><rect x="286" y="22" width="11" height="11" fill="#e8edf2"/><rect x="297" y="22" width="11" height="11" fill="#e8edf2"/><rect x="330" y="22" width="11" height="11" fill="#e8edf2"/><rect x="341" y="22" width="11" height="11" fill="#e8edf2"/><rect x="352" y="22" width="11" height="11" fill="#e8edf2"/><rect x="242" y="33" width="11" height="11" fill="#e8edf2"/><rect x="253" y="33" width="11" height="11" fill="#e8edf2"/><rect x="264" y="33" width="11" height="11" fill="#e8edf2"/><rect x="275" y="33" width="11" height="11" fill="#e8edf2"/><rect x="308" y="33" width="11" height="11" fill="#e8edf2"/><rect x="319" y="33" width="11" height="11" fill="#e8edf2"/><rect x="330" y="33" width="11" height="11" fill="#e8edf2"/><rect x="341" y="33" width="11" height="11" fill="#e8edf2"/><rect x="352" y="33" width="11" height="11" fill="#e8edf2"/><rect x="242" y="44" width="11" height="11" fill="#e8edf2"/><rect x="253" y="44" width="11" height="11" fill="#e8edf2"/><rect x="264" y="44" width="11" height="11" fill="#e8edf2"/><rect x="308" y="44" width="11" height="11" fill="#e8edf2"/><rect x="319" y="44" width="11" height="11" fill="#e8edf2"/><rect x="330" y="44" width="11" height="11" fill="#e8edf2"/><rect x="341" y="44" width="11" height="11" fill="#e8edf2"/><rect x="352" y="44" width="11" height="11" fill="#e8edf2"/><rect x="253" y="55" width="11" height="11" fill="#e8edf2"/><rect x="264" y="55" width="11" height="11" fill="#e8edf2"/><rect x="275" y="55" width="11" height="11" fill="#e8edf2"/><rect x="286" y="55" width="11" height="11" fill="#e8edf2"/><rect x="319" y="55" width="11" height="11" fill="#e8edf2"/><rect x="275" y="66" width="11" height="11" fill="#e8edf2"/><rect x="297" y="66" width="11" height="11" fill="#e8edf2"/><rect x="319" y="66" width="11" height="11" fill="#e8edf2"/><rect x="352" y="66" width="11" height="11" fill="#e8edf2"/><rect x="242" y="77" width="11" height="11" fill="#e8edf2"/><rect x="253" y="77" width="11" height="11" fill="#e8edf2"/><rect x="264" y="77" width="11" height="11" fill="#e8edf2"/><rect x="319" y="77" width="11" height="11" fill="#e8edf2"/><rect x="341" y="77" width="11" height="11" fill="#e8edf2"/><rect x="242" y="88" width="11" height="11" fill="#e8edf2"/><rect x="253" y="88" width="11" height="11" fill="#e8edf2"/><rect x="286" y="88" width="11" height="11" fill="#e8edf2"/><rect x="308" y="88" width="11" height="11" fill="#e8edf2"/><rect x="341" y="88" width="11" height="11" fill="#e8edf2"/><rect x="352" y="88" width="11" height="11" fill="#e8edf2"/><rect x="275" y="99" width="11" height="11" fill="#e8edf2"/><rect x="286" y="99" width="11" height="11" fill="#e8edf2"/><rect x="341" y="99" width="11" height="11" fill="#e8edf2"/><rect x="242" y="110" width="11" height="11" fill="#e8edf2"/><rect x="253" y="110" width="11" height="11" fill="#e8edf2"/><rect x="264" y="110" width="11" height="11" fill="#e8edf2"/><rect x="275" y="110" width="11" height="11" fill="#e8edf2"/><rect x="308" y="110" width="11" height="11" fill="#e8edf2"/><rect x="330" y="110" width="11" height="11" fill="#e8edf2"/><rect x="242" y="121" width="11" height="11" fill="#e8edf2"/><rect x="253" y="121" width="11" height="11" fill="#e8edf2"/><rect x="264" y="121" width="11" height="11" fill="#e8edf2"/><rect x="297" y="121" width="11" height="11" fill="#e8edf2"/><rect x="308" y="121" width="11" height="11" fill="#e8edf2"/><rect x="330" y="121" width="11" height="11" fill="#e8edf2"/><rect x="242" y="132" width="11" height="11" fill="#e8edf2"/><rect x="253" y="132" width="11" height="11" fill="#e8edf2"/><rect x="264" y="132" width="11" height="11" fill="#e8edf2"/><rect x="275" y="132" width="11" height="11" fill="#e8edf2"/><rect x="286" y="132" width="11" height="11" fill="#e8edf2"/><rect x="308" y="132" width="11" height="11" fill="#e8edf2"/><rect x="341" y="132" width="11" height="11" fill="#e8edf2"/><text x="242" y="118" fill="#7d8894" font-size="12">QR</text>
+  <rect x="438" y="26" width="9" height="9" fill="#e8edf2"/><rect x="456" y="26" width="9" height="9" fill="#e8edf2"/><rect x="474" y="26" width="9" height="9" fill="#e8edf2"/><rect x="492" y="26" width="9" height="9" fill="#e8edf2"/><rect x="510" y="26" width="9" height="9" fill="#e8edf2"/><rect x="528" y="26" width="9" height="9" fill="#e8edf2"/><rect x="438" y="35" width="9" height="9" fill="#e8edf2"/><rect x="447" y="35" width="9" height="9" fill="#e8edf2"/><rect x="456" y="35" width="9" height="9" fill="#e8edf2"/><rect x="465" y="35" width="9" height="9" fill="#e8edf2"/><rect x="474" y="35" width="9" height="9" fill="#e8edf2"/><rect x="483" y="35" width="9" height="9" fill="#e8edf2"/><rect x="492" y="35" width="9" height="9" fill="#e8edf2"/><rect x="519" y="35" width="9" height="9" fill="#e8edf2"/><rect x="528" y="35" width="9" height="9" fill="#e8edf2"/><rect x="537" y="35" width="9" height="9" fill="#e8edf2"/><rect x="438" y="44" width="9" height="9" fill="#e8edf2"/><rect x="447" y="44" width="9" height="9" fill="#e8edf2"/><rect x="483" y="44" width="9" height="9" fill="#e8edf2"/><rect x="492" y="44" width="9" height="9" fill="#e8edf2"/><rect x="528" y="44" width="9" height="9" fill="#e8edf2"/><rect x="438" y="53" width="9" height="9" fill="#e8edf2"/><rect x="447" y="53" width="9" height="9" fill="#e8edf2"/><rect x="465" y="53" width="9" height="9" fill="#e8edf2"/><rect x="483" y="53" width="9" height="9" fill="#e8edf2"/><rect x="510" y="53" width="9" height="9" fill="#e8edf2"/><rect x="537" y="53" width="9" height="9" fill="#e8edf2"/><rect x="438" y="62" width="9" height="9" fill="#e8edf2"/><rect x="447" y="62" width="9" height="9" fill="#e8edf2"/><rect x="456" y="62" width="9" height="9" fill="#e8edf2"/><rect x="474" y="62" width="9" height="9" fill="#e8edf2"/><rect x="483" y="62" width="9" height="9" fill="#e8edf2"/><rect x="492" y="62" width="9" height="9" fill="#e8edf2"/><rect x="510" y="62" width="9" height="9" fill="#e8edf2"/><rect x="519" y="62" width="9" height="9" fill="#e8edf2"/><rect x="528" y="62" width="9" height="9" fill="#e8edf2"/><rect x="438" y="71" width="9" height="9" fill="#e8edf2"/><rect x="447" y="71" width="9" height="9" fill="#e8edf2"/><rect x="510" y="71" width="9" height="9" fill="#e8edf2"/><rect x="528" y="71" width="9" height="9" fill="#e8edf2"/><rect x="537" y="71" width="9" height="9" fill="#e8edf2"/><rect x="438" y="80" width="9" height="9" fill="#e8edf2"/><rect x="465" y="80" width="9" height="9" fill="#e8edf2"/><rect x="501" y="80" width="9" height="9" fill="#e8edf2"/><rect x="519" y="80" width="9" height="9" fill="#e8edf2"/><rect x="438" y="89" width="9" height="9" fill="#e8edf2"/><rect x="447" y="89" width="9" height="9" fill="#e8edf2"/><rect x="456" y="89" width="9" height="9" fill="#e8edf2"/><rect x="474" y="89" width="9" height="9" fill="#e8edf2"/><rect x="492" y="89" width="9" height="9" fill="#e8edf2"/><rect x="528" y="89" width="9" height="9" fill="#e8edf2"/><rect x="537" y="89" width="9" height="9" fill="#e8edf2"/><rect x="438" y="98" width="9" height="9" fill="#e8edf2"/><rect x="456" y="98" width="9" height="9" fill="#e8edf2"/><rect x="465" y="98" width="9" height="9" fill="#e8edf2"/><rect x="474" y="98" width="9" height="9" fill="#e8edf2"/><rect x="501" y="98" width="9" height="9" fill="#e8edf2"/><rect x="510" y="98" width="9" height="9" fill="#e8edf2"/><rect x="528" y="98" width="9" height="9" fill="#e8edf2"/><rect x="438" y="107" width="9" height="9" fill="#e8edf2"/><rect x="447" y="107" width="9" height="9" fill="#e8edf2"/><rect x="456" y="107" width="9" height="9" fill="#e8edf2"/><rect x="474" y="107" width="9" height="9" fill="#e8edf2"/><rect x="501" y="107" width="9" height="9" fill="#e8edf2"/><rect x="510" y="107" width="9" height="9" fill="#e8edf2"/><rect x="528" y="107" width="9" height="9" fill="#e8edf2"/><rect x="537" y="107" width="9" height="9" fill="#e8edf2"/><rect x="438" y="116" width="9" height="9" fill="#e8edf2"/><rect x="447" y="116" width="9" height="9" fill="#e8edf2"/><rect x="501" y="116" width="9" height="9" fill="#e8edf2"/><rect x="510" y="116" width="9" height="9" fill="#e8edf2"/><rect x="438" y="125" width="9" height="9" fill="#e8edf2"/><rect x="447" y="125" width="9" height="9" fill="#e8edf2"/><rect x="456" y="125" width="9" height="9" fill="#e8edf2"/><rect x="465" y="125" width="9" height="9" fill="#e8edf2"/><rect x="474" y="125" width="9" height="9" fill="#e8edf2"/><rect x="483" y="125" width="9" height="9" fill="#e8edf2"/><rect x="492" y="125" width="9" height="9" fill="#e8edf2"/><rect x="501" y="125" width="9" height="9" fill="#e8edf2"/><rect x="510" y="125" width="9" height="9" fill="#e8edf2"/><rect x="519" y="125" width="9" height="9" fill="#e8edf2"/><rect x="528" y="125" width="9" height="9" fill="#e8edf2"/><rect x="537" y="125" width="9" height="9" fill="#e8edf2"/><text x="438" y="118" fill="#7d8894" font-size="12">DataMatrix</text>
+</svg></div>
+    </div>
+  </section>
+
+  <section class="deep">
+    <div class="demo" style="margin-top:0">
+      <span class="tag">04 · УФ-печать</span>
+      <h3>Белила отдельным слоем</h3>
+      <p>Для печати на тёмном и прозрачном материале программа готовит слой белил — он точно совпадает с цветным, так что краска ложится по белой подложке и не проваливается.</p>
+      <div class="frame"><svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слой белил и цветной слой на тёмном материале">
+  <g>
+    <rect x="16" y="24" width="176" height="110" fill="#11181e" stroke="#223039"/>
+    <circle cx="70" cy="72" r="24" fill="#03d6f4"/><rect x="100" y="56" width="66" height="10" fill="#9b16c8"/>
+    <rect x="100" y="74" width="46" height="10" fill="#2f6bd8"/>
+    <text x="16" y="152" fill="#7d8894" font-size="12">Цветной слой</text>
+  </g>
+  <text x="212" y="84" fill="#03d6f4" font-size="22">+</text>
+  <g>
+    <rect x="240" y="24" width="176" height="110" fill="#000" stroke="#223039"/>
+    <circle cx="294" cy="72" r="24" fill="#fff"/><rect x="324" y="56" width="66" height="10" fill="#fff"/>
+    <rect x="324" y="74" width="46" height="10" fill="#fff"/>
+    <text x="240" y="152" fill="#7d8894" font-size="12">Белила</text>
+  </g>
+  <text x="436" y="84" fill="#03d6f4" font-size="22">=</text>
+  <g>
+    <rect x="464" y="24" width="160" height="110" fill="#2a2016" stroke="#3c3222"/>
+    <circle cx="514" cy="72" r="24" fill="#03d6f4"/><rect x="544" y="56" width="62" height="10" fill="#e8b0ff"/>
+    <rect x="544" y="74" width="44" height="10" fill="#8fb7ff"/>
+    <text x="464" y="152" fill="#7d8894" font-size="12">Печать на тёмном</text>
+  </g>
+</svg></div>
+      <div class="files">
+        <span><b>Лист 01 — Лицо — Фон</b>.tif</span>
+        <span><b>Лист 01 — Лицо — Белила</b>.tif</span>
+        <span><b>Лист 01 — Оборот — Фон</b>.tif</span>
+        <span>или один <b>PDF</b> на весь тираж</span>
       </div>
     </div>
   </section>
 
-  <section class="deep" id="how">
-    <h2 class="h2">Три <span class="cy">шага</span></h2>
-    <div class="steps">
-      <div class="step"><b>1</b><div><h3>Образец</h3><p>Одна карточка и указание, что в ней меняется.</p></div></div>
-      <div class="step"><b>2</b><div><h3>Раскладка</h3><p>Формат листа и отступы — остальное считает программа.</p></div></div>
-      <div class="step"><b>3</b><div><h3>Вывод</h3><p>Файлы в печать, с белилами для УФ.</p></div></div>
-    </div>
-  </section>
-
   <section class="light">
-    <h2 class="h2">Как выглядит <span class="cy">панель</span></h2>
-    <p class="sub">Панель живёт справа в CorelDRAW. Снимки настоящие.</p>
-
-    <div class="shots">
-      <figure class="shot">
-        <img src="panel-numbers.jpg" alt="Вкладка «Номера»" loading="lazy">
-        <figcaption><b>Номера.</b> Здесь выбирают, что именно меняется на каждом изделии: номер, текст, код или картинка.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="panel-layout.jpg" alt="Вкладка «Раскладка»" loading="lazy">
-        <figcaption><b>Раскладка.</b> Лист, зазоры, поля, метки реза, оборот и смещение при переворачивании — всё в одном месте, с подсказками.</figcaption>
-      </figure>
-    </div>
+    <h2 class="h2">И <span class="cy">панель</span> рядом с макетом</h2>
+    <p class="sub">Всё управление — справа в CorelDRAW: номера, раскладка, печать, проверка, краски.</p>
+    <figure class="shot" style="margin-top:22px">
+      <img src="panel-layout.jpg" alt="Панель PS · Автоматизация в CorelDRAW" loading="lazy">
+      <figcaption><b>Раскладка.</b> Формат, зазоры, метки реза, оборот и смещение при переворачивании — с подсказками прямо у полей.</figcaption>
+    </figure>
   </section>
 
   <section class="deep">
