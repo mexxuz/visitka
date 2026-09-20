@@ -76,15 +76,28 @@
     margin: 12px 0 0; text-transform: uppercase;
   }
   .hero .sub { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; max-width: 32ch; }
-  .hero .copy .sub + .logo { margin-top: 8px; }
+
+
+  /* Компании */
+  .roles { background: var(--dark); padding: 18px 18px 4px; display: grid; gap: 10px; }
+  .role {
+    display: flex; align-items: center; gap: 13px;
+    border: 1px solid var(--line); background: var(--panel); padding: 12px 14px;
+    transition: border-color .18s ease, background .18s ease;
+  }
+  .role .mark { width: 46px; height: 46px; flex: none; object-fit: contain; }
+  .role .tx { flex: 1; min-width: 0; }
+  .role b { display: block; font: 700 15px "Montserrat", sans-serif; letter-spacing: -.01em; }
+  .role i { font-style: normal; font-size: 12.5px; color: var(--muted); }
+  .role .arr { color: var(--cy); font-size: 15px; }
+  .role:active { border-color: var(--cy); }
+  @media (hover: hover) { .role:hover { border-color: var(--cy); background: #161d23; } }
 
   .cta-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 22px 18px 26px; background: var(--dark); }
   .cta-row .btn { flex: 1 1 auto; }
   .cta-row .btn.wide { flex: 1 0 100%; }
 
 
-  .hero .logo { display: inline-block; margin-top: 10px; }
-  .hero .logo img { width: 176px; height: auto; display: block; }
 
   /* Полоса цифр */
   .nums {
@@ -155,12 +168,29 @@
     <div class="copy">
       <span class="badge">Ташкент · брендинг и производство</span>
       <h1>Макс</h1>
-      <p class="sub">Основатель брендингового агентства</p>
-      <a class="logo" href="https://davinchi.uz" aria-label="Сайт агентства davinchi.uz">
-        <img src="davinchi-logo.png" alt="Davinchi — брендинговое агентство" width="166" height="54">
-      </a>
+      <p class="sub">Основатель <span class="cy">Davinchi</span> и директор <span class="cy">Premium Selection</span></p>
     </div>
   </header>
+
+
+  <div class="roles">
+    <a class="role" href="https://davinchi.uz">
+      <img class="mark" src="davinchi-mark.png" alt="" width="52" height="52">
+      <span class="tx">
+        <b>Davinchi Communications</b>
+        <i>Брендинговое агентство · основатель</i>
+      </span>
+      <span class="arr">→</span>
+    </a>
+    <a class="role" href="https://ps.com.uz">
+      <img class="mark" src="ps-mark.svg" alt="" width="52" height="52">
+      <span class="tx">
+        <b>Premium Selection</b>
+        <i>Рекламно-производственная компания · директор</i>
+      </span>
+      <span class="arr">→</span>
+    </a>
+  </div>
 
   <div class="cta-row">
     <a class="btn solid" href="https://t.me/iMexx">
@@ -168,7 +198,6 @@
       Написать
     </a>
     <a class="btn" href="https://t.me/i_mexx">Канал</a>
-    <a class="btn wide" href="https://davinchi.uz">Сайт агентства davinchi.uz</a>
   </div>
 
 
