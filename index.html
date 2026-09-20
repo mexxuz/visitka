@@ -155,6 +155,24 @@
   a.work:active { border-color: var(--cy); background: #161d23; }
   @media (hover: hover) { a.work:hover { border-color: var(--cy); background: #161d23; } }
 
+
+  /* Полоса для тех, кто открыл сайт в браузере */
+  .toTg {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    display: none; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 18px max(14px, env(safe-area-inset-bottom));
+    background: rgba(10,14,18,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  body.web .toTg { display: flex; }
+  body.web { padding-bottom: 84px; }
+  .toTg a {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 46px; padding: 0 22px; background: var(--cy); color: var(--dark);
+    font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
+  }
+  .toTg a svg { width: 16px; height: 16px; }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -279,11 +297,21 @@
 
 </div>
 
+<div class="toTg">
+  <a href="https://t.me/imexxbot/visitka">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+    Открыть в Telegram
+  </a>
+</div>
+
 <script>
 // Внутри Telegram: полный экран, шапка в цвет страницы, ссылки не уводят в браузер
 (function () {
   var tg = window.Telegram && window.Telegram.WebApp;
-  if (!tg || !tg.platform || tg.platform === 'unknown') return;
+  if (!tg || !tg.platform || tg.platform === 'unknown') {
+    document.body.classList.add('web');   // сайт открыт в браузере — показываем переход в Telegram
+    return;
+  }
 
   tg.ready();
   tg.expand();
