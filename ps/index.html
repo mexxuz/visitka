@@ -5,31 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>PS · Автоматизация — переменная печать для CorelDRAW</title>
-<meta name="description" content="Макрос и панель для CorelDRAW: нумерация, данные из Excel, штрихкоды и QR, раскладка на лист, вывод под УФ-печать с белилами.">
+<meta name="description" content="Нумерация, данные из Excel, штрихкоды и QR, раскладка на лист, белила под УФ-печать. Для типографий и рекламных производств. 7 дней бесплатно.">
 <meta property="og:title" content="PS · Автоматизация — переменная печать для CorelDRAW">
-<meta property="og:description" content="Нумерация, данные из Excel, штрихкоды и QR, раскладка на лист, вывод под УФ-печать с белилами.">
+<meta property="og:description" content="Тираж, где у каждого изделия свой номер, — без ручной вёрстки. 7 дней бесплатно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root {
-    --cy: #03d6f4;
-    --badge: linear-gradient(90deg, #9b16c8 0%, #03d6f4 100%);
-    --dark: #0a0e12;
-    --teal: #0b3a44;
-    --panel: #12181d;
-    --line: #23303a;
-    --paper: #f2f4f5;
-    --ink: #10161b;
-    --muted: #aab2bd;
+    --cy: #03d6f4; --badge: linear-gradient(90deg,#9b16c8,#03d6f4);
+    --dark: #0a0e12; --teal: #0b3a44; --panel: #12181d; --line: #23303a;
+    --paper: #f2f4f5; --ink: #10161b; --muted: #aab2bd;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0; background: var(--dark); color: #fff;
-    font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
-  }
+  body { margin: 0; background: var(--dark); color: #fff; font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
   .app { max-width: 520px; margin: 0 auto; overflow: hidden; }
@@ -37,41 +28,51 @@
   .cy { color: var(--cy); }
 
   .back {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: max(14px, env(safe-area-inset-top)) 18px 0;
+    display: inline-flex; gap: 8px; padding: max(14px, env(safe-area-inset-top)) 18px 0;
     font: 600 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; color: var(--muted);
   }
   .back:hover { color: var(--cy); }
 
-  .head { padding: 18px 18px 26px; }
-  .badge {
-    display: inline-block; background: var(--badge); color: #fff;
-    font: 600 10.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px;
-  }
-  h1 { font-weight: 800; font-size: clamp(28px, 8vw, 38px); line-height: 1.05; margin: 14px 0 0; text-transform: uppercase; }
-  .lead { margin: 14px 0 0; color: var(--muted); font-size: 15px; }
-
+  .badge { display: inline-block; background: var(--badge); color: #fff; font: 600 10.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px; }
   .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    min-height: 50px; padding: 0 22px; border: 2px solid var(--cy); background: transparent;
-    color: #fff; font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
-    transition: background .18s ease, color .18s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 20px;
+    border: 2px solid var(--cy); background: transparent; color: #fff; font: 700 12.5px "Montserrat", sans-serif;
+    text-transform: uppercase; letter-spacing: .09em; transition: background .18s ease, color .18s ease;
   }
-  .btn svg { width: 16px; height: 16px; }
+  .btn svg { width: 16px; height: 16px; flex: none; }
   .btn.solid { background: var(--cy); color: var(--dark); }
   .btn:active { background: var(--cy); color: var(--dark); }
-  @media (hover: hover) {
-    .btn:hover { background: var(--cy); color: var(--dark); }
-    .btn.solid:hover { background: transparent; color: #fff; }
-  }
-  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 0 18px 26px; }
-  .cta-row .btn { flex: 1 1 auto; }
+  @media (hover: hover) { .btn:hover { background: var(--cy); color: var(--dark); } .btn.solid:hover { background: transparent; color: #fff; } }
 
-  .nums {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    background: linear-gradient(120deg, var(--dark) 0%, var(--teal) 100%);
-    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  }
+  /* Первый экран */
+  .hero { padding: 18px 18px 30px; }
+  h1 { font-weight: 800; font-size: clamp(29px, 8.4vw, 40px); line-height: 1.03; margin: 16px 0 0; text-transform: uppercase; }
+  .hero .lead { margin: 16px 0 0; color: var(--muted); font-size: 15.5px; }
+  .hero .who { margin-top: 22px; font: 600 11.5px "Montserrat", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #6d7884; }
+  .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .cta .btn { flex: 1 1 auto; }
+
+  .counter { margin-top: 26px; border: 1px solid var(--line); background: #0d141a; padding: 18px; display: flex; align-items: center; gap: 16px; }
+  .counter .card { flex: none; width: 146px; background: #131b21; border: 1px solid #2b3944; padding: 12px; }
+  .counter .card small { display: block; color: #6d7884; font-size: 9.5px; letter-spacing: 1.6px; }
+  .counter .card b { display: block; margin-top: 8px; font: 400 22px/1 monospace; color: #fff; letter-spacing: 1px; }
+  .counter .tx { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+  .counter .tx u { display: block; text-decoration: none; color: #fff; font-weight: 600; margin-bottom: 4px; }
+
+  /* Было / стало */
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .vs > div { background: var(--dark); padding: 20px 14px; }
+  .vs .t { font: 700 11px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+  .vs .old .t { color: #6d7884; }
+  .vs .new .t { color: var(--cy); }
+  .vs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+  .vs li { font-size: 13.5px; line-height: 1.4; color: var(--muted); display: flex; gap: 8px; }
+  .vs .new li { color: #dfe6ec; }
+  .vs i { font-style: normal; flex: none; }
+  .vs .old i { color: #55636e; }
+  .vs .new i { color: var(--cy); }
+
+  .nums { display: grid; grid-template-columns: repeat(3, 1fr); background: linear-gradient(120deg, var(--dark), var(--teal)); border-bottom: 1px solid var(--line); }
   .nums div { padding: 16px 8px; text-align: center; }
   .nums div + div { border-left: 1px solid rgba(255,255,255,.08); }
   .nums b { display: block; font: 800 22px/1 "Montserrat", sans-serif; color: var(--cy); }
@@ -79,74 +80,44 @@
 
   section { padding: 34px 18px; }
   section.light { background: var(--paper); color: var(--ink); }
-  section.deep { background: linear-gradient(160deg, var(--dark) 0%, var(--teal) 150%); }
+  section.deep { background: linear-gradient(160deg, var(--dark), var(--teal) 150%); }
   .h2 { font-weight: 800; font-size: clamp(23px, 6.6vw, 30px); line-height: 1.1; text-transform: uppercase; }
-  .sub { margin: 12px 0 0; color: #5c6772; font-size: 14.5px; }
-  section.deep .sub { color: var(--muted); }
+  .sub { margin: 12px 0 0; font-size: 14.5px; color: #5c6772; }
+  section.deep .sub, .buy .sub { color: var(--muted); }
 
-  /* Возможности */
-  .feats { margin-top: 24px; }
-  .feat { padding: 18px 0; border-top: 1px solid #dfe3e6; }
-  .feat:last-child { border-bottom: 1px solid #dfe3e6; }
-  .feat .n { font: 700 11.5px "Montserrat", sans-serif; color: var(--cy); letter-spacing: .1em; }
-  .feat h3 { font-weight: 700; font-size: 17.5px; margin: 6px 0; }
-  .feat p { margin: 0; font-size: 14.5px; color: #5c6772; line-height: 1.5; }
-
-  /* Шаги */
-  .steps { margin-top: 22px; display: grid; gap: 12px; }
-  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); padding: 16px; }
-  .step b {
-    flex: none; width: 34px; height: 34px; display: grid; place-items: center;
-    background: var(--cy); color: var(--dark); font: 800 14px "Montserrat", sans-serif;
-  }
-  .step h3 { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
-  .step p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
-
-  /* Снимки панели */
-  .shots { margin-top: 24px; display: grid; gap: 16px; }
-  .shot { border: 1px solid var(--line); background: #262626; }
-  .shot img { display: block; width: 100%; height: auto; }
-  .shot figcaption {
-    padding: 12px 14px; background: var(--panel); color: var(--muted);
-    font-size: 13px; line-height: 1.45; border-top: 1px solid var(--line);
-  }
-  .shot figcaption b { color: #fff; font-weight: 600; }
-
-  /* Что нужно */
-  .req { margin-top: 20px; display: grid; gap: 10px; }
-  .req div { display: flex; gap: 10px; font-size: 14.5px; color: var(--muted); }
-  .req i { font-style: normal; color: var(--cy); }
-
-  .buy { padding: 30px 18px max(34px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); }
-  .buy h2 { font-weight: 800; font-size: 24px; text-transform: uppercase; }
-  .buy p { color: var(--muted); font-size: 14.5px; margin: 12px 0 18px; }
-  .buy .btn { width: 100%; }
-
-
-  /* Показ возможностей */
   .demo { margin-top: 26px; }
   .demo + .demo { margin-top: 34px; }
+  .demo .tag { display: inline-block; margin-bottom: 8px; font: 700 11px "Montserrat", sans-serif; letter-spacing: .1em; color: var(--cy); text-transform: uppercase; }
   .demo h3 { font-weight: 700; font-size: 19px; margin-bottom: 6px; }
-  .demo p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.5; }
-  section.light .demo p { color: #5c6772; }
+  .demo p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.5; color: #5c6772; }
   section.deep .demo p { color: var(--muted); }
-  .demo .frame { background: #0b1116; border: 1px solid var(--line); padding: 10px; }
-  .demo svg { display: block; width: 100%; height: auto; }
-  .demo .tag {
-    display: inline-block; margin-bottom: 8px; font: 700 11px "Montserrat", sans-serif;
-    letter-spacing: .1em; color: var(--cy); text-transform: uppercase;
-  }
-  .files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .files span {
-    font: 500 12.5px "Raleway", sans-serif; color: var(--muted);
-    border: 1px solid var(--line); background: var(--panel); padding: 7px 11px;
-  }
-  .files span b { color: #fff; font-weight: 600; }
+  .demo .frame { background: #0b1116; border: 1px solid var(--line); }
+  .demo img { display: block; width: 100%; height: auto; }
+  .gain { margin-top: 12px; font: 600 13px "Raleway", sans-serif; color: var(--cy); }
 
+  .files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .files span { font: 500 12.5px "Raleway", sans-serif; color: var(--muted); border: 1px solid var(--line); background: var(--panel); padding: 7px 11px; }
+  .files b { color: #fff; font-weight: 600; }
 
-  /* Цены */
-  .plans { margin-top: 24px; display: grid; gap: 12px; }
-  .plan { border: 1px solid var(--line); background: var(--panel); padding: 20px 18px; }
+  .for { margin-top: 22px; display: grid; gap: 10px; }
+  .for div { border: 1px solid #dfe3e6; background: #fff; padding: 14px 16px; }
+  .for b { display: block; font: 700 15px "Montserrat", sans-serif; margin-bottom: 4px; }
+  .for span { font-size: 13.5px; color: #5c6772; }
+
+  .shot { border: 1px solid var(--line); background: #262626; margin: 24px 0 0; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot figcaption { padding: 12px 14px; background: var(--panel); color: var(--muted); font-size: 13px; line-height: 1.45; border-top: 1px solid var(--line); }
+  .shot figcaption b { color: #fff; font-weight: 600; }
+
+  .buy { padding: 32px 18px max(34px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); }
+  .buy h2 { font-weight: 800; font-size: 26px; text-transform: uppercase; }
+  .trial { margin-top: 22px; border: 1px solid var(--cy); background: rgba(3,214,244,.06); padding: 20px 18px; display: grid; gap: 14px; }
+  .trial .big { font: 800 22px/1.15 "Montserrat", sans-serif; }
+  .trial .big span { color: var(--cy); }
+  .trial p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .trial .btn { width: 100%; }
+  .plans { margin-top: 12px; display: grid; gap: 12px; }
+  .plan { border: 1px solid var(--line); background: #0f161b; padding: 20px 18px; }
   .plan.best { border-color: var(--cy); }
   .plan .name { font: 700 12px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
   .plan .price { font: 800 30px/1 "Montserrat", sans-serif; margin: 10px 0 2px; }
@@ -156,23 +127,22 @@
   .plan li i { font-style: normal; color: var(--cy); }
   .plan .btn { width: 100%; }
 
-
-  .terms { margin-top: 24px; display: grid; gap: 12px; }
-  .terms div { display: flex; gap: 10px; font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .terms { margin-top: 22px; display: grid; gap: 11px; }
+  .terms div { display: flex; gap: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
   .terms i { font-style: normal; color: var(--cy); flex: none; }
   .terms b { color: #fff; font-weight: 600; }
 
+  .faq { margin-top: 24px; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .faq details { background: var(--dark); padding: 14px 16px; }
+  .faq summary { cursor: pointer; font: 700 14.5px "Montserrat", sans-serif; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--cy); font-weight: 700; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { margin: 10px 0 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
 
-  .trial {
-    margin-top: 24px; border: 1px solid var(--cy); background: rgba(3,214,244,.06);
-    padding: 20px 18px; display: grid; gap: 14px;
-  }
-  .trial .big { font: 800 22px/1.15 "Montserrat", sans-serif; }
-  .trial .big span { color: var(--cy); }
-  .trial p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
-  .trial .btn { width: 100%; }
-
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .rise { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s cubic-bezier(.22,.9,.3,1); }
+  .rise.seen { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } .rise { opacity: 1 !important; transform: none !important; } }
 </style>
 </head>
 <body>
@@ -180,18 +150,49 @@
 
   <a class="back" href="/">← Визитка</a>
 
-  <header class="head">
-    <span class="badge">Для типографий и рекламных производств</span>
-    <h1>PS · Автоматизация</h1>
-    <p class="lead">Макрос и панель для <span class="cy">CorelDRAW</span>: нумерует тиражи, подставляет данные из таблицы, ставит коды, раскладывает на печатный лист и готовит файлы к выводу. То, что верстальщик делал полдня, занимает минуты.</p>
+  <header class="hero">
+    <span class="badge">CorelDRAW · переменная печать</span>
+    <h1>Тираж, где у каждого изделия <span class="cy">свой номер</span></h1>
+    <p class="lead">Номера, данные из Excel, штрихкоды, раскладка на лист и белила под УФ — программа делает это сама, внутри CorelDRAW. Вручную такой тираж занимает вечер.</p>
+
+    <div class="cta">
+      <a class="btn solid" href="#buy">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+        7 дней бесплатно
+      </a>
+      <a class="btn" href="#what">Как это выглядит</a>
+    </div>
+
+    <div class="counter">
+      <div class="card">
+        <small>CENTRAL PARK CLUB</small>
+        <b id="tick">000 123</b>
+      </div>
+      <div class="tx"><u>Каждая карточка своя</u>Программа идёт по списку и меняет номер, имя и код на каждом экземпляре тиража.</div>
+    </div>
+
+    <div class="who">Для типографий, рекламных производств и УФ-печати</div>
   </header>
 
-  <div class="cta-row">
-    <a class="btn solid" href="#buy">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-      7 дней бесплатно
-    </a>
-    <a class="btn" href="#what">Возможности</a>
+  <div class="vs">
+    <div class="old">
+      <div class="t">Вручную</div>
+      <ul>
+        <li><i>—</i><span>Вечер на тираж в несколько тысяч штук</span></li>
+        <li><i>—</i><span>Опечатки и пропущенные номера</span></li>
+        <li><i>—</i><span>Считать, сколько влезет на лист</span></li>
+        <li><i>—</i><span>Белила рисовать отдельно</span></li>
+      </ul>
+    </div>
+    <div class="new">
+      <div class="t">С программой</div>
+      <ul>
+        <li><i>→</i><span>Минуты на тот же тираж</span></li>
+        <li><i>→</i><span>Номера строго по списку</span></li>
+        <li><i>→</i><span>Лист считается сам</span></li>
+        <li><i>→</i><span>Белила готовятся вместе с макетом</span></li>
+      </ul>
+    </div>
   </div>
 
   <div class="nums">
@@ -202,62 +203,30 @@
 
   <section class="light" id="what">
     <h2 class="h2">Что происходит <span class="cy">внутри</span></h2>
-    <p class="sub">Четыре вещи, которые обычно делают руками. Здесь они происходят сами.</p>
+    <p class="sub">Четыре вещи, которые обычно делают руками.</p>
 
     <div class="demo">
       <span class="tag">01 · Данные</span>
-      <h3>Каждый экземпляр — свой</h3>
-      <p>Берёт номера и данные из таблицы и подставляет в макет: номер, имя, код. Тираж хоть на десять тысяч штук — работа одна и та же.</p>
-      <div class="frame"><svg viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Данные из таблицы подставляются в каждый экземпляр">
-  <rect x="16" y="24" width="250" height="28" fill="#1d4470"/>
-  <text x="28" y="43" fill="#cfe9ef" font-size="12" letter-spacing="1">ТАБЛИЦА С ДАННЫМИ</text>
-  <rect x="16" y="60" width="250" height="30" fill="#11171c"/>
-    <text x="28" y="80" fill="#7d8894" font-size="13" font-family="monospace">1</text>
-    <text x="58" y="80" fill="#cfd6de" font-size="13">Иванов А.</text>
-    <text x="188" y="80" fill="#03d6f4" font-size="13" font-family="monospace">000123</text><rect x="16" y="94" width="250" height="30" fill="#151b21"/>
-    <text x="28" y="114" fill="#7d8894" font-size="13" font-family="monospace">2</text>
-    <text x="58" y="114" fill="#cfd6de" font-size="13">Петров С.</text>
-    <text x="188" y="114" fill="#03d6f4" font-size="13" font-family="monospace">000124</text><rect x="16" y="128" width="250" height="30" fill="#11171c"/>
-    <text x="28" y="148" fill="#7d8894" font-size="13" font-family="monospace">3</text>
-    <text x="58" y="148" fill="#cfd6de" font-size="13">Сидорова М.</text>
-    <text x="188" y="148" fill="#03d6f4" font-size="13" font-family="monospace">000125</text>
-  <path d="M292 110h44" stroke="#03d6f4" stroke-width="2"/>
-  <path d="M330 104l10 6-10 6z" fill="#03d6f4"/>
-  <g>
-    <rect x="392" y="34" width="210" height="130" fill="#0f151a" stroke="#2b3944"/>
-    <rect x="404" y="46" width="186" height="106" fill="#131b21"/>
-    <text x="416" y="76" fill="#7d8894" font-size="11" letter-spacing="2">CENTRAL PARK</text>
-    <text x="416" y="116" fill="#ffffff" font-size="30" font-family="monospace" letter-spacing="2" id="tickNum">000 123</text>
-    <text x="416" y="138" fill="#03d6f4" font-size="11">Иванов А.</text>
-  </g>
-  <rect x="380" y="46" width="210" height="130" fill="none" stroke="#223039"/>
-  <rect x="368" y="58" width="210" height="130" fill="none" stroke="#1b2831"/>
-  <text x="392" y="196" fill="#7d8894" font-size="12">…и так весь тираж, хоть 10 000 штук</text>
-</svg></div>
+      <h3>Из таблицы — в макет</h3>
+      <p>Номера, имена и коды берутся из вашего файла Excel или CSV и подставляются в каждый экземпляр.</p>
+      <div class="frame"><img src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
+      <div class="gain">Тираж на 10 000 штук делается так же, как на 10</div>
     </div>
 
     <div class="demo">
       <span class="tag">02 · Раскладка</span>
       <h3>Лист собирается сам</h3>
-      <p>Указываете формат листа и зазоры — программа расставляет изделия, считает количество и ставит метки реза по углам.</p>
-      <div class="frame"><svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Раскладка изделий на печатный лист">
-  <rect x="36" y="20" width="568" height="276" fill="#0d141a" stroke="#223039"/>
-  <rect x="60" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="69" fill="#4d6577" font-size="10" font-family="monospace">001</text><rect x="128" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="69" fill="#4d6577" font-size="10" font-family="monospace">002</text><rect x="196" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="69" fill="#4d6577" font-size="10" font-family="monospace">003</text><rect x="264" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="69" fill="#4d6577" font-size="10" font-family="monospace">004</text><rect x="332" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="69" fill="#4d6577" font-size="10" font-family="monospace">005</text><rect x="400" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="69" fill="#4d6577" font-size="10" font-family="monospace">006</text><rect x="468" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="69" fill="#4d6577" font-size="10" font-family="monospace">007</text><rect x="536" y="44" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="69" fill="#4d6577" font-size="10" font-family="monospace">008</text><rect x="60" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="115" fill="#4d6577" font-size="10" font-family="monospace">009</text><rect x="128" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="115" fill="#4d6577" font-size="10" font-family="monospace">010</text><rect x="196" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="115" fill="#4d6577" font-size="10" font-family="monospace">011</text><rect x="264" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="115" fill="#4d6577" font-size="10" font-family="monospace">012</text><rect x="332" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="115" fill="#4d6577" font-size="10" font-family="monospace">013</text><rect x="400" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="115" fill="#4d6577" font-size="10" font-family="monospace">014</text><rect x="468" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="115" fill="#4d6577" font-size="10" font-family="monospace">015</text><rect x="536" y="90" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="115" fill="#4d6577" font-size="10" font-family="monospace">016</text><rect x="60" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="161" fill="#4d6577" font-size="10" font-family="monospace">017</text><rect x="128" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="161" fill="#4d6577" font-size="10" font-family="monospace">018</text><rect x="196" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="161" fill="#4d6577" font-size="10" font-family="monospace">019</text><rect x="264" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="161" fill="#4d6577" font-size="10" font-family="monospace">020</text><rect x="332" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="161" fill="#4d6577" font-size="10" font-family="monospace">021</text><rect x="400" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="161" fill="#4d6577" font-size="10" font-family="monospace">022</text><rect x="468" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="161" fill="#4d6577" font-size="10" font-family="monospace">023</text><rect x="536" y="136" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="161" fill="#4d6577" font-size="10" font-family="monospace">024</text><rect x="60" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="207" fill="#4d6577" font-size="10" font-family="monospace">025</text><rect x="128" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="207" fill="#4d6577" font-size="10" font-family="monospace">026</text><rect x="196" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="207" fill="#4d6577" font-size="10" font-family="monospace">027</text><rect x="264" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="207" fill="#4d6577" font-size="10" font-family="monospace">028</text><rect x="332" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="207" fill="#4d6577" font-size="10" font-family="monospace">029</text><rect x="400" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="207" fill="#4d6577" font-size="10" font-family="monospace">030</text><rect x="468" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="207" fill="#4d6577" font-size="10" font-family="monospace">031</text><rect x="536" y="182" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="207" fill="#4d6577" font-size="10" font-family="monospace">032</text><rect x="60" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="68" y="253" fill="#4d6577" font-size="10" font-family="monospace">033</text><rect x="128" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="136" y="253" fill="#4d6577" font-size="10" font-family="monospace">034</text><rect x="196" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="204" y="253" fill="#4d6577" font-size="10" font-family="monospace">035</text><rect x="264" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="272" y="253" fill="#4d6577" font-size="10" font-family="monospace">036</text><rect x="332" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="340" y="253" fill="#4d6577" font-size="10" font-family="monospace">037</text><rect x="400" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="408" y="253" fill="#4d6577" font-size="10" font-family="monospace">038</text><rect x="468" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="476" y="253" fill="#4d6577" font-size="10" font-family="monospace">039</text><rect x="536" y="228" width="62" height="40" fill="#16202a" stroke="#2f4250"/><text x="544" y="253" fill="#4d6577" font-size="10" font-family="monospace">040</text><path d="M60 44h-12M60 44v-12" stroke="#03d6f4" stroke-width="1.5"/><path d="M598 44h12M598 44v-12" stroke="#03d6f4" stroke-width="1.5"/><path d="M60 268h-12M60 268v12" stroke="#03d6f4" stroke-width="1.5"/><path d="M598 268h12M598 268v12" stroke="#03d6f4" stroke-width="1.5"/>
-  <text x="36" y="312" fill="#7d8894" font-size="12">Лист 900 × 600 мм</text>
-  <text x="604" y="312" fill="#03d6f4" font-size="12" text-anchor="end">40 шт. на листе · зазор 2 мм</text>
-</svg></div>
+      <p>Задаёте формат и зазоры — программа расставляет изделия, считает количество и ставит метки реза.</p>
+      <div class="frame"><img src="d2.svg" alt="Изделия разложены по печатному листу с метками реза" loading="lazy"></div>
+      <div class="gain">Не нужно считать в уме и двигать копии</div>
     </div>
 
     <div class="demo">
       <span class="tag">03 · Коды</span>
       <h3>Коды рисуются в макете</h3>
-      <p>Штрихкоды, QR и DataMatrix строятся прямо в CorelDRAW — в нужном размере и сразу пригодные для сканера.</p>
-      <div class="frame"><svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Штрихкод, QR и DataMatrix">
-  <rect x="22" y="28" width="2" height="70" fill="#e8edf2"/><rect x="30" y="28" width="3" height="70" fill="#e8edf2"/><rect x="42" y="28" width="2" height="70" fill="#e8edf2"/><rect x="50" y="28" width="5" height="70" fill="#e8edf2"/><rect x="62" y="28" width="2" height="70" fill="#e8edf2"/><rect x="70" y="28" width="5" height="70" fill="#e8edf2"/><rect x="84" y="28" width="5" height="70" fill="#e8edf2"/><rect x="95" y="28" width="2" height="70" fill="#e8edf2"/><rect x="103" y="28" width="5" height="70" fill="#e8edf2"/><rect x="114" y="28" width="2" height="70" fill="#e8edf2"/><rect x="122" y="28" width="2" height="70" fill="#e8edf2"/><rect x="131" y="28" width="2" height="70" fill="#e8edf2"/><rect x="140" y="28" width="5" height="70" fill="#e8edf2"/><rect x="154" y="28" width="5" height="70" fill="#e8edf2"/><rect x="168" y="28" width="5" height="70" fill="#e8edf2"/><rect x="179" y="28" width="3" height="70" fill="#e8edf2"/><rect x="188" y="28" width="2" height="70" fill="#e8edf2"/><rect x="196" y="28" width="5" height="70" fill="#e8edf2"/><rect x="207" y="28" width="3" height="70" fill="#e8edf2"/>
-  <text x="22" y="118" fill="#7d8894" font-size="12">EAN · UPC · Code 128 · GS1 · ITF-14</text>
-  <rect x="242" y="22" width="11" height="11" fill="#e8edf2"/><rect x="253" y="22" width="11" height="11" fill="#e8edf2"/><rect x="264" y="22" width="11" height="11" fill="#e8edf2"/><rect x="286" y="22" width="11" height="11" fill="#e8edf2"/><rect x="297" y="22" width="11" height="11" fill="#e8edf2"/><rect x="330" y="22" width="11" height="11" fill="#e8edf2"/><rect x="341" y="22" width="11" height="11" fill="#e8edf2"/><rect x="352" y="22" width="11" height="11" fill="#e8edf2"/><rect x="242" y="33" width="11" height="11" fill="#e8edf2"/><rect x="253" y="33" width="11" height="11" fill="#e8edf2"/><rect x="264" y="33" width="11" height="11" fill="#e8edf2"/><rect x="275" y="33" width="11" height="11" fill="#e8edf2"/><rect x="308" y="33" width="11" height="11" fill="#e8edf2"/><rect x="319" y="33" width="11" height="11" fill="#e8edf2"/><rect x="330" y="33" width="11" height="11" fill="#e8edf2"/><rect x="341" y="33" width="11" height="11" fill="#e8edf2"/><rect x="352" y="33" width="11" height="11" fill="#e8edf2"/><rect x="242" y="44" width="11" height="11" fill="#e8edf2"/><rect x="253" y="44" width="11" height="11" fill="#e8edf2"/><rect x="264" y="44" width="11" height="11" fill="#e8edf2"/><rect x="308" y="44" width="11" height="11" fill="#e8edf2"/><rect x="319" y="44" width="11" height="11" fill="#e8edf2"/><rect x="330" y="44" width="11" height="11" fill="#e8edf2"/><rect x="341" y="44" width="11" height="11" fill="#e8edf2"/><rect x="352" y="44" width="11" height="11" fill="#e8edf2"/><rect x="253" y="55" width="11" height="11" fill="#e8edf2"/><rect x="264" y="55" width="11" height="11" fill="#e8edf2"/><rect x="275" y="55" width="11" height="11" fill="#e8edf2"/><rect x="286" y="55" width="11" height="11" fill="#e8edf2"/><rect x="319" y="55" width="11" height="11" fill="#e8edf2"/><rect x="275" y="66" width="11" height="11" fill="#e8edf2"/><rect x="297" y="66" width="11" height="11" fill="#e8edf2"/><rect x="319" y="66" width="11" height="11" fill="#e8edf2"/><rect x="352" y="66" width="11" height="11" fill="#e8edf2"/><rect x="242" y="77" width="11" height="11" fill="#e8edf2"/><rect x="253" y="77" width="11" height="11" fill="#e8edf2"/><rect x="264" y="77" width="11" height="11" fill="#e8edf2"/><rect x="319" y="77" width="11" height="11" fill="#e8edf2"/><rect x="341" y="77" width="11" height="11" fill="#e8edf2"/><rect x="242" y="88" width="11" height="11" fill="#e8edf2"/><rect x="253" y="88" width="11" height="11" fill="#e8edf2"/><rect x="286" y="88" width="11" height="11" fill="#e8edf2"/><rect x="308" y="88" width="11" height="11" fill="#e8edf2"/><rect x="341" y="88" width="11" height="11" fill="#e8edf2"/><rect x="352" y="88" width="11" height="11" fill="#e8edf2"/><rect x="275" y="99" width="11" height="11" fill="#e8edf2"/><rect x="286" y="99" width="11" height="11" fill="#e8edf2"/><rect x="341" y="99" width="11" height="11" fill="#e8edf2"/><rect x="242" y="110" width="11" height="11" fill="#e8edf2"/><rect x="253" y="110" width="11" height="11" fill="#e8edf2"/><rect x="264" y="110" width="11" height="11" fill="#e8edf2"/><rect x="275" y="110" width="11" height="11" fill="#e8edf2"/><rect x="308" y="110" width="11" height="11" fill="#e8edf2"/><rect x="330" y="110" width="11" height="11" fill="#e8edf2"/><rect x="242" y="121" width="11" height="11" fill="#e8edf2"/><rect x="253" y="121" width="11" height="11" fill="#e8edf2"/><rect x="264" y="121" width="11" height="11" fill="#e8edf2"/><rect x="297" y="121" width="11" height="11" fill="#e8edf2"/><rect x="308" y="121" width="11" height="11" fill="#e8edf2"/><rect x="330" y="121" width="11" height="11" fill="#e8edf2"/><rect x="242" y="132" width="11" height="11" fill="#e8edf2"/><rect x="253" y="132" width="11" height="11" fill="#e8edf2"/><rect x="264" y="132" width="11" height="11" fill="#e8edf2"/><rect x="275" y="132" width="11" height="11" fill="#e8edf2"/><rect x="286" y="132" width="11" height="11" fill="#e8edf2"/><rect x="308" y="132" width="11" height="11" fill="#e8edf2"/><rect x="341" y="132" width="11" height="11" fill="#e8edf2"/><text x="242" y="118" fill="#7d8894" font-size="12">QR</text>
-  <rect x="438" y="26" width="9" height="9" fill="#e8edf2"/><rect x="456" y="26" width="9" height="9" fill="#e8edf2"/><rect x="474" y="26" width="9" height="9" fill="#e8edf2"/><rect x="492" y="26" width="9" height="9" fill="#e8edf2"/><rect x="510" y="26" width="9" height="9" fill="#e8edf2"/><rect x="528" y="26" width="9" height="9" fill="#e8edf2"/><rect x="438" y="35" width="9" height="9" fill="#e8edf2"/><rect x="447" y="35" width="9" height="9" fill="#e8edf2"/><rect x="456" y="35" width="9" height="9" fill="#e8edf2"/><rect x="465" y="35" width="9" height="9" fill="#e8edf2"/><rect x="474" y="35" width="9" height="9" fill="#e8edf2"/><rect x="483" y="35" width="9" height="9" fill="#e8edf2"/><rect x="492" y="35" width="9" height="9" fill="#e8edf2"/><rect x="519" y="35" width="9" height="9" fill="#e8edf2"/><rect x="528" y="35" width="9" height="9" fill="#e8edf2"/><rect x="537" y="35" width="9" height="9" fill="#e8edf2"/><rect x="438" y="44" width="9" height="9" fill="#e8edf2"/><rect x="447" y="44" width="9" height="9" fill="#e8edf2"/><rect x="483" y="44" width="9" height="9" fill="#e8edf2"/><rect x="492" y="44" width="9" height="9" fill="#e8edf2"/><rect x="528" y="44" width="9" height="9" fill="#e8edf2"/><rect x="438" y="53" width="9" height="9" fill="#e8edf2"/><rect x="447" y="53" width="9" height="9" fill="#e8edf2"/><rect x="465" y="53" width="9" height="9" fill="#e8edf2"/><rect x="483" y="53" width="9" height="9" fill="#e8edf2"/><rect x="510" y="53" width="9" height="9" fill="#e8edf2"/><rect x="537" y="53" width="9" height="9" fill="#e8edf2"/><rect x="438" y="62" width="9" height="9" fill="#e8edf2"/><rect x="447" y="62" width="9" height="9" fill="#e8edf2"/><rect x="456" y="62" width="9" height="9" fill="#e8edf2"/><rect x="474" y="62" width="9" height="9" fill="#e8edf2"/><rect x="483" y="62" width="9" height="9" fill="#e8edf2"/><rect x="492" y="62" width="9" height="9" fill="#e8edf2"/><rect x="510" y="62" width="9" height="9" fill="#e8edf2"/><rect x="519" y="62" width="9" height="9" fill="#e8edf2"/><rect x="528" y="62" width="9" height="9" fill="#e8edf2"/><rect x="438" y="71" width="9" height="9" fill="#e8edf2"/><rect x="447" y="71" width="9" height="9" fill="#e8edf2"/><rect x="510" y="71" width="9" height="9" fill="#e8edf2"/><rect x="528" y="71" width="9" height="9" fill="#e8edf2"/><rect x="537" y="71" width="9" height="9" fill="#e8edf2"/><rect x="438" y="80" width="9" height="9" fill="#e8edf2"/><rect x="465" y="80" width="9" height="9" fill="#e8edf2"/><rect x="501" y="80" width="9" height="9" fill="#e8edf2"/><rect x="519" y="80" width="9" height="9" fill="#e8edf2"/><rect x="438" y="89" width="9" height="9" fill="#e8edf2"/><rect x="447" y="89" width="9" height="9" fill="#e8edf2"/><rect x="456" y="89" width="9" height="9" fill="#e8edf2"/><rect x="474" y="89" width="9" height="9" fill="#e8edf2"/><rect x="492" y="89" width="9" height="9" fill="#e8edf2"/><rect x="528" y="89" width="9" height="9" fill="#e8edf2"/><rect x="537" y="89" width="9" height="9" fill="#e8edf2"/><rect x="438" y="98" width="9" height="9" fill="#e8edf2"/><rect x="456" y="98" width="9" height="9" fill="#e8edf2"/><rect x="465" y="98" width="9" height="9" fill="#e8edf2"/><rect x="474" y="98" width="9" height="9" fill="#e8edf2"/><rect x="501" y="98" width="9" height="9" fill="#e8edf2"/><rect x="510" y="98" width="9" height="9" fill="#e8edf2"/><rect x="528" y="98" width="9" height="9" fill="#e8edf2"/><rect x="438" y="107" width="9" height="9" fill="#e8edf2"/><rect x="447" y="107" width="9" height="9" fill="#e8edf2"/><rect x="456" y="107" width="9" height="9" fill="#e8edf2"/><rect x="474" y="107" width="9" height="9" fill="#e8edf2"/><rect x="501" y="107" width="9" height="9" fill="#e8edf2"/><rect x="510" y="107" width="9" height="9" fill="#e8edf2"/><rect x="528" y="107" width="9" height="9" fill="#e8edf2"/><rect x="537" y="107" width="9" height="9" fill="#e8edf2"/><rect x="438" y="116" width="9" height="9" fill="#e8edf2"/><rect x="447" y="116" width="9" height="9" fill="#e8edf2"/><rect x="501" y="116" width="9" height="9" fill="#e8edf2"/><rect x="510" y="116" width="9" height="9" fill="#e8edf2"/><rect x="438" y="125" width="9" height="9" fill="#e8edf2"/><rect x="447" y="125" width="9" height="9" fill="#e8edf2"/><rect x="456" y="125" width="9" height="9" fill="#e8edf2"/><rect x="465" y="125" width="9" height="9" fill="#e8edf2"/><rect x="474" y="125" width="9" height="9" fill="#e8edf2"/><rect x="483" y="125" width="9" height="9" fill="#e8edf2"/><rect x="492" y="125" width="9" height="9" fill="#e8edf2"/><rect x="501" y="125" width="9" height="9" fill="#e8edf2"/><rect x="510" y="125" width="9" height="9" fill="#e8edf2"/><rect x="519" y="125" width="9" height="9" fill="#e8edf2"/><rect x="528" y="125" width="9" height="9" fill="#e8edf2"/><rect x="537" y="125" width="9" height="9" fill="#e8edf2"/><text x="438" y="118" fill="#7d8894" font-size="12">DataMatrix</text>
-</svg></div>
+      <p>Штрихкоды, QR и DataMatrix строятся прямо в CorelDRAW, в нужном размере и сразу читаемые сканером.</p>
+      <div class="frame"><img src="d3.svg" alt="Штрихкод, QR-код и DataMatrix" loading="lazy"></div>
+      <div class="gain">Без сторонних генераторов и вставки картинок</div>
     </div>
   </section>
 
@@ -265,59 +234,39 @@
     <div class="demo" style="margin-top:0">
       <span class="tag">04 · УФ-печать</span>
       <h3>Белила отдельным слоем</h3>
-      <p>Для печати на тёмном и прозрачном материале программа готовит слой белил — он точно совпадает с цветным, так что краска ложится по белой подложке и не проваливается.</p>
-      <div class="frame"><svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слой белил и цветной слой на тёмном материале">
-  <g>
-    <rect x="16" y="24" width="176" height="110" fill="#11181e" stroke="#223039"/>
-    <circle cx="70" cy="72" r="24" fill="#03d6f4"/><rect x="100" y="56" width="66" height="10" fill="#9b16c8"/>
-    <rect x="100" y="74" width="46" height="10" fill="#2f6bd8"/>
-    <text x="16" y="152" fill="#7d8894" font-size="12">Цветной слой</text>
-  </g>
-  <text x="212" y="84" fill="#03d6f4" font-size="22">+</text>
-  <g>
-    <rect x="240" y="24" width="176" height="110" fill="#000" stroke="#223039"/>
-    <circle cx="294" cy="72" r="24" fill="#fff"/><rect x="324" y="56" width="66" height="10" fill="#fff"/>
-    <rect x="324" y="74" width="46" height="10" fill="#fff"/>
-    <text x="240" y="152" fill="#7d8894" font-size="12">Белила</text>
-  </g>
-  <text x="436" y="84" fill="#03d6f4" font-size="22">=</text>
-  <g>
-    <rect x="464" y="24" width="160" height="110" fill="#2a2016" stroke="#3c3222"/>
-    <circle cx="514" cy="72" r="24" fill="#03d6f4"/><rect x="544" y="56" width="62" height="10" fill="#e8b0ff"/>
-    <rect x="544" y="74" width="44" height="10" fill="#8fb7ff"/>
-    <text x="464" y="152" fill="#7d8894" font-size="12">Печать на тёмном</text>
-  </g>
-</svg></div>
+      <p>Для печати на тёмном и прозрачном программа готовит слой белил — он точно совпадает с цветным, и краска ложится по белой подложке.</p>
+      <div class="frame"><img src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном материале" loading="lazy"></div>
       <div class="files">
         <span><b>Лист 01 — Лицо — Фон</b>.tif</span>
         <span><b>Лист 01 — Лицо — Белила</b>.tif</span>
         <span><b>Лист 01 — Оборот — Фон</b>.tif</span>
         <span>или один <b>PDF</b> на весь тираж</span>
       </div>
+      <div class="gain">Файлы совпадают при наложении — приводка не поедет</div>
     </div>
   </section>
 
   <section class="light">
-    <h2 class="h2">И <span class="cy">панель</span> рядом с макетом</h2>
-    <p class="sub">Всё управление — справа в CorelDRAW: номера, раскладка, печать, проверка, краски.</p>
-    <figure class="shot" style="margin-top:22px">
-      <img src="panel-layout.jpg" alt="Панель PS · Автоматизация в CorelDRAW" loading="lazy">
-      <figcaption><b>Раскладка.</b> Формат, зазоры, метки реза, оборот и смещение при переворачивании — с подсказками прямо у полей.</figcaption>
-    </figure>
-  </section>
+    <h2 class="h2">Кому <span class="cy">пригодится</span></h2>
+    <div class="for">
+      <div><b>Типографиям</b><span>Пронумерованные бланки, билеты, сертификаты, этикетки с кодами.</span></div>
+      <div><b>Рекламным производствам</b><span>Карты лояльности, бейджи, пропуска — каждый со своими данными.</span></div>
+      <div><b>УФ-печати и сувенирке</b><span>Печать на тёмном и прозрачном, где без белил изображение проваливается.</span></div>
+    </div>
 
-  <section class="deep">
-    <p class="sub" style="margin:0">Нужен CorelDRAW 2026 на Windows, для белил — Photoshop. Программа работает по ключу, привязанному к компьютеру; установку проходим вместе.</p>
+    <figure class="shot">
+      <img src="panel-layout.jpg" alt="Панель PS · Автоматизация в CorelDRAW" loading="lazy">
+      <figcaption><b>Панель в CorelDRAW.</b> Формат листа, зазоры, метки реза, оборот и смещение — с подсказками прямо у полей.</figcaption>
+    </figure>
   </section>
 
   <section class="buy" id="buy">
     <h2>Сколько стоит</h2>
-    <p>Подписка на месяц, ключ привязывается к компьютеру. Установку и первый тираж проходим вместе.</p>
-
+    <p class="sub">Подписка на месяц. Установку и первый тираж проходим вместе.</p>
 
     <div class="trial">
       <div class="big"><span>7 дней</span> бесплатно</div>
-      <p>Пробный ключ на неделю — со всеми возможностями. Поставим вместе, пройдём ваш настоящий тираж. Понравится — продолжим, нет — просто перестанет работать.</p>
+      <p>Пробный ключ на неделю, со всеми возможностями. Пройдём ваш настоящий заказ — и будет видно, стоит ли оно того.</p>
       <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%207%20%D0%B4%D0%BD%D0%B5%D0%B9.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D1%87%D1%82%D0%BE%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         Взять на пробу
@@ -330,11 +279,11 @@
         <div class="price">100 000 <span class="per">сум / месяц</span></div>
         <ul>
           <li><i>→</i><span>Нумерация и данные из Excel, CSV, txt</span></li>
-          <li><i>→</i><span>Штрихкоды, QR и DataMatrix в макете</span></li>
+          <li><i>→</i><span>Штрихкоды, QR и DataMatrix</span></li>
           <li><i>→</i><span>Раскладка на лист с метками реза</span></li>
           <li><i>→</i><span>Вывод в PDF и печать</span></li>
         </ul>
-        <a class="btn" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%20CorelDRAW%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%91%D0%B0%D0%B7%D0%B0%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">Взять базу</a>
+        <a class="btn" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%91%D0%B0%D0%B7%D0%B0%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">Взять базу</a>
       </div>
 
       <div class="plan best">
@@ -342,11 +291,11 @@
         <div class="price">200 000 <span class="per">сум / месяц</span></div>
         <ul>
           <li><i>→</i><span>Всё, что в базе</span></li>
-          <li><i>→</i><span>Белила для УФ-печати: отдельный слой и TIFF</span></li>
-          <li><i>→</i><span>Офсетные обороты и смещение при переворачивании</span></li>
-          <li><i>→</i><span>Проверка макета перед выводом и краски</span></li>
+          <li><i>→</i><span>Белила для УФ: отдельный слой и TIFF</span></li>
+          <li><i>→</i><span>Офсетные обороты и смещение</span></li>
+          <li><i>→</i><span>Проверка перед выводом и краски</span></li>
         </ul>
-        <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%20CorelDRAW%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
+        <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
           Взять полную
         </a>
@@ -354,17 +303,57 @@
     </div>
 
     <div class="terms">
-      <div><i>→</i><span><b>Оплата раз в месяц, переводом на карту.</b> Ключ действует до даты, которая в нём записана.</span></div>
-      <div><i>→</i><span><b>Продление — новый ключ.</b> Вставляете его в панель, переустанавливать ничего не нужно.</span></div>
-      <div><i>→</i><span><b>Не продлили — программа не запускается,</b> но макеты и уже выведенные файлы остаются у вас целыми.</span></div>
-      <div><i>→</i><span><b>С базы на полную — тоже ключом.</b> Недостающая часть включается сразу, без переустановки.</span></div>
-      <div><i>→</i><span><b>Ключ привязан к компьютеру.</b> Меняете машину — выдаю новый.</span></div>
+      <div><i>→</i><span><b>Оплата раз в месяц, переводом на карту.</b> Ключ действует до даты, записанной в нём.</span></div>
+      <div><i>→</i><span><b>Продление — новый ключ.</b> Вставляете в панель, переустанавливать ничего не нужно.</span></div>
+      <div><i>→</i><span><b>Не продлили — программа не запускается,</b> макеты и выведенные файлы остаются у вас.</span></div>
+      <div><i>→</i><span><b>С базы на полную — тоже ключом,</b> часть включается сразу.</span></div>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>Какой нужен CorelDRAW?</summary>
+        <p>Программа сделана под CorelDRAW 2026 на Windows. На других версиях не проверялась — напишите, посмотрим вместе.</p>
+      </details>
+      <details>
+        <summary>Что нужно для белил?</summary>
+        <p>Программа выводит отдельный файл белил. Чтобы собрать из него плашечный канал для УФ-принтера, понадобится Photoshop — шаги покажу.</p>
+      </details>
+      <details>
+        <summary>Можно поставить на два компьютера?</summary>
+        <p>Ключ привязан к одному компьютеру. На второй выдаётся отдельный ключ — напишите, договоримся.</p>
+      </details>
+      <details>
+        <summary>А если что-то пойдёт не так?</summary>
+        <p>В панели есть кнопка «Скопировать отчёт о проблеме»: она собирает, что вы нажимали и что ответил макрос. Присылаете — я разбираюсь.</p>
+      </details>
     </div>
   </section>
 </div>
 
 <script>
-// Внутри Telegram: полный экран, шапка в цвет страницы, ссылки не уводят в браузер
+// Номер в шапке отсчитывает тираж — видно, что меняется каждый экземпляр
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var el = document.getElementById('tick'), n = 123;
+  setInterval(function () {
+    n++; if (n > 130) n = 123;
+    el.textContent = '000 ' + n;
+  }, 1400);
+
+  var targets = document.querySelectorAll('.counter, .vs > div, .nums, .demo, .for div, .shot, .trial, .plan, .faq');
+  targets.forEach(function (el) { el.classList.add('rise'); });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e, i) {
+      if (!e.isIntersecting) return;
+      setTimeout(function () { e.target.classList.add('seen'); }, Math.min(i * 70, 280));
+      io.unobserve(e.target);
+    });
+  }, { threshold: .14, rootMargin: '0px 0px -6% 0px' });
+  targets.forEach(function (el) { io.observe(el); });
+})();
+
+// Внутри Telegram: полный экран и ссылки, которые не уводят в браузер
 (function () {
   var tg = window.Telegram && window.Telegram.WebApp;
   if (!tg || !tg.platform || tg.platform === 'unknown') return;
@@ -381,8 +370,7 @@
     if (!href || href.charAt(0) === '#' || href.charAt(0) === '/') return;
 
     var inner = /^https?:\/\/(t\.me|telegram\.me)\//i.test(href);
-    var outer = /^https?:\/\//i.test(href);
-    if (!inner && !outer) return;
+    if (!inner && !/^https?:\/\//i.test(href)) return;
 
     var can = function (v) { try { return tg.isVersionAtLeast ? tg.isVersionAtLeast(v) : false; } catch (err) { return false; } };
     var opener = inner
@@ -393,9 +381,7 @@
     e.preventDefault();
     var done = false;
     try { opener(href); done = true; } catch (err) {}
-    setTimeout(function () {
-      if (document.visibilityState === 'visible') { location.href = href; }
-    }, done ? 900 : 0);
+    setTimeout(function () { if (document.visibilityState === 'visible') location.href = href; }, done ? 900 : 0);
   });
 })();
 </script>
