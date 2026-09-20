@@ -199,6 +199,41 @@
     font: 500 12px "Raleway", sans-serif; text-transform: none; letter-spacing: 0;
   }
 
+
+  /* ——— Движение ———
+     Приёмы повторены по открытым примерам amicro.vercel.app/buttons, reactbits.dev и 21st.dev:
+     заливка кнопки от места нажатия, смещение стрелки, проявление разделов, счёт чисел.
+     Чужой код не использован; всё отключается при «уменьшить движение». */
+
+  /* Кнопки: бирюза заливает от точки касания */
+  .btn { position: relative; overflow: hidden; isolation: isolate; }
+  .btn::after {
+    content: ""; position: absolute; left: var(--x, 50%); top: var(--y, 50%);
+    width: 0; height: 0; border-radius: 50%; background: var(--cy);
+    transform: translate(-50%, -50%); transition: width .45s ease, height .45s ease, opacity .3s ease;
+    z-index: -1; opacity: .18;
+  }
+  @media (hover: hover) { .btn:hover::after { width: 320px; height: 320px; opacity: 1; } }
+  .btn:active::after { width: 320px; height: 320px; opacity: 1; }
+
+  /* Строки-ссылки: стрелка подаётся вперёд */
+  .role .arr, .club .arr, .work .wa, .svc .go i { transition: transform .22s cubic-bezier(.3,.9,.3,1); }
+  @media (hover: hover) {
+    .role:hover .arr, .club:hover .arr, a.work:hover .wa, .svc a:hover .go i { transform: translateX(5px); }
+  }
+
+  /* Разделы проявляются при прокрутке */
+  .rise { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s cubic-bezier(.22,.9,.3,1); }
+  .rise.seen { opacity: 1; transform: none; }
+
+  /* Фото чуть «дышит» при прокрутке */
+  .hero img { will-change: transform; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise { opacity: 1 !important; transform: none !important; }
+    .btn::after { display: none; }
+  }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -370,6 +405,71 @@
 </div>
 
 <script>
+// ——— Движение: проявление разделов, счёт чисел, заливка кнопок от точки нажатия ———
+(function () {
+  var slow = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (slow) return;
+
+  // 1. Разделы и карточки появляются, когда до них доходит прокрутка
+  var targets = document.querySelectorAll('.roles .role, .cta-row, .nums, section .h2, section .lead, .svc a, .club, .work');
+  targets.forEach(function (el) { el.classList.add('rise'); });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en, i) {
+      if (!en.isIntersecting) return;
+      var el = en.target;
+      setTimeout(function () { el.classList.add('seen'); }, Math.min(i * 60, 240));
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
+  targets.forEach(function (el) { io.observe(el); });
+
+  // 2. Числа набегают от нуля
+  var nums = document.querySelector('.nums');
+  if (nums) {
+    var once = new IntersectionObserver(function (e) {
+      if (!e[0].isIntersecting) return;
+      once.disconnect();
+      nums.querySelectorAll('b').forEach(function (b) {
+        var raw = b.textContent;
+        var end = parseInt(raw.replace(/\D/g, ''), 10);
+        if (!end) return;
+        var tail = raw.replace(/[\d\s ]/g, '');
+        var t0 = performance.now(), dur = 900;
+        (function step(now) {
+          var k = Math.min(1, (now - t0) / dur);
+          var v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+          b.textContent = v.toLocaleString('ru-RU') + tail;
+          if (k < 1) requestAnimationFrame(step);
+        })(t0);
+      });
+    }, { threshold: .4 });
+    once.observe(nums);
+  }
+
+  // 3. Кнопка запоминает, где её нажали — оттуда и разливается цвет
+  document.querySelectorAll('.btn').forEach(function (b) {
+    ['pointerenter', 'pointerdown'].forEach(function (ev) {
+      b.addEventListener(ev, function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.setProperty('--x', (e.clientX - r.left) + 'px');
+        b.style.setProperty('--y', (e.clientY - r.top) + 'px');
+      });
+    });
+  });
+
+  // 4. Фото медленно отъезжает при прокрутке
+  var shot = document.querySelector('.hero img');
+  if (shot) {
+    var tick = function () {
+      var y = Math.min(window.scrollY, 600);
+      shot.style.transform = 'translateY(' + (y * 0.06) + 'px) scale(' + (1 + y * 0.00012) + ')';
+    };
+    addEventListener('scroll', tick, { passive: true });
+    tick();
+  }
+})();
+
 // Внутри Telegram: полный экран, шапка в цвет страницы, ссылки не уводят в браузер
 (function () {
   var tg = window.Telegram && window.Telegram.WebApp;
@@ -397,8 +497,7 @@
       'openLink: ' + (typeof tg.openLink),
       'поддержка 6.1: ' + (tg.isVersionAtLeast ? tg.isVersionAtLeast('6.1') : 'неизвестно'),
       'поддержка 7.0: ' + (tg.isVersionAtLeast ? tg.isVersionAtLeast('7.0') : 'неизвестно')
-    ].join('
-');
+    ].join(String.fromCharCode(10));
     document.body.appendChild(box);
   }
 
