@@ -76,16 +76,15 @@
     margin: 12px 0 0; text-transform: uppercase;
   }
   .hero .sub { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; max-width: 32ch; }
+  .hero .copy .sub + .logo { margin-top: 8px; }
 
   .cta-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 22px 18px 26px; background: var(--dark); }
+  .cta-row .btn { flex: 1 1 auto; }
+  .cta-row .btn.wide { flex: 1 0 100%; }
 
 
-  /* Агентство */
-  .agency { background: var(--dark); padding: 6px 18px 30px; }
-  .agency .t { font: 600 11.5px "Raleway", sans-serif; color: #7d8894; letter-spacing: .08em; text-transform: uppercase; }
-  .agency .logo { display: inline-block; margin: 14px 0 4px; }
-  .agency .logo img { width: 170px; height: auto; display: block; }
-  .agency p { margin: 12px 0 18px; color: var(--muted); font-size: 14.5px; max-width: 42ch; }
+  .hero .logo { display: inline-block; margin-top: 10px; }
+  .hero .logo img { width: 176px; height: auto; display: block; }
 
   /* Полоса цифр */
   .nums {
@@ -154,9 +153,12 @@
       <span class="nick">@iMexx</span>
     </div>
     <div class="copy">
-      <span class="badge">Ташкент · дизайн и производство</span>
+      <span class="badge">Ташкент · брендинг и производство</span>
       <h1>Макс</h1>
-      <p class="sub">Макеты, тиражи и <span class="cy">автоматизация</span> — от эскиза до готовой пачки в руках.</p>
+      <p class="sub">Основатель брендингового агентства</p>
+      <a class="logo" href="https://davinchi.uz" aria-label="Сайт агентства davinchi.uz">
+        <img src="davinchi-logo.png" alt="Davinchi — брендинговое агентство" width="166" height="54">
+      </a>
     </div>
   </header>
 
@@ -166,17 +168,10 @@
       Написать
     </a>
     <a class="btn" href="https://t.me/i_mexx">Канал</a>
+    <a class="btn wide" href="https://davinchi.uz">Сайт агентства davinchi.uz</a>
   </div>
 
 
-  <section class="agency">
-    <div class="t">Коротко обо мне</div>
-    <a class="logo" href="https://davinchi.uz" aria-label="Сайт агентства davinchi.uz">
-      <img src="davinchi-logo.png" alt="Davinchi — брендинговое агентство" width="166" height="54">
-    </a>
-    <p>Основатель брендингового агентства <span class="cy">davinchi.uz</span>. Фирменный стиль, логотипы, упаковка и реклама — для бизнеса в Ташкенте и за его пределами.</p>
-    <a class="btn" href="https://davinchi.uz">Открыть сайт</a>
-  </section>
 
   <div class="nums">
     <div><b>4</b><span>услуги</span></div>
