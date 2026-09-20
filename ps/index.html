@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>PS · Автоматизация — переменная печать для CorelDRAW</title>
+<meta name="description" content="Макрос и панель для CorelDRAW: нумерация, данные из Excel, штрихкоды и QR, раскладка на лист, вывод под УФ-печать с белилами.">
+<meta property="og:title" content="PS · Автоматизация — переменная печать для CorelDRAW">
+<meta property="og:description" content="Нумерация, данные из Excel, штрихкоды и QR, раскладка на лист, вывод под УФ-печать с белилами.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root {
+    --cy: #03d6f4;
+    --badge: linear-gradient(90deg, #9b16c8 0%, #03d6f4 100%);
+    --dark: #0a0e12;
+    --teal: #0b3a44;
+    --panel: #12181d;
+    --line: #23303a;
+    --paper: #f2f4f5;
+    --ink: #10161b;
+    --muted: #aab2bd;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--dark); color: #fff;
+    font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+  .app { max-width: 520px; margin: 0 auto; overflow: hidden; }
+  h1, h2, h3 { font-family: "Montserrat", sans-serif; letter-spacing: -.01em; margin: 0; }
+  .cy { color: var(--cy); }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: max(14px, env(safe-area-inset-top)) 18px 0;
+    font: 600 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; color: var(--muted);
+  }
+  .back:hover { color: var(--cy); }
+
+  .head { padding: 18px 18px 26px; }
+  .badge {
+    display: inline-block; background: var(--badge); color: #fff;
+    font: 600 10.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px;
+  }
+  h1 { font-weight: 800; font-size: clamp(28px, 8vw, 38px); line-height: 1.05; margin: 14px 0 0; text-transform: uppercase; }
+  .lead { margin: 14px 0 0; color: var(--muted); font-size: 15px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 50px; padding: 0 22px; border: 2px solid var(--cy); background: transparent;
+    color: #fff; font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
+    transition: background .18s ease, color .18s ease;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn.solid { background: var(--cy); color: var(--dark); }
+  .btn:active { background: var(--cy); color: var(--dark); }
+  @media (hover: hover) {
+    .btn:hover { background: var(--cy); color: var(--dark); }
+    .btn.solid:hover { background: transparent; color: #fff; }
+  }
+  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 0 18px 26px; }
+  .cta-row .btn { flex: 1 1 auto; }
+
+  .nums {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: linear-gradient(120deg, var(--dark) 0%, var(--teal) 100%);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .nums div { padding: 16px 8px; text-align: center; }
+  .nums div + div { border-left: 1px solid rgba(255,255,255,.08); }
+  .nums b { display: block; font: 800 22px/1 "Montserrat", sans-serif; color: var(--cy); }
+  .nums span { font-size: 11px; color: var(--muted); }
+
+  section { padding: 34px 18px; }
+  section.light { background: var(--paper); color: var(--ink); }
+  section.deep { background: linear-gradient(160deg, var(--dark) 0%, var(--teal) 150%); }
+  .h2 { font-weight: 800; font-size: clamp(23px, 6.6vw, 30px); line-height: 1.1; text-transform: uppercase; }
+  .sub { margin: 12px 0 0; color: #5c6772; font-size: 14.5px; }
+  section.deep .sub { color: var(--muted); }
+
+  /* Возможности */
+  .feats { margin-top: 24px; }
+  .feat { padding: 18px 0; border-top: 1px solid #dfe3e6; }
+  .feat:last-child { border-bottom: 1px solid #dfe3e6; }
+  .feat .n { font: 700 11.5px "Montserrat", sans-serif; color: var(--cy); letter-spacing: .1em; }
+  .feat h3 { font-weight: 700; font-size: 17.5px; margin: 6px 0; }
+  .feat p { margin: 0; font-size: 14.5px; color: #5c6772; line-height: 1.5; }
+
+  /* Шаги */
+  .steps { margin-top: 22px; display: grid; gap: 12px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); padding: 16px; }
+  .step b {
+    flex: none; width: 34px; height: 34px; display: grid; place-items: center;
+    background: var(--cy); color: var(--dark); font: 800 14px "Montserrat", sans-serif;
+  }
+  .step h3 { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+  .step p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
+
+  /* Снимки панели */
+  .shots { margin-top: 24px; display: grid; gap: 16px; }
+  .shot { border: 1px solid var(--line); background: #262626; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot figcaption {
+    padding: 12px 14px; background: var(--panel); color: var(--muted);
+    font-size: 13px; line-height: 1.45; border-top: 1px solid var(--line);
+  }
+  .shot figcaption b { color: #fff; font-weight: 600; }
+
+  /* Что нужно */
+  .req { margin-top: 20px; display: grid; gap: 10px; }
+  .req div { display: flex; gap: 10px; font-size: 14.5px; color: var(--muted); }
+  .req i { font-style: normal; color: var(--cy); }
+
+  .buy { padding: 30px 18px max(34px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); }
+  .buy h2 { font-weight: 800; font-size: 24px; text-transform: uppercase; }
+  .buy p { color: var(--muted); font-size: 14.5px; margin: 12px 0 18px; }
+  .buy .btn { width: 100%; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a class="back" href="/">← Визитка</a>
+
+  <header class="head">
+    <span class="badge">Для типографий и рекламных производств</span>
+    <h1>PS · Автоматизация</h1>
+    <p class="lead">Макрос и панель для <span class="cy">CorelDRAW</span>: нумерует тиражи, подставляет данные из таблицы, ставит коды, раскладывает на печатный лист и готовит файлы к выводу. То, что верстальщик делал полдня, занимает минуты.</p>
+  </header>
+
+  <div class="cta-row">
+    <a class="btn solid" href="#buy">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      Купить
+    </a>
+    <a class="btn" href="#how">Как работает</a>
+  </div>
+
+  <div class="nums">
+    <div><b>10</b><span>видов кодов</span></div>
+    <div><b>5</b><span>разделов панели</span></div>
+    <div><b>3</b><span>файла на лист</span></div>
+  </div>
+
+  <section class="light">
+    <h2 class="h2">Тираж, где каждый <span class="cy">экземпляр свой</span></h2>
+    <p class="sub">Номера, имена, коды — программа проставляет их сама и сразу готовит лист к печати.</p>
+
+    <div class="feats">
+      <div class="feat">
+        <div class="n">01</div>
+        <h3>Полдня работы — в минуты</h3>
+        <p>Нумерация, данные из таблицы, штрихкоды и QR подставляются во весь тираж разом. Вручную — это вечер вёрстки и риск опечатки.</p>
+      </div>
+      <div class="feat">
+        <div class="n">02</div>
+        <h3>Лист считается сам</h3>
+        <p>Задаёте формат и отступы — программа раскладывает изделия, показывает, сколько влезло, и ставит метки реза.</p>
+      </div>
+      <div class="feat">
+        <div class="n">03</div>
+        <h3>Файлы, которые примет печать</h3>
+        <p>TIFF, PDF или сразу на принтер. Для УФ-печати рядом ложится слой белил, совпадающий с основой точь-в-точь.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="deep" id="how">
+    <h2 class="h2">Три <span class="cy">шага</span></h2>
+    <div class="steps">
+      <div class="step"><b>1</b><div><h3>Образец</h3><p>Одна карточка и указание, что в ней меняется.</p></div></div>
+      <div class="step"><b>2</b><div><h3>Раскладка</h3><p>Формат листа и отступы — остальное считает программа.</p></div></div>
+      <div class="step"><b>3</b><div><h3>Вывод</h3><p>Файлы в печать, с белилами для УФ.</p></div></div>
+    </div>
+  </section>
+
+  <section class="light">
+    <h2 class="h2">Как выглядит <span class="cy">панель</span></h2>
+    <p class="sub">Панель живёт справа в CorelDRAW. Снимки настоящие.</p>
+
+    <div class="shots">
+      <figure class="shot">
+        <img src="panel-numbers.jpg" alt="Вкладка «Номера»" loading="lazy">
+        <figcaption><b>Номера.</b> Здесь выбирают, что именно меняется на каждом изделии: номер, текст, код или картинка.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="panel-layout.jpg" alt="Вкладка «Раскладка»" loading="lazy">
+        <figcaption><b>Раскладка.</b> Лист, зазоры, поля, метки реза, оборот и смещение при переворачивании — всё в одном месте, с подсказками.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="deep">
+    <p class="sub" style="margin:0">Нужен CorelDRAW 2026 на Windows, для белил — Photoshop. Программа работает по ключу, привязанному к компьютеру; установку проходим вместе.</p>
+  </section>
+
+  <section class="buy" id="buy">
+    <h2>Купить</h2>
+    <p>Напишите — расскажу про цену, покажу работу на ваших макетах и помогу с установкой. Сообщение уже заготовлено, останется отправить.</p>
+    <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%BB%D1%8F%20CorelDRAW%20%E2%80%94%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D1%86%D0%B5%D0%BD%D1%83%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      Написать о покупке
+    </a>
+  </section>
+</div>
+
+<script>
+// Внутри Telegram: полный экран, шапка в цвет страницы, ссылки не уводят в браузер
+(function () {
+  var tg = window.Telegram && window.Telegram.WebApp;
+  if (!tg || !tg.platform || tg.platform === 'unknown') return;
+
+  tg.ready();
+  tg.expand();
+  if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
+  try { tg.setHeaderColor('#0a0e12'); tg.setBackgroundColor('#0a0e12'); } catch (e) {}
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#' || href.charAt(0) === '/') return;
+
+    var inner = /^https?:\/\/(t\.me|telegram\.me)\//i.test(href);
+    var outer = /^https?:\/\//i.test(href);
+    if (!inner && !outer) return;
+
+    var can = function (v) { try { return tg.isVersionAtLeast ? tg.isVersionAtLeast(v) : false; } catch (err) { return false; } };
+    var opener = inner
+      ? (can('6.1') && typeof tg.openTelegramLink === 'function' ? tg.openTelegramLink.bind(tg) : null)
+      : (can('6.1') && typeof tg.openLink === 'function' ? tg.openLink.bind(tg) : null);
+    if (!opener) return;
+
+    e.preventDefault();
+    var done = false;
+    try { opener(href); done = true; } catch (err) {}
+    setTimeout(function () {
+      if (document.visibilityState === 'visible') { location.href = href; }
+    }, done ? 900 : 0);
+  });
+})();
+</script>
+</body>
+</html>
