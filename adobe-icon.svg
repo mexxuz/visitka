@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Adobe">
+  <rect width="64" height="64" rx="12" fill="#0d0d0f"/>
+  <g fill="#fa0f00">
+    <path d="M32 11 56 54H44.4L32 31.4 19.6 54H8z"/>
+    <rect x="23.5" y="39.5" width="17" height="6.5" rx="1"/>
+  </g>
+</svg>
