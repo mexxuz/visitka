@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>PS · Автоматизация — переменная печать для CorelDRAW</title>
-<meta name="description" content="Нумерация, данные из Excel, штрихкоды и QR, раскладка на лист, белила под УФ-печать. Для типографий и рекламных производств. 7 дней бесплатно.">
-<meta property="og:title" content="PS · Автоматизация — переменная печать для CorelDRAW">
-<meta property="og:description" content="Тираж, где у каждого изделия свой номер, — без ручной вёрстки. 7 дней бесплатно.">
+<title>PS · Автоматизация — подготовка к печати в CorelDRAW</title>
+<meta name="description" content="Номера и данные, раскладка на лист и рулон, укладка по форме, белила и лак для УФ и DTF, офсетные метки, люверсы. Пять частей под ваш вид печати. 7 дней бесплатно.">
+<meta property="og:title" content="PS · Автоматизация — подготовка к печати в CorelDRAW">
+<meta property="og:description" content="Номера, раскладка, укладка по форме, белила, офсет и люверсы — внутри CorelDRAW. 7 дней бесплатно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     --paper: #f2f4f5; --ink: #10161b; --muted: #aab2bd;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body { margin: 0; background: var(--dark); color: #fff; font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
@@ -48,16 +48,20 @@
   .hero { padding: 18px 18px 30px; }
   h1 { font-weight: 800; font-size: clamp(29px, 8.4vw, 40px); line-height: 1.03; margin: 16px 0 0; text-transform: uppercase; }
   .hero .lead { margin: 16px 0 0; color: var(--muted); font-size: 15.5px; }
-  .hero .who { margin-top: 22px; font: 600 11.5px "Montserrat", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #6d7884; }
   .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
   .cta .btn { flex: 1 1 auto; }
 
-  .counter { margin-top: 26px; border: 1px solid var(--line); background: #0d141a; padding: 18px; display: flex; align-items: center; gap: 16px; }
-  .counter .card { flex: none; width: 146px; background: #131b21; border: 1px solid #2b3944; padding: 12px; }
-  .counter .card small { display: block; color: #6d7884; font-size: 9.5px; letter-spacing: 1.6px; }
-  .counter .card b { display: block; margin-top: 8px; font: 400 22px/1 monospace; color: #fff; letter-spacing: 1px; }
-  .counter .tx { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
-  .counter .tx u { display: block; text-decoration: none; color: #fff; font-weight: 600; margin-bottom: 4px; }
+  .pick { margin-top: 26px; }
+  .pick .q { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6d7884; margin-bottom: 10px; }
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chip {
+    display: flex; flex-direction: column; gap: 2px; padding: 12px 14px;
+    border: 1px solid var(--line); background: var(--panel); transition: border-color .18s ease, background .18s ease;
+  }
+  .chip b { font: 700 14px "Montserrat", sans-serif; }
+  .chip span { font-size: 12px; color: var(--muted); line-height: 1.35; }
+  .chip:active { border-color: var(--cy); }
+  @media (hover: hover) { .chip:hover { border-color: var(--cy); background: #161d23; } }
 
   /* Было / стало */
   .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -78,38 +82,63 @@
   .nums b { display: block; font: 800 22px/1 "Montserrat", sans-serif; color: var(--cy); }
   .nums span { font-size: 11px; color: var(--muted); }
 
-  section { padding: 34px 18px; }
+  section { padding: 34px 18px; scroll-margin-top: 10px; }
   section.light { background: var(--paper); color: var(--ink); }
   section.deep { background: linear-gradient(160deg, var(--dark), var(--teal) 150%); }
+  section.plain { background: var(--dark); }
   .h2 { font-weight: 800; font-size: clamp(23px, 6.6vw, 30px); line-height: 1.1; text-transform: uppercase; }
   .sub { margin: 12px 0 0; font-size: 14.5px; color: #5c6772; }
-  section.deep .sub, .buy .sub { color: var(--muted); }
+  section.deep .sub, section.plain .sub, .buy .sub { color: var(--muted); }
 
-  .demo { margin-top: 26px; }
-  .demo + .demo { margin-top: 34px; }
-  .demo .tag { display: inline-block; margin-bottom: 8px; font: 700 11px "Montserrat", sans-serif; letter-spacing: .1em; color: var(--cy); text-transform: uppercase; }
-  .demo h3 { font-weight: 700; font-size: 19px; margin-bottom: 6px; }
-  .demo p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.5; color: #5c6772; }
-  section.deep .demo p { color: var(--muted); }
-  .demo .frame { background: #0b1116; border: 1px solid var(--line); }
-  .demo img { display: block; width: 100%; height: auto; }
+  /* Части */
+  .part-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .part-no { font: 700 11px "Montserrat", sans-serif; letter-spacing: .1em; color: var(--cy); text-transform: uppercase; }
+  .plan-tag { font: 600 10.5px "Raleway", sans-serif; letter-spacing: .04em; padding: 4px 9px; white-space: nowrap; }
+  .plan-tag.any { background: rgba(3,214,244,.14); color: #0590a6; }
+  section.deep .plan-tag.any, section.plain .plan-tag.any { color: var(--cy); }
+  .plan-tag.base { background: #1d4470; color: #fff; }
+  .plan-tag.full { background: var(--badge); color: #fff; }
+  .part h2 { font-weight: 800; font-size: clamp(22px, 6.2vw, 28px); line-height: 1.1; text-transform: uppercase; }
+  .part .promise { margin: 10px 0 0; font-size: 15px; line-height: 1.5; }
+  section.light .part .promise { color: #3b4650; }
+  section.deep .part .promise, section.plain .part .promise { color: #dfe6ec; }
+
+  .feat { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 9px; }
+  .feat li { display: flex; gap: 10px; font-size: 14px; line-height: 1.45; }
+  .feat i { font-style: normal; color: var(--cy); flex: none; }
+  section.light .feat li { color: #3b4650; }
+  section.deep .feat li, section.plain .feat li { color: var(--muted); }
+  .feat b { font-weight: 600; }
+  section.light .feat b { color: var(--ink); }
+  section.deep .feat b, section.plain .feat b { color: #fff; }
+
+  .vis { margin-top: 18px; border: 1px solid var(--line); background: #0b1116; }
+  .vis img { display: block; width: 100%; height: auto; }
+  .vis + .vis { margin-top: 10px; }
   .gain { margin-top: 12px; font: 600 13px "Raleway", sans-serif; color: var(--cy); }
+  section.light .gain { color: #0590a6; }
 
-  .files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .files span { font: 500 12.5px "Raleway", sans-serif; color: var(--muted); border: 1px solid var(--line); background: var(--panel); padding: 7px 11px; }
+  .shot { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: start; margin-top: 18px; }
+  .shot img { width: 150px; height: auto; display: block; border: 1px solid var(--line); background: #262626; }
+  .shot p { margin: 0; font-size: 13px; line-height: 1.5; }
+  section.light .shot p { color: #5c6772; }
+  section.deep .shot p, section.plain .shot p { color: var(--muted); }
+  .shot p b { font-weight: 600; }
+  section.light .shot p b { color: var(--ink); }
+  section.deep .shot p b, section.plain .shot p b { color: #fff; }
+
+  .files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .files span { font: 500 12px "Raleway", sans-serif; color: var(--muted); border: 1px solid var(--line); background: var(--panel); padding: 6px 10px; }
   .files b { color: #fff; font-weight: 600; }
 
-  .for { margin-top: 22px; display: grid; gap: 10px; }
-  .for div { border: 1px solid #dfe3e6; background: #fff; padding: 14px 16px; }
-  .for b { display: block; font: 700 15px "Montserrat", sans-serif; margin-bottom: 4px; }
-  .for span { font-size: 13.5px; color: #5c6772; }
+  /* Сервис */
+  .care { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .care div { border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+  .care b { display: block; font: 700 14px "Montserrat", sans-serif; margin-bottom: 4px; }
+  .care span { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
 
-  .shot { border: 1px solid var(--line); background: #262626; margin: 24px 0 0; }
-  .shot img { display: block; width: 100%; height: auto; }
-  .shot figcaption { padding: 12px 14px; background: var(--panel); color: var(--muted); font-size: 13px; line-height: 1.45; border-top: 1px solid var(--line); }
-  .shot figcaption b { color: #fff; font-weight: 600; }
-
-  .buy { padding: 32px 18px max(34px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); }
+  /* Цены */
+  .buy { padding: 32px 18px max(34px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); scroll-margin-top: 10px; }
   .buy h2 { font-weight: 800; font-size: 26px; text-transform: uppercase; }
   .trial { margin-top: 22px; border: 1px solid var(--cy); background: rgba(3,214,244,.06); padding: 20px 18px; display: grid; gap: 14px; }
   .trial .big { font: 800 22px/1.15 "Montserrat", sans-serif; }
@@ -125,8 +154,9 @@
   .plan ul { list-style: none; margin: 16px 0 18px; padding: 0; display: grid; gap: 8px; }
   .plan li { display: flex; gap: 9px; font-size: 14px; color: var(--muted); line-height: 1.4; }
   .plan li i { font-style: normal; color: var(--cy); }
+  .plan li.off { color: #55636e; }
+  .plan li.off i { color: #55636e; }
   .plan .btn { width: 100%; }
-
   .terms { margin-top: 22px; display: grid; gap: 11px; }
   .terms div { display: flex; gap: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
   .terms i { font-style: normal; color: var(--cy); flex: none; }
@@ -142,7 +172,7 @@
 
   .rise { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s cubic-bezier(.22,.9,.3,1); }
   .rise.seen { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } .rise { opacity: 1 !important; transform: none !important; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .rise { opacity: 1 !important; transform: none !important; } }
 </style>
 </head>
 <body>
@@ -151,138 +181,174 @@
   <a class="back" href="/">← Визитка</a>
 
   <header class="hero">
-    <span class="badge">CorelDRAW · переменная печать</span>
-    <h1>Тираж, где у каждого изделия <span class="cy">свой номер</span></h1>
-    <p class="lead">Номера, данные из Excel, штрихкоды, раскладка на лист, белила и лак под УФ и DTF — программа делает это сама, внутри CorelDRAW. Вручную такой тираж занимает вечер.</p>
+    <span class="badge">CorelDRAW 2026 · подготовка к печати</span>
+    <h1>Вся подготовка к печати — <span class="cy">внутри CorelDRAW</span></h1>
+    <p class="lead">Номера и данные, раскладка на лист и рулон, укладка деталей по форме, белила и лак для УФ, офсетные метки, люверсы. То, что верстальщик делает руками вечер, — несколько кнопок в панели.</p>
 
     <div class="cta">
       <a class="btn solid" href="#buy">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         7 дней бесплатно
       </a>
-      <a class="btn" href="#what">Как это выглядит</a>
     </div>
 
-    <div class="counter">
-      <div class="card">
-        <small>CENTRAL PARK CLUB</small>
-        <b id="tick">000 123</b>
+    <div class="pick">
+      <div class="q">Что вы печатаете?</div>
+      <div class="chips">
+        <a class="chip" href="#p-data"><b>Тиражи с номерами</b><span>карты, билеты, бланки, этикетки</span></a>
+        <a class="chip" href="#p-uv"><b>УФ и DTF</b><span>печать на тёмном, прозрачном, на плёнку</span></a>
+        <a class="chip" href="#p-offset"><b>Офсет</b><span>метки, шкала, проверка макета</span></a>
+        <a class="chip" href="#p-roll"><b>Рулон и плоттер</b><span>наклейки, фигурная резка, баннеры</span></a>
       </div>
-      <div class="tx"><u>Каждая карточка своя</u>Программа идёт по списку и меняет номер, имя и код на каждом экземпляре тиража.</div>
     </div>
-
-    <div class="who">Для типографий, рекламных производств и УФ-печати</div>
   </header>
 
   <div class="vs">
     <div class="old">
       <div class="t">Вручную</div>
       <ul>
-        <li><i>—</i><span>Вечер на тираж в несколько тысяч штук</span></li>
-        <li><i>—</i><span>Опечатки и пропущенные номера</span></li>
-        <li><i>—</i><span>Считать, сколько влезет на лист</span></li>
-        <li><i>—</i><span>Белила и лак рисовать отдельно</span></li>
-        <li><i>—</i><span>Искать по листам испорченную карточку</span></li>
+        <li><i>—</i><span>Вечер на тираж с номерами</span></li>
+        <li><i>—</i><span>Опечатки и повторы номеров</span></li>
+        <li><i>—</i><span>Детали двигают по рулону руками</span></li>
+        <li><i>—</i><span>Белила и метки рисуют отдельно</span></li>
       </ul>
     </div>
     <div class="new">
       <div class="t">С программой</div>
       <ul>
         <li><i>→</i><span>Минуты на тот же тираж</span></li>
-        <li><i>→</i><span>Номера строго по списку</span></li>
-        <li><i>→</i><span>Лист считается сам</span></li>
-        <li><i>→</i><span>Белила и лак готовятся вместе с макетом</span></li>
-        <li><i>→</i><span>Брак перепечатывается по списку номеров</span></li>
+        <li><i>→</i><span>Номера по списку, повтор заметит сама</span></li>
+        <li><i>→</i><span>Детали укладываются по контуру</span></li>
+        <li><i>→</i><span>Белила и метки — вместе с макетом</span></li>
       </ul>
     </div>
   </div>
 
   <div class="nums">
+    <div><b>5</b><span>частей под виды печати</span></div>
     <div><b>10</b><span>видов кодов</span></div>
-    <div><b>5</b><span>разделов панели</span></div>
-    <div><b>1</b><span>файл на сторону</span></div>
+    <div><b>7</b><span>дней бесплатно</span></div>
   </div>
 
-  <section class="light" id="what">
-    <h2 class="h2">Что происходит <span class="cy">внутри</span></h2>
-    <p class="sub">Четыре вещи, которые обычно делают руками.</p>
-
-    <div class="demo">
-      <span class="tag">01 · Данные</span>
-      <h3>Из таблицы — в макет</h3>
-      <p>Номера, имена и коды берутся из вашего файла Excel или CSV и подставляются в каждый экземпляр.</p>
-      <div class="frame"><img src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
-      <div class="gain">Тираж на 10 000 штук делается так же, как на 10</div>
-    </div>
-
-    <div class="demo">
-      <span class="tag">02 · Раскладка</span>
-      <h3>Лист собирается сам</h3>
-      <p>Задаёте формат и зазоры — программа расставляет изделия, считает количество и ставит метки реза.</p>
-      <div class="frame"><img src="d2.svg" alt="Изделия разложены по печатному листу с метками реза" loading="lazy"></div>
-      <div class="gain">Не нужно считать в уме и двигать копии</div>
-    </div>
-
-    <div class="demo">
-      <span class="tag">03 · Коды</span>
-      <h3>Коды рисуются в макете</h3>
-      <p>Штрихкоды, QR и DataMatrix строятся прямо в CorelDRAW, в нужном размере и сразу читаемые сканером.</p>
-      <div class="frame"><img src="d3.svg" alt="Штрихкод, QR-код и DataMatrix" loading="lazy"></div>
-      <div class="gain">Без сторонних генераторов и вставки картинок</div>
+  <!-- 1. Раскладка — ядро -->
+  <section class="plain part" id="p-layout">
+    <div class="part-head"><span class="part-no">Часть 1 · Раскладка</span><span class="plan-tag any">в любом тарифе</span></div>
+    <h2>Лист собирается <span class="cy">сам</span></h2>
+    <p class="promise">Задаёте формат и зазоры — программа расставляет изделия, считает, сколько влезет, и ставит метки реза.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Лист или брошюра</b> — режим выбирается одной кнопкой сверху</span></li>
+      <li><i>→</i><span><b>Расчёт заказа</b> — количество на листе и отступы видны сразу</span></li>
+      <li><i>→</i><span><b>Повторная раскладка заменяет прошлый файл</b>, а не плодит копии</span></li>
+      <li><i>→</i><span><b>Вывод в PDF и на печать</b></span></li>
+    </ul>
+    <div class="vis"><img src="d2.svg" alt="Изделия разложены по листу с метками реза" loading="lazy"></div>
+    <div class="shot">
+      <img src="p-layout.jpg" alt="Вкладка «Раскладка» в панели" loading="lazy">
+      <p><b>Вкладка «Раскладка».</b> Сверху выбираете, что раскладываете: лист или брошюру, а с полной — ещё рулон и укладку по форме. Ниже — формат, поля, зазоры, и сразу видно, сколько изделий поместится.</p>
     </div>
   </section>
 
-  <section class="deep">
-    <div class="demo" style="margin-top:0">
-      <span class="tag">04 · УФ и DTF</span>
-      <h3>Белила и лак — отдельными каналами</h3>
-      <p>Для печати на тёмном и прозрачном программа готовит белила, а для рельефа — лак. В макете их отмечают своим слоем или своим плашечным цветом: как принято у вас. Подложка белил делается по контуру рисунка и чуть меньше него, чтобы белое не выглядывало из-под краски.</p>
-      <div class="frame"><img src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном материале" loading="lazy"></div>
-      <div class="files">
-        <span><b>Лист 01 — Лицо</b>.tif — CMYK плюс каналы</span>
-        <span>канал белил <b>W</b> · канал лака <b>V</b></span>
-        <span>имена каналов — <b>какие ждёт ваш RIP</b></span>
-        <span>или <b>PDF</b> с плашечными красками</span>
-      </div>
-      <div class="gain">Один файл на сторону, каналы совпадают — приводка не поедет</div>
-      <div class="gain">Для DTF-плёнки лист выводится зеркально</div>
+  <!-- 2. Переменные данные -->
+  <section class="light part" id="p-data">
+    <div class="part-head"><span class="part-no">Часть 2 · Переменные данные</span><span class="plan-tag base">база</span></div>
+    <h2>Каждый экземпляр — <span class="cy">свой</span></h2>
+    <p class="promise">Номера, имена, коды и картинки берутся из файла клиента и расходятся по всему тиражу.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Номера по маске</b> — с нулями, приставкой, шагом, «### ### ###»</span></li>
+      <li><i>→</i><span><b>Данные из Excel и CSV</b>, картинки по именам из файла</span></li>
+      <li><i>→</i><span><b>10 видов кодов:</b> EAN, UPC, Code 39 и 128, GS1, ITF-14, QR, DataMatrix</span></li>
+      <li><i>→</i><span><b>Перепечатка брака</b> — вписали номера испорченных, получили только их</span></li>
+      <li><i>→</i><span><b>Журнал номеров</b> предупредит, если номер уже печатался в прошлом заказе</span></li>
+      <li><i>→</i><span><b>Ведомость листов</b> для Excel: на каком листе какие номера</span></li>
+    </ul>
+    <div class="vis"><img src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
+    <div class="vis"><img src="d3.svg" alt="Штрихкод, QR и DataMatrix" loading="lazy"></div>
+    <div class="shot">
+      <img src="p-reprint.jpg" alt="Раздел «Брак и учёт» в панели" loading="lazy">
+      <p><b>«Брак и учёт».</b> Журнал номеров по заказчику и перепечатка: вписываете испорченные номера через запятую или диапазоном — программа выведет только их.</p>
+    </div>
+    <div class="gain">Тираж на 10 000 штук делается так же, как на 10</div>
+  </section>
+
+  <!-- 3. УФ и DTF -->
+  <section class="deep part" id="p-uv">
+    <div class="part-head"><span class="part-no">Часть 3 · УФ и DTF</span><span class="plan-tag full">полная</span></div>
+    <h2>Белила и лак <span class="cy">отдельным слоем</span></h2>
+    <p class="promise">Для печати на тёмном и прозрачном программа готовит белила и лак, которые точно совпадают с цветом.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Шаблон стола с уголками</b> под планшетный УФ-принтер</span></li>
+      <li><i>→</i><span><b>Белила слоем или плашечным цветом</b>, со своим именем краски</span></li>
+      <li><i>→</i><span><b>Подслой белил</b> — чуть внутрь, чтобы белое не вылезало из-под краски</span></li>
+      <li><i>→</i><span><b>Лак</b> отдельной краской</span></li>
+      <li><i>→</i><span><b>TIFF с каналами и PDF с плашками</b>, зеркально — для плёнки DTF</span></li>
+    </ul>
+    <div class="vis"><img src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном" loading="lazy"></div>
+    <div class="files">
+      <span><b>Лист 01 — Лицо — Фон</b>.tif</span>
+      <span><b>Лист 01 — Лицо — Белила</b>.tif</span>
+      <span><b>Лист 01 — Оборот — Фон</b>.tif</span>
+    </div>
+    <div class="shot">
+      <img src="p-white.jpg" alt="Раздел «Белила и лак» в панели" loading="lazy">
+      <p><b>«Белила и лак».</b> Как отмечать белое: слоем или плашечным цветом, какое имя краски ждёт принтер, насколько сжать подслой — всё в одном месте.</p>
+    </div>
+    <div class="gain">Файлы совпадают при наложении — приводка не поедет</div>
+  </section>
+
+  <!-- 4. Офсет и препресс -->
+  <section class="light part" id="p-offset">
+    <div class="part-head"><span class="part-no">Часть 4 · Офсет и препресс</span><span class="plan-tag full">полная</span></div>
+    <h2>Лист готов <span class="cy">к пластине</span></h2>
+    <p class="promise">Метки, шкала и проверка макета — чтобы файл не вернулся из типографии.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Клапан, шкала, кресты приводки</b>, данные листа на поле</span></li>
+      <li><i>→</i><span><b>Оборот</b> — свой или «на себя», со смещением при переворачивании</span></li>
+      <li><i>→</i><span><b>Проверка макета перед печатью</b>: найдёт ошибки и поправит то, что можно</span></li>
+      <li><i>→</i><span><b>PDF для типографии</b>, замена цвета, цветопроба</span></li>
+      <li><i>→</i><span><b>Пакетная обработка</b> — много файлов за раз, и упаковка заказа</span></li>
+    </ul>
+    <div class="vis"><img src="d7.svg" alt="Офсетный лист с клапаном, шкалой и крестами приводки" loading="lazy"></div>
+    <div class="gain">Меньше возвратов из типографии</div>
+  </section>
+
+  <!-- 5. Рулон и плоттер -->
+  <section class="deep part" id="p-roll">
+    <div class="part-head"><span class="part-no">Часть 5 · Рулон и плоттер</span><span class="plan-tag full">полная</span></div>
+    <h2>Детали ложатся <span class="cy">по форме</span></h2>
+    <p class="promise">Наклейки и фигурная резка укладываются на рулон по настоящему контуру — плотно, с тиражом у каждой детали.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Раскладка на рулон</b> — лента нужной ширины вместо листа</span></li>
+      <li><i>→</i><span><b>Укладка по форме</b> — детали входят друг в друга, а не стоят прямоугольниками</span></li>
+      <li><i>→</i><span><b>Сборный лист</b> из разных деталей, у каждой своё количество</span></li>
+      <li><i>→</i><span><b>Переразложить с новыми тиражами</b> прямо в готовом файле</span></li>
+      <li><i>→</i><span><b>Вылет по форме</b> — обводка по контуру рисунка, а не прямоугольником</span></li>
+      <li><i>→</i><span><b>Люверсы для баннера</b> — метки по периметру с вашим шагом</span></li>
+    </ul>
+    <div class="vis"><img src="d5.svg" alt="Детали уложены на рулон по контуру" loading="lazy"></div>
+    <div class="vis"><img src="d6.svg" alt="Метки люверсов по периметру баннера" loading="lazy"></div>
+    <div class="gain">Меньше отходов плёнки и ни одного ручного сдвига</div>
+  </section>
+
+  <!-- Сервис -->
+  <section class="plain">
+    <h2 class="h2">И это ещё <span class="cy">не всё</span></h2>
+    <p class="sub">То, чего обычно нет у макросов.</p>
+    <div class="care">
+      <div><b>Помощник</b><span>Кнопка «Как работать» подсветит нужную кнопку и подскажет следующий шаг.</span></div>
+      <div><b>Обновления сами</b><span>Новая версия ставится после закрытия CorelDRAW — ничего скачивать не нужно.</span></div>
+      <div><b>Проблема — в одно касание</b><span>Опишите, что не так, и отправьте прямо из панели. Макеты не уходят.</span></div>
+      <div><b>Видно, что куплено</b><span>Некупленные части в панели с замком — понятно, что докупить.</span></div>
     </div>
   </section>
 
-  <section class="light">
-    <h2 class="h2">Когда тираж <span class="cy">пошёл в работу</span></h2>
-    <p class="sub">Вещи, из-за которых обычно переделывают весь заказ.</p>
-    <div class="for">
-      <div><b>Перепечатка брака</b><span>Вписали номера испорченных карточек — программа вывела только их, подряд с первого места листа. Не нужно искать, на каком листе они были.</span></div>
-      <div><b>Ведомость листов</b><span>Таблица для Excel: на каком листе какие номера и что стоит на каждом месте. По ней сверяют тираж и ищут нужную карточку.</span></div>
-      <div><b>Журнал номеров</b><span>Каждый выпущенный номер записывается на заказчика. Если номера нового заказа уже печатались раньше — программа предупредит до вывода.</span></div>
-      <div><b>Проверка файла клиента</b><span>Повторы, пустые строки, пропуски в номерах, значения не той длины и те, что не влезут в поле, — видно до печати, а не после.</span></div>
-      <div><b>Рулон и плоттер</b><span>Раскладка на рулон с расходом метража, контур реза плашкой и метки для Summa, Graphtec и Mimaki. Разные макеты можно собрать на один лист.</span></div>
-      <div><b>Офсет и препресс</b><span>Клапан и размер пластины, кресты приводки, шкала краски, свой и чужой оборот. Проверка макета перед печатью и PDF для типографии.</span></div>
-    </div>
-  </section>
-
-  <section class="light">
-    <h2 class="h2">Кому <span class="cy">пригодится</span></h2>
-    <div class="for">
-      <div><b>Типографиям</b><span>Пронумерованные бланки, билеты, сертификаты, этикетки с кодами.</span></div>
-      <div><b>Рекламным производствам</b><span>Карты лояльности, бейджи, пропуска — каждый со своими данными.</span></div>
-      <div><b>УФ-печати и сувенирке</b><span>Печать на тёмном и прозрачном, где без белил изображение проваливается.</span></div>
-    </div>
-
-    <figure class="shot">
-      <img src="panel-layout.jpg" alt="Панель PS · Автоматизация в CorelDRAW" loading="lazy">
-      <figcaption><b>Панель в CorelDRAW.</b> Формат листа, зазоры, метки реза, оборот и смещение — с подсказками прямо у полей.</figcaption>
-    </figure>
-  </section>
-
+  <!-- Цены -->
   <section class="buy" id="buy">
     <h2>Сколько стоит</h2>
     <p class="sub">Подписка на месяц. Установку и первый тираж проходим вместе.</p>
 
     <div class="trial">
       <div class="big"><span>7 дней</span> бесплатно</div>
-      <p>Пробный ключ на неделю, со всеми возможностями. Пройдём ваш настоящий заказ — и будет видно, стоит ли оно того.</p>
+      <p>Пробный ключ на неделю со всеми частями. Пройдём ваш настоящий заказ — и будет видно, стоит ли оно того.</p>
       <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%207%20%D0%B4%D0%BD%D0%B5%D0%B9.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D1%87%D1%82%D0%BE%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         Взять на пробу
@@ -294,12 +360,9 @@
         <div class="name">База</div>
         <div class="price">100 000 <span class="per">сум / месяц</span></div>
         <ul>
-          <li><i>→</i><span>Нумерация и данные из Excel, CSV, txt</span></li>
-          <li><i>→</i><span>Штрихкоды, QR и DataMatrix, картинки по именам</span></li>
-          <li><i>→</i><span>Раскладка на лист с метками реза</span></li>
-          <li><i>→</i><span>Перепечатка брака, ведомость листов, журнал номеров</span></li>
-          <li><i>→</i><span>Проверка файла клиента до печати</span></li>
-          <li><i>→</i><span>Вывод в PDF и печать</span></li>
+          <li><i>→</i><span>Раскладка: лист и брошюра</span></li>
+          <li><i>→</i><span>Переменные данные: номера, таблицы, коды, брак и журнал</span></li>
+          <li class="off"><i>—</i><span>УФ и DTF, офсет, рулон и плоттер</span></li>
         </ul>
         <a class="btn" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%91%D0%B0%D0%B7%D0%B0%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">Взять базу</a>
       </div>
@@ -309,10 +372,9 @@
         <div class="price">200 000 <span class="per">сум / месяц</span></div>
         <ul>
           <li><i>→</i><span>Всё, что в базе</span></li>
-          <li><i>→</i><span>Белила и лак: каналы в TIFF, плашки в PDF, зеркало для DTF</span></li>
-          <li><i>→</i><span>Офсет: пластина с клапаном, шкала, приводка, свой и чужой оборот</span></li>
-          <li><i>→</i><span>Проверка макета и PDF для типографии</span></li>
-          <li><i>→</i><span>Рулон, контур реза, метки плоттера, сборный лист</span></li>
+          <li><i>→</i><span>УФ и DTF: белила, лак, шаблон стола</span></li>
+          <li><i>→</i><span>Офсет и препресс: метки, оборот, проверка макета</span></li>
+          <li><i>→</i><span>Рулон и плоттер: рулон, укладка по форме, вылет, люверсы</span></li>
         </ul>
         <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
@@ -325,25 +387,17 @@
       <div><i>→</i><span><b>Оплата раз в месяц, переводом на карту.</b> Ключ действует до даты, записанной в нём.</span></div>
       <div><i>→</i><span><b>Продление — новый ключ.</b> Вставляете в панель, переустанавливать ничего не нужно.</span></div>
       <div><i>→</i><span><b>Не продлили — программа не запускается,</b> макеты и выведенные файлы остаются у вас.</span></div>
-      <div><i>→</i><span><b>С базы на полную — тоже ключом,</b> часть включается сразу.</span></div>
+      <div><i>→</i><span><b>С базы на полную — тоже ключом,</b> части включаются сразу.</span></div>
     </div>
 
     <div class="faq">
       <details>
         <summary>Какой нужен CorelDRAW?</summary>
-        <p>Программа сделана под CorelDRAW 2026 на Windows. На других версиях не проверялась — напишите, посмотрим вместе.</p>
+        <p>CorelDRAW 2026 на Windows, с поддержкой макросов. Если макросы в вашей сборке отключены, панель прямо скажет об этом и подскажет, что сделать.</p>
       </details>
       <details>
-        <summary>Что нужно для белил и лака?</summary>
-        <p>Ничего дополнительного. Программа сама собирает готовый TIFF: цвет в CMYK и отдельные каналы белил и лака. Имена каналов задаются в панели — такие, какие ждёт ваша программа печати. Photoshop не нужен.</p>
-      </details>
-      <details>
-        <summary>Как обновляется программа?</summary>
-        <p>Сама, через интернет. Новая версия скачивается и встаёт, когда вы закроете CorelDRAW. Переустанавливать и что-то скачивать вручную не нужно.</p>
-      </details>
-      <details>
-        <summary>А если некому объяснить, как этим пользоваться?</summary>
-        <p>В панели есть кнопка «Как работать»: она проводит по шагам — от образца карточки до готовых файлов, подсвечивая нужную кнопку. Плюс установку и первый тираж проходим вместе.</p>
+        <summary>Что нужно для белил?</summary>
+        <p>Программа сама готовит слой белил и выводит TIFF с каналами или PDF с плашками — под то, что ждёт ваш принтер.</p>
       </details>
       <details>
         <summary>Можно поставить на два компьютера?</summary>
@@ -351,24 +405,17 @@
       </details>
       <details>
         <summary>А если что-то пойдёт не так?</summary>
-        <p>В панели есть кнопка «Скопировать отчёт о проблеме»: она собирает, что вы нажимали и что ответил макрос. Присылаете — я разбираюсь.</p>
+        <p>В панели есть «Сообщить о проблеме»: уходит ваше описание, снимок окна и отчёт о том, что нажимали. Макеты и файлы клиентов не отправляются.</p>
       </details>
     </div>
   </section>
 </div>
 
 <script>
-// Номер в шапке отсчитывает тираж — видно, что меняется каждый экземпляр
+// Появление блоков при прокрутке
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  var el = document.getElementById('tick'), n = 123;
-  setInterval(function () {
-    n++; if (n > 130) n = 123;
-    el.textContent = '000 ' + n;
-  }, 1400);
-
-  var targets = document.querySelectorAll('.counter, .vs > div, .nums, .demo, .for div, .shot, .trial, .plan, .faq');
+  var targets = document.querySelectorAll('.chip, .vs > div, .nums, .feat, .vis, .shot, .care div, .trial, .plan, .faq');
   targets.forEach(function (el) { el.classList.add('rise'); });
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e, i) {
@@ -376,7 +423,7 @@
       setTimeout(function () { e.target.classList.add('seen'); }, Math.min(i * 70, 280));
       io.unobserve(e.target);
     });
-  }, { threshold: .14, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
   targets.forEach(function (el) { io.observe(el); });
 })();
 
