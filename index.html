@@ -474,6 +474,13 @@
 // Внутри Telegram: полный экран, шапка в цвет страницы, ссылки не уводят в браузер
 (function () {
   var tg = window.Telegram && window.Telegram.WebApp;
+
+  // Открыли из сообщения бота с пометкой раздела — сразу ведём туда (…/visitka?startapp=soft)
+  try {
+    var go = { soft: '/soft/', ps: '/ps/' }[(tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || ''];
+    if (go && location.pathname === '/') { location.replace(go); return; }
+  } catch (e) {}
+
   if (!tg || !tg.platform || tg.platform === 'unknown') {
     // Сайт открыт в браузере
     document.body.classList.add('web');
