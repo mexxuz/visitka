@@ -475,7 +475,21 @@
 (function () {
   var tg = window.Telegram && window.Telegram.WebApp;
 
-  // Открыли из сообщения бота с пометкой раздела — сразу ведём туда (…/visitka?startapp=soft)
+  // Открыли по старой ссылке t.me/imexxbot/visitka — у неё в заголовке окна «visitka».
+  // Её адрес в BotFather ведёт сюда с пометкой ?from=visitka: переоткрываем визитку
+  // главным приложением бота (там в заголовке имя бота) и закрываем старое окно.
+  try {
+    if (tg && tg.platform && tg.platform !== 'unknown'
+        && new URLSearchParams(location.search).get('from') === 'visitka'
+        && tg.isVersionAtLeast && tg.isVersionAtLeast('6.1')) {
+      var sp = (tg.initDataUnsafe && tg.initDataUnsafe.start_param) || '';
+      tg.openTelegramLink('https://t.me/imexxbot?startapp' + (sp ? '=' + sp : ''));
+      setTimeout(function () { try { tg.close(); } catch (e) {} }, 400);
+      return;
+    }
+  } catch (e) {}
+
+  // Открыли из сообщения бота с пометкой раздела — сразу ведём туда (…?startapp=soft)
   try {
     var go = { soft: '/soft/', ps: '/ps/' }[(tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || ''];
     if (go && location.pathname === '/') { location.replace(go); return; }
