@@ -139,6 +139,37 @@
   .svc .go i { font-style: normal; color: var(--cy); }
 
 
+  /* Работы агентства: лента карточек, листается пальцем */
+  section.cases { background: var(--dark); padding: 34px 0 30px; }
+  section.cases .h2, section.cases .lead { padding: 0 18px; }
+  .strip {
+    display: flex; gap: 10px; margin-top: 22px; padding: 0 18px 4px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 18px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .strip::-webkit-scrollbar { display: none; }
+  .case {
+    position: relative; flex: 0 0 68%; max-width: 300px; aspect-ratio: 4 / 5;
+    scroll-snap-align: start; overflow: hidden; background: var(--panel); border: 1px solid var(--line);
+  }
+  .case img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.22,.9,.3,1); }
+  .case::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,14,18,0) 38%, rgba(10,14,18,.94) 100%);
+  }
+  .case .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 14px 14px 16px; }
+  .case .kind { font: 600 10.5px/1.3 "Raleway", sans-serif; letter-spacing: .05em; color: var(--cy); text-transform: uppercase; }
+  .case h3 { font-weight: 800; font-size: 19px; line-height: 1.1; text-transform: uppercase; margin-top: 6px; }
+  .case .wa { position: absolute; right: 14px; bottom: 16px; z-index: 1; color: var(--cy); font-size: 16px; }
+  .case.all { display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 18px;
+    background: linear-gradient(160deg, var(--panel) 0%, var(--teal) 140%); }
+  .case.all::after { display: none; }
+  .case.all b { font: 800 22px/1.1 "Montserrat", sans-serif; text-transform: uppercase; }
+  .case.all span { font-size: 13.5px; color: var(--muted); }
+  .case.all i { font-style: normal; color: var(--cy); font-size: 22px; }
+  .case:active { border-color: var(--cy); }
+  @media (hover: hover) { .case:hover { border-color: var(--cy); } .case:hover img { transform: scale(1.04); } }
+
   /* Сообщества */
   .clubs { margin-top: 22px; display: grid; gap: 10px; }
   .club {
@@ -292,6 +323,54 @@
     <div><b>3&nbsp;700+</b><span>в сообществах</span></div>
   </div>
 
+  <section class="cases">
+    <h2 class="h2">Работы <span class="cy">Davinchi</span></h2>
+    <p class="lead">Кейсы агентства: как придумывали и что получилось. Каждый открывается на сайте.</p>
+
+    <div class="strip">
+      <a class="case" href="https://davinchi.uz/portfolio/codex/">
+        <img src="work/codex.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Фирменный стиль · экипировка</span><h3>Codex</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case" href="https://davinchi.uz/portfolio/myata-lounge/">
+        <img src="work/myata-lounge.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Брендинг и запуск франшизы</span><h3>Мята Lounge</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case" href="https://davinchi.uz/portfolio/digitalrazor/">
+        <img src="work/digitalrazor.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Логотип и фирменный стиль</span><h3>DigitalRazor</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case" href="https://davinchi.uz/portfolio/sifat-sut/">
+        <img src="work/sifat-sut.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Упаковка</span><h3>Sifat Sut</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case" href="https://davinchi.uz/portfolio/tashkent-metro/">
+        <img src="work/tashkent-metro.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Концепция схемы</span><h3>Метро Ташкента</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case" href="https://davinchi.uz/portfolio/nasibtour/">
+        <img src="work/nasibtour.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Наружная реклама</span><h3>NasibTour</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case" href="https://davinchi.uz/portfolio/caro/">
+        <img src="work/caro.jpg" alt="" width="560" height="700" loading="lazy">
+        <span class="cap"><span class="kind">Оформление конгресса</span><h3>CARO</h3></span>
+        <span class="wa">→</span>
+      </a>
+      <a class="case all" href="https://davinchi.uz/%d0%bf%d0%be%d1%80%d1%82%d1%84%d0%be%d0%bb%d0%b8%d0%be/">
+        <b>Всё портфолио</b>
+        <span>Логотипы, упаковка, реклама и интерьеры на сайте агентства</span>
+        <i>→</i>
+      </a>
+    </div>
+  </section>
+
   <section class="light">
     <h2 class="h2">Что я <span class="cy">делаю</span></h2>
     <p class="lead">Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
@@ -412,7 +491,7 @@
   if (slow) return;
 
   // 1. Разделы и карточки появляются, когда до них доходит прокрутка
-  var targets = document.querySelectorAll('.roles .role, .cta-row, .nums, section .h2, section .lead, .svc a, .club, .work');
+  var targets = document.querySelectorAll('.roles .role, .cta-row, .nums, section .h2, section .lead, .strip, .svc a, .club, .work');
   targets.forEach(function (el) { el.classList.add('rise'); });
 
   var io = new IntersectionObserver(function (entries) {
