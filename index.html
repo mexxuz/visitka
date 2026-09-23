@@ -82,7 +82,8 @@
     margin: 0; text-transform: uppercase;
   }
   .hero .badge { margin-top: 10px; }
-  .hero .sub { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.45; max-width: 34ch; }
+  .hero .sub { margin: 12px 0 0; color: var(--muted); font-size: min(14.5px, max(11px, calc((100vw - 36px) / 28))); line-height: 1.55; }
+  .hero .sub .ln { display: block; white-space: nowrap; }   /* каждая строка — целиком, без переноса */
 
 
   /* Компании */
@@ -283,8 +284,8 @@
     <div class="copy">
       <h1>Макс</h1>
       <span class="badge">Ташкент · ИИ, реклама и производство</span>
-      <p class="sub">Основатель <span class="cy">Davinchi</span> и директор <span class="cy">Premium Selection</span><br>
-        Архитектор-проектировщик · Дизайнер · ИИ-специалист</p>
+      <p class="sub"><span class="ln">Основатель <span class="cy">Davinchi</span> и директор <span class="cy">Premium Selection</span></span>
+        <span class="ln">Архитектор-проектировщик · Дизайнер · ИИ-специалист</span></p>
     </div>
   </header>
 
