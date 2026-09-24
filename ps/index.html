@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>PS · Автоматизация — подготовка к печати в CorelDRAW</title>
-<meta name="description" content="Номера и данные, раскладка на лист и рулон, укладка по форме, белила и лак для УФ и DTF, офсетные метки, люверсы. Пять частей под ваш вид печати. 7 дней бесплатно.">
-<meta property="og:title" content="PS · Автоматизация — подготовка к печати в CorelDRAW">
+<title>PS · Автоматизация — подготовка к печати и резке в CorelDRAW</title>
+<meta name="description" content="Номера и раскладка, белила и лак для УФ, офсет, рулон, плоттер, лазер, фрезер с объёмными буквами и календари — внутри CorelDRAW. Платите только за своё оборудование. 7 дней бесплатно.">
+<meta property="og:title" content="PS · Автоматизация — подготовка к печати и резке в CorelDRAW">
 <meta property="og:image" content="https://max.davinchi.uz/cards/ps.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Номера, раскладка, укладка по форме, белила, офсет и люверсы — внутри CorelDRAW. 7 дней бесплатно.">
+<meta property="og:description" content="Печать и резка в CorelDRAW: номера, белила для УФ, офсет, рулон, плоттер, лазер, фрезер, календари. 7 дней бесплатно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
@@ -147,18 +147,36 @@
   .trial .big span { color: var(--cy); }
   .trial p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
   .trial .btn { width: 100%; }
-  .plans { margin-top: 12px; display: grid; gap: 12px; }
-  .plan { border: 1px solid var(--line); background: #0f161b; padding: 20px 18px; }
-  .plan.best { border-color: var(--cy); }
-  .plan .name { font: 700 12px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
-  .plan .price { font: 800 30px/1 "Montserrat", sans-serif; margin: 10px 0 2px; }
-  .plan .per { font-size: 13px; color: var(--muted); }
-  .plan ul { list-style: none; margin: 16px 0 18px; padding: 0; display: grid; gap: 8px; }
-  .plan li { display: flex; gap: 9px; font-size: 14px; color: var(--muted); line-height: 1.4; }
-  .plan li i { font-style: normal; color: var(--cy); }
-  .plan li.off { color: #55636e; }
-  .plan li.off i { color: #55636e; }
-  .plan .btn { width: 100%; }
+  /* Калькулятор набора */
+  .kit { margin-top: 12px; border: 1px solid var(--line); background: #0f161b; scroll-margin-top: 10px; }
+  .kit-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 16px 12px; }
+  .kit-h b { font: 700 12px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
+  .kit-h button { background: none; border: 0; color: var(--muted); font: 600 12px "Raleway", sans-serif; cursor: pointer; padding: 4px 0; }
+  .kit-h button:hover { color: var(--cy); }
+  .opt { position: relative; display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); cursor: pointer; }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .opt .box { width: 20px; height: 20px; border: 2px solid #4a5763; display: grid; place-items: center; transition: background .15s ease, border-color .15s ease; }
+  .opt .box svg { width: 12px; height: 12px; stroke: var(--dark); opacity: 0; }
+  .opt input:checked + .box { background: var(--cy); border-color: var(--cy); }
+  .opt input:checked + .box svg { opacity: 1; }
+  .opt input:focus-visible + .box { outline: 2px solid var(--cy); outline-offset: 2px; }
+  .opt .nm b { display: block; font: 700 14px/1.3 "Montserrat", sans-serif; }
+  .opt .nm span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+  .opt .pr { font: 700 13px "Montserrat", sans-serif; color: var(--muted); white-space: nowrap; }
+  .opt:has(input:checked) { background: rgba(3,214,244,.05); }
+  .opt:has(input:checked) .pr { color: #fff; }
+  .kit-sum { padding: 16px; border-top: 1px solid var(--line); display: grid; gap: 12px; }
+  .kit-sum .total { font: 800 24px/1.1 "Montserrat", sans-serif; }
+  .kit-sum .total small { font: 500 13px "Raleway", sans-serif; color: var(--muted); }
+  .kit-sum .note { font-size: 13px; color: var(--muted); line-height: 1.45; margin: 0; }
+  .kit-sum .btn { width: 100%; }
+  .free { margin-top: 12px; border: 1px dashed #37505c; padding: 14px 16px; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+  .free b { color: #fff; font-weight: 600; }
+  .plan-tag.part { background: #1d4470; color: #fff; }
+  .plan-tag.gift { background: rgba(3,214,244,.14); color: #0590a6; }
+  section.deep .plan-tag.gift, section.plain .plan-tag.gift { color: var(--cy); }
+  .shot.tall { grid-template-columns: 170px 1fr; }
+  .shot.tall img { width: 170px; }
   .terms { margin-top: 22px; display: grid; gap: 11px; }
   .terms div { display: flex; gap: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
   .terms i { font-style: normal; color: var(--cy); flex: none; }
@@ -183,24 +201,31 @@
   <a class="back" href="/">← Визитка</a>
 
   <header class="hero">
-    <span class="badge">CorelDRAW 2026 · подготовка к печати</span>
-    <h1>Вся подготовка к печати — <span class="cy">внутри CorelDRAW</span></h1>
-    <p class="lead">Номера и данные, раскладка на лист и рулон, укладка деталей по форме, белила и лак для УФ, офсетные метки, люверсы. То, что верстальщик делает руками вечер, — несколько кнопок в панели.</p>
+    <span class="badge">CorelDRAW 2026 · печать и резка</span>
+    <h1>Подготовка к печати и резке — <span class="cy">внутри CorelDRAW</span></h1>
+    <p class="lead">Номера и раскладка, белила и лак для УФ, метки для офсета, файлы для плоттера, лазера и фрезера, объёмные буквы и календари. Отмечаете своё оборудование — в панели остаётся только нужное.</p>
 
     <div class="cta">
       <a class="btn solid" href="#buy">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         7 дней бесплатно
       </a>
+      <a class="btn" href="#kit">Собрать свой набор</a>
     </div>
 
     <div class="pick">
-      <div class="q">Что вы печатаете?</div>
+      <div class="q">Какое у вас оборудование?</div>
       <div class="chips">
-        <a class="chip" href="#p-data"><b>Тиражи с номерами</b><span>карты, билеты, бланки, этикетки</span></a>
-        <a class="chip" href="#p-uv"><b>УФ и DTF</b><span>печать на тёмном, прозрачном, на плёнку</span></a>
-        <a class="chip" href="#p-offset"><b>Офсет</b><span>метки, шкала, проверка макета</span></a>
-        <a class="chip" href="#p-roll"><b>Рулон и плоттер</b><span>наклейки, фигурная резка, баннеры</span></a>
+        <a class="chip" href="#p-data"><b>Номера и данные</b><span>карты, билеты, бланки, коды</span></a>
+        <a class="chip" href="#p-digi"><b>Цифровая печать</b><span>листы, оборот, пробный лист</span></a>
+        <a class="chip" href="#p-offset"><b>Офсет</b><span>клапан, шкала, пластина типографии</span></a>
+        <a class="chip" href="#p-uv"><b>УФ-планшет</b><span>белила и лак, шаблон стола</span></a>
+        <a class="chip" href="#p-wide"><b>Рулонная печать</b><span>рулон, вылет, люверсы</span></a>
+        <a class="chip" href="#p-plot"><b>Плоттерная резка</b><span>укладка по форме, файл реза</span></a>
+        <a class="chip" href="#p-laser"><b>Лазерная резка</b><span>стык в стык, режимы, цена</span></a>
+        <a class="chip" href="#p-mill"><b>Фрезеровка</b><span>объёмные буквы, файл для станка</span></a>
+        <a class="chip" href="#p-cal"><b>Календари</b><span>6 видов, 16 готовых стилей</span></a>
+        <a class="chip" href="#p-free"><b>Бесплатно всегда</b><span>проверка макета и раскладка</span></a>
       </div>
     </div>
   </header>
@@ -210,54 +235,70 @@
       <div class="t">Вручную</div>
       <ul>
         <li><i>—</i><span>Вечер на тираж с номерами</span></li>
-        <li><i>—</i><span>Опечатки и повторы номеров</span></li>
-        <li><i>—</i><span>Детали двигают по рулону руками</span></li>
-        <li><i>—</i><span>Белила и метки рисуют отдельно</span></li>
+        <li><i>—</i><span>Белила рисуют под каждую деталь</span></li>
+        <li><i>—</i><span>Детали двигают по листу руками</span></li>
+        <li><i>—</i><span>Борта букв считают на калькуляторе</span></li>
       </ul>
     </div>
     <div class="new">
       <div class="t">С программой</div>
       <ul>
         <li><i>→</i><span>Минуты на тот же тираж</span></li>
-        <li><i>→</i><span>Номера по списку, повтор заметит сама</span></li>
+        <li><i>→</i><span>Белила и лак — одной кнопкой</span></li>
         <li><i>→</i><span>Детали укладываются по контуру</span></li>
-        <li><i>→</i><span>Белила и метки — вместе с макетом</span></li>
+        <li><i>→</i><span>Полосы бортов и задники — сами</span></li>
       </ul>
     </div>
   </div>
 
   <div class="nums">
-    <div><b>5</b><span>частей под виды печати</span></div>
-    <div><b>10</b><span>видов кодов</span></div>
+    <div><b>9</b><span>частей под оборудование</span></div>
+    <div><b>16</b><span>стилей календаря</span></div>
     <div><b>7</b><span>дней бесплатно</span></div>
   </div>
 
-  <!-- 1. Раскладка — ядро -->
-  <section class="plain part" id="p-layout">
-    <div class="part-head"><span class="part-no">Часть 1 · Раскладка</span><span class="plan-tag any">в любом тарифе</span></div>
-    <h2>Лист собирается <span class="cy">сам</span></h2>
-    <p class="promise">Задаёте формат и зазоры — программа расставляет изделия, считает, сколько влезет, и ставит метки реза.</p>
+  <!-- Панель под оборудование -->
+  <section class="plain part" id="p-panel">
+    <div class="part-head"><span class="part-no">Как устроено</span></div>
+    <h2>Только <span class="cy">ваше</span> оборудование</h2>
+    <p class="promise">При первом запуске отмечаете, на чём работаете. Наверху панели остаются только ваши значки — лишнего нет.</p>
     <ul class="feat">
-      <li><i>→</i><span><b>Лист или брошюра</b> — режим выбирается одной кнопкой сверху</span></li>
-      <li><i>→</i><span><b>Расчёт заказа</b> — количество на листе и отступы видны сразу</span></li>
-      <li><i>→</i><span><b>Повторная раскладка заменяет прошлый файл</b>, а не плодит копии</span></li>
-      <li><i>→</i><span><b>Вывод в PDF и на печать</b></span></li>
+      <li><i>→</i><span><b>Простой и расширенный режим</b> — новичку минимум полей, опытному всё</span></li>
+      <li><i>→</i><span><b>«?» у каждого поля</b> — справочник со схемами «было / стало»</span></li>
+      <li><i>→</i><span><b>Шаги «назад / дальше»</b> — понятно, что делать следующим</span></li>
+      <li><i>→</i><span><b>Панель сама замечает</b>, что вы поменяли в документе</span></li>
     </ul>
-    <div class="vis"><img src="d2.svg" alt="Изделия разложены по листу с метками реза" loading="lazy"></div>
-    <div class="shot">
-      <img src="p-layout.jpg" alt="Вкладка «Раскладка» в панели" loading="lazy">
-      <p><b>Вкладка «Раскладка».</b> Сверху выбираете, что раскладываете: лист или брошюру, а с полной — ещё рулон и укладку по форме. Ниже — формат, поля, зазоры, и сразу видно, сколько изделий поместится.</p>
+    <div class="shot tall">
+      <img src="s-eq.jpg" alt="Выбор оборудования в панели" loading="lazy">
+      <p><b>Первый запуск.</b> Отметили цифру, УФ, лазер и календарь — остальные значки спрятались. Поменять можно в любой момент внизу панели.</p>
     </div>
   </section>
 
-  <!-- 2. Переменные данные -->
-  <section class="light part" id="p-data">
-    <div class="part-head"><span class="part-no">Часть 2 · Переменные данные</span><span class="plan-tag base">база</span></div>
+  <!-- Бесплатное -->
+  <section class="light part" id="p-free">
+    <div class="part-head"><span class="part-no">Без ключа</span><span class="plan-tag gift">бесплатно всегда</span></div>
+    <h2>Проверка и раскладка — <span class="cy">даром</span></h2>
+    <p class="promise">Это работает и без ключа, и после пробной недели. Навсегда.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Проверка макета перед печатью:</b> цвета, краски, картинки, текст, линии, вылеты — показывает и исправляет</span></li>
+      <li><i>→</i><span><b>Скрытые слои и дубли</b> — найдёт, откроет, повторы отметит рамкой</span></li>
+      <li><i>→</i><span><b>Простая раскладка на лист</b> с метками реза — сразу видно, сколько поместится</span></li>
+      <li><i>→</i><span><b>Правка текста и превью для клиента</b> на согласование</span></li>
+    </ul>
+    <div class="vis"><img src="d2.svg" alt="Изделия разложены по листу с метками реза" loading="lazy"></div>
+    <div class="shot">
+      <img src="s-check.jpg" alt="Проверка макета в панели" loading="lazy">
+      <p><b>«Проверка».</b> Выбираете вид печати и жмёте «Проверить» — программа покажет, что не так, и поправит то, что можно.</p>
+    </div>
+  </section>
+
+  <section class="deep part" id="p-data">
+    <div class="part-head"><span class="part-no">Часть · Номера и данные</span><span class="plan-tag part" data-price="D">отдельная часть</span></div>
     <h2>Каждый экземпляр — <span class="cy">свой</span></h2>
     <p class="promise">Номера, имена, коды и картинки берутся из файла клиента и расходятся по всему тиражу.</p>
     <ul class="feat">
       <li><i>→</i><span><b>Номера по маске</b> — с нулями, приставкой, шагом, «### ### ###»</span></li>
-      <li><i>→</i><span><b>Данные из Excel и CSV</b>, картинки по именам из файла</span></li>
+      <li><i>→</i><span><b>Данные из Excel, CSV и TXT</b>, картинки по именам из файла</span></li>
       <li><i>→</i><span><b>10 видов кодов:</b> EAN, UPC, Code 39 и 128, GS1, ITF-14, QR, DataMatrix</span></li>
       <li><i>→</i><span><b>Перепечатка брака</b> — вписали номера испорченных, получили только их</span></li>
       <li><i>→</i><span><b>Журнал номеров</b> предупредит, если номер уже печатался в прошлом заказе</span></li>
@@ -265,70 +306,167 @@
     </ul>
     <div class="vis"><img src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
     <div class="vis"><img src="d3.svg" alt="Штрихкод, QR и DataMatrix" loading="lazy"></div>
-    <div class="shot">
-      <img src="p-reprint.jpg" alt="Раздел «Брак и учёт» в панели" loading="lazy">
-      <p><b>«Брак и учёт».</b> Журнал номеров по заказчику и перепечатка: вписываете испорченные номера через запятую или диапазоном — программа выведет только их.</p>
+    <div class="shot tall">
+      <img src="s-num.jpg" alt="Номера в панели" loading="lazy">
+      <p><b>«Номера».</b> Выделяете надпись на карте, жмёте «Номер или текст» и выбираете, откуда брать значения: по порядку или из файла клиента.</p>
     </div>
     <div class="gain">Тираж на 10 000 штук делается так же, как на 10</div>
   </section>
 
-  <!-- 3. УФ и DTF -->
-  <section class="deep part" id="p-uv">
-    <div class="part-head"><span class="part-no">Часть 3 · УФ и DTF</span><span class="plan-tag full">полная</span></div>
-    <h2>Белила и лак <span class="cy">отдельным слоем</span></h2>
-    <p class="promise">Для печати на тёмном и прозрачном программа готовит белила и лак, которые точно совпадают с цветом.</p>
+  <section class="light part" id="p-digi">
+    <div class="part-head"><span class="part-no">Часть · Цифровая печать</span><span class="plan-tag part" data-price="C">отдельная часть</span></div>
+    <h2>Листы <span class="cy">под ваш принтер</span></h2>
+    <p class="promise">Раскладка на лист цифровой машины с оборотом, пробный лист и весь заказ одним файлом.</p>
     <ul class="feat">
-      <li><i>→</i><span><b>Шаблон стола с уголками</b> под планшетный УФ-принтер</span></li>
-      <li><i>→</i><span><b>Белила слоем или плашечным цветом</b>, со своим именем краски</span></li>
-      <li><i>→</i><span><b>Подслой белил</b> — чуть внутрь, чтобы белое не вылезало из-под краски</span></li>
-      <li><i>→</i><span><b>Лак</b> отдельной краской</span></li>
-      <li><i>→</i><span><b>TIFF с каналами и PDF с плашками</b>, зеркально — для плёнки DTF</span></li>
+      <li><i>→</i><span><b>Форматы листов</b> цифровых машин — выбрать и разложить</span></li>
+      <li><i>→</i><span><b>Поправка оборота</b> — если оборот на машине уезжает, сдвиг задаётся цифрой</span></li>
+      <li><i>→</i><span><b>Свой оборот:</b> лица слева, обороты справа, ось переворота на листе</span></li>
+      <li><i>→</i><span><b>Профили принтеров</b> — вывод в TIFF или PDF, как ждёт ваша машина</span></li>
+      <li><i>→</i><span><b>Пробный лист</b> перед тиражом — на экране или в PDF</span></li>
+      <li><i>→</i><span><b>Весь заказ</b> одним PDF или сразу на печать</span></li>
+    </ul>
+    <div class="gain">Пробный лист до тиража — и никаких сюрпризов на сотом</div>
+  </section>
+
+  <section class="deep part" id="p-offset">
+    <div class="part-head"><span class="part-no">Часть · Офсет</span><span class="plan-tag part" data-price="O">отдельная часть</span></div>
+    <h2>Лист готов <span class="cy">к пластине</span></h2>
+    <p class="promise">Метки, шкала и пластина конкретной типографии — чтобы файл не вернулся.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Пластины почти 300 типографий</b> — выбрали печатника, размер и клапан подставились</span></li>
+      <li><i>→</i><span><b>Клапан, шкала, кресты приводки</b>, данные листа на поле</span></li>
+      <li><i>→</i><span><b>Оборот</b> — свой или «на себя», со смещением при переворачивании</span></li>
+      <li><i>→</i><span><b>PDF для типографии:</b> PDF/X-1a, X-4, вылеты, метки и проверка перед сохранением</span></li>
+      <li><i>→</i><span><b>Брошюра на скрепку</b> — спуск полос со сдвигом на сползание</span></li>
+      <li><i>→</i><span><b>Пакетная обработка</b> — много файлов за раз, и упаковка заказа</span></li>
+    </ul>
+    <div class="vis"><img src="d7.svg" alt="Офсетный лист с клапаном, шкалой и крестами приводки" loading="lazy"></div>
+    <div class="shot tall">
+      <img src="s-offset.jpg" alt="Раскладка для офсета в панели" loading="lazy">
+      <p><b>Раскладка для офсета.</b> Лист, карта, зазоры — и сразу видно, сколько поместится. Ниже выбираете печатника: пластина и клапан подставятся.</p>
+    </div>
+    <div class="gain">Меньше возвратов из типографии</div>
+  </section>
+
+  <section class="light part" id="p-uv">
+    <div class="part-head"><span class="part-no">Часть · УФ-планшет</span><span class="plan-tag part" data-price="U">отдельная часть</span></div>
+    <h2>Белила и лак — <span class="cy">одной кнопкой</span></h2>
+    <p class="promise">Выделили рисунок, нажали — белила и лак легли точно под краску.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Белила копией поверх рисунка</b> — ужимаются по толщине каждого объекта и не вылезают из-под краски</span></li>
+      <li><i>→</i><span><b>Номера из данных</b> тоже получают свои белила</span></li>
+      <li><i>→</i><span><b>Краски W и LAK</b> — имена по профилю вашего принтера</span></li>
+      <li><i>→</i><span><b>TIFF с чистыми масками и PDF с плашками</b>, картинка в PDF — один раз на лист</span></li>
+      <li><i>→</i><span><b>Шаблон стола и пробный лист</b> в PDF</span></li>
+      <li><i>→</i><span><b>Край карты и допуск заготовки</b> на столе вместо линий реза</span></li>
     </ul>
     <div class="vis"><img src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном" loading="lazy"></div>
     <div class="files">
       <span><b>Лист 01 — Лицо — Фон</b>.tif</span>
       <span><b>Лист 01 — Лицо — Белила</b>.tif</span>
-      <span><b>Лист 01 — Оборот — Фон</b>.tif</span>
+      <span><b>Лист 01 — Лицо — Лак</b>.tif</span>
     </div>
     <div class="shot">
-      <img src="p-white.jpg" alt="Раздел «Белила и лак» в панели" loading="lazy">
-      <p><b>«Белила и лак».</b> Как отмечать белое: слоем или плашечным цветом, какое имя краски ждёт принтер, насколько сжать подслой — всё в одном месте.</p>
+      <img src="s-uv.jpg" alt="Белила и лак в панели" loading="lazy">
+      <p><b>«Белила, лак».</b> Одна кнопка для выделенного — или только белила, только лак. Сразу видно, на какой стороне что печатается.</p>
     </div>
     <div class="gain">Файлы совпадают при наложении — приводка не поедет</div>
   </section>
 
-  <!-- 4. Офсет и препресс -->
-  <section class="light part" id="p-offset">
-    <div class="part-head"><span class="part-no">Часть 4 · Офсет и препресс</span><span class="plan-tag full">полная</span></div>
-    <h2>Лист готов <span class="cy">к пластине</span></h2>
-    <p class="promise">Метки, шкала и проверка макета — чтобы файл не вернулся из типографии.</p>
+  <section class="deep part" id="p-wide">
+    <div class="part-head"><span class="part-no">Часть · Рулонная печать</span><span class="plan-tag part" data-price="W">отдельная часть</span></div>
+    <h2>Рулон <span class="cy">по тиражу</span></h2>
+    <p class="promise">Задаёте ширину рулона и тираж — длину и поворот программа выберет сама, по расходу плёнки.</p>
     <ul class="feat">
-      <li><i>→</i><span><b>Клапан, шкала, кресты приводки</b>, данные листа на поле</span></li>
-      <li><i>→</i><span><b>Оборот</b> — свой или «на себя», со смещением при переворачивании</span></li>
-      <li><i>→</i><span><b>Проверка макета перед печатью</b>: найдёт ошибки и поправит то, что можно</span></li>
-      <li><i>→</i><span><b>PDF для типографии</b>, замена цвета, цветопроба</span></li>
-      <li><i>→</i><span><b>Пакетная обработка</b> — много файлов за раз, и упаковка заказа</span></li>
-    </ul>
-    <div class="vis"><img src="d7.svg" alt="Офсетный лист с клапаном, шкалой и крестами приводки" loading="lazy"></div>
-    <div class="gain">Меньше возвратов из типографии</div>
-  </section>
-
-  <!-- 5. Рулон и плоттер -->
-  <section class="deep part" id="p-roll">
-    <div class="part-head"><span class="part-no">Часть 5 · Рулон и плоттер</span><span class="plan-tag full">полная</span></div>
-    <h2>Детали ложатся <span class="cy">по форме</span></h2>
-    <p class="promise">Наклейки и фигурная резка укладываются на рулон по настоящему контуру — плотно, с тиражом у каждой детали.</p>
-    <ul class="feat">
-      <li><i>→</i><span><b>Раскладка на рулон</b> — лента нужной ширины вместо листа</span></li>
-      <li><i>→</i><span><b>Укладка по форме</b> — детали входят друг в друга, а не стоят прямоугольниками</span></li>
-      <li><i>→</i><span><b>Сборный лист</b> из разных деталей, у каждой своё количество</span></li>
-      <li><i>→</i><span><b>Переразложить с новыми тиражами</b> прямо в готовом файле</span></li>
+      <li><i>→</i><span><b>Ширина рулона и тираж</b> — длина и поворот считаются по расходу</span></li>
+      <li><i>→</i><span><b>Контур реза CutContour</b> — отдельным слоем, прямоугольником или по макету</span></li>
+      <li><i>→</i><span><b>Метки плоттера:</b> Summa, Graphtec, Mimaki</span></li>
       <li><i>→</i><span><b>Вылет по форме</b> — обводка по контуру рисунка, а не прямоугольником</span></li>
       <li><i>→</i><span><b>Люверсы для баннера</b> — метки по периметру с вашим шагом</span></li>
+      <li><i>→</i><span><b>Белила и лак</b> — для печати на прозрачной плёнке</span></li>
     </ul>
-    <div class="vis"><img src="d5.svg" alt="Детали уложены на рулон по контуру" loading="lazy"></div>
     <div class="vis"><img src="d6.svg" alt="Метки люверсов по периметру баннера" loading="lazy"></div>
+    <div class="shot tall">
+      <img src="s-wide.jpg" alt="Раскладка на рулон в панели" loading="lazy">
+      <p><b>Раскладка на рулон.</b> Ширина, тираж, контур реза и метки плоттера — на одном экране. Контур и метки ложатся отдельными слоями.</p>
+    </div>
     <div class="gain">Меньше отходов плёнки и ни одного ручного сдвига</div>
+  </section>
+
+  <section class="light part" id="p-plot">
+    <div class="part-head"><span class="part-no">Часть · Плоттерная резка</span><span class="plan-tag part" data-price="P">отдельная часть</span></div>
+    <h2>Детали ложатся <span class="cy">по форме</span></h2>
+    <p class="promise">Наклейки и фигурная резка укладываются по настоящему контуру — плотно, с тиражом у каждой детали.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Укладка по форме</b> — детали входят друг в друга, а не стоят прямоугольниками</span></li>
+      <li><i>→</i><span><b>Перебор на всех ядрах компьютера</b> и сразу на несколько листов</span></li>
+      <li><i>→</i><span><b>Сборный лист</b> из разных деталей, у каждой своё количество</span></li>
+      <li><i>→</i><span><b>Файл для плоттера:</b> PLT, DXF или AI, с метками</span></li>
+      <li><i>→</i><span><b>Стоимость резки</b> по длине реза и врезкам</span></li>
+    </ul>
+    <div class="vis"><img src="d5.svg" alt="Детали уложены по контуру" loading="lazy"></div>
+    <div class="shot">
+      <img src="s-plot.jpg" alt="Файл для плоттера в панели" loading="lazy">
+      <p><b>«Файл».</b> Контур реза уходит отдельным файлом в формате, который понимает ваш плоттер, — с метками или без.</p>
+    </div>
+    <div class="gain">Лист плёнки заполняется плотно — отходов меньше</div>
+  </section>
+
+  <section class="deep part" id="p-laser">
+    <div class="part-head"><span class="part-no">Часть · Лазерная резка</span><span class="plan-tag part" data-price="L">отдельная часть</span></div>
+    <h2>Лазер режет <span class="cy">меньше</span></h2>
+    <p class="promise">Детали встают стык в стык, общий край режется один раз — меньше проходов и материала.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Стык в стык с общим резом</b> — одна линия вместо двух</span></li>
+      <li><i>→</i><span><b>Склейка контуров и порядок реза</b> под лазер CO2</span></li>
+      <li><i>→</i><span><b>Режимы из вашей таблицы:</b> материал и толщина — скорость и мощность подставятся</span></li>
+      <li><i>→</i><span><b>Материалы:</b> акрил, фанера, МДФ, ХДФ, картон, бумага, кожа, кожзам, АБС и ПЭТ</span></li>
+      <li><i>→</i><span><b>Время работы и цена</b> резки — по длине реза и врезкам</span></li>
+      <li><i>→</i><span><b>Укладка по форме</b> и файл для станка</span></li>
+    </ul>
+    <div class="shot tall">
+      <img src="s-laser.jpg" alt="Лазер: стык в стык и порядок реза в панели" loading="lazy">
+      <p><b>«Стык, порядок».</b> Разложить стык в стык, выбрать материал из вашей таблицы режимов и одной кнопкой оптимизировать резку. Передумали — «Вернуть как было».</p>
+    </div>
+    <div class="gain">Цена резки известна до того, как лазер включился</div>
+  </section>
+
+  <section class="light part" id="p-mill">
+    <div class="part-head"><span class="part-no">Часть · Фрезеровка</span><span class="plan-tag part" data-price="M">отдельная часть</span></div>
+    <h2>Объёмные буквы <span class="cy">без калькулятора</span></h2>
+    <p class="promise">Борта, задники и выборка для объёмных букв — прямо из макета вывески.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>Внешний и внутренний борт</b> — у каждого своя высота и толщина</span></li>
+      <li><i>→</i><span><b>Полосы бортов</b> раскладываются поперёк листа — видно, сколько листов нужно</span></li>
+      <li><i>→</i><span><b>Задник и выборка на лице</b> — с вашим зазором, одной кнопкой</span></li>
+      <li><i>→</i><span><b>Исправит косяки шрифта</b> — сбои геометрии в буквах перед резкой</span></li>
+      <li><i>→</i><span><b>Укладка деталей по форме</b> и файл для станка DXF</span></li>
+      <li><i>→</i><span><b>Стоимость резки</b> по длине и врезкам</span></li>
+    </ul>
+    <div class="shot tall">
+      <img src="s-mill.jpg" alt="Объёмные буквы в панели" loading="lazy">
+      <p><b>«Буквы».</b> Три шага: полосы для бортов на листы, задник и выборка на лице, исправление косяков шрифта.</p>
+    </div>
+    <div class="gain">Смета на вывеску — до того, как фреза коснулась листа</div>
+  </section>
+
+  <section class="deep part" id="p-cal">
+    <div class="part-head"><span class="part-no">Часть · Календари</span><span class="plan-tag part" data-price="K">отдельная часть</span></div>
+    <h2>Календарь <span class="cy">по готовому стилю</span></h2>
+    <p class="promise">Выбрали вид, год и стиль — страницы собираются сами, с праздниками и местом под картинку.</p>
+    <ul class="feat">
+      <li><i>→</i><span><b>6 видов:</b> перекидной настенный, квартальный, настольный домик, карманный, листовой на год, годовой планинг</span></li>
+      <li><i>→</i><span><b>16 готовых стилей</b> — и свой, сохранённый на следующий раз</span></li>
+      <li><i>→</i><span><b>Праздники и выходные</b> подсвечиваются сами</span></li>
+      <li><i>→</i><span><b>Живое превью</b> каждого месяца прямо в панели</span></li>
+      <li><i>→</i><span><b>Сменить стиль</b> у уже собранного календаря</span></li>
+      <li><i>→</i><span><b>Разметка</b> под картинку, пружину и рекламу</span></li>
+    </ul>
+    <div class="shot tall">
+      <img src="s-cal.jpg" alt="Календарь в панели" loading="lazy">
+      <p><b>«Календарь».</b> Вид, год, число месяцев и формат — превью внизу панели сразу показывает, как выйдет страница.</p>
+    </div>
+    <div class="gain">Двенадцать месяцев собираются разом, а не по одному</div>
   </section>
 
   <!-- Сервис -->
@@ -336,7 +474,7 @@
     <h2 class="h2">И это ещё <span class="cy">не всё</span></h2>
     <p class="sub">То, чего обычно нет у макросов.</p>
     <div class="care">
-      <div><b>Помощник</b><span>Кнопка «Как работать» подсветит нужную кнопку и подскажет следующий шаг.</span></div>
+      <div><b>Справочник</b><span>«?» у каждого поля: что оно делает, со схемой «было / стало».</span></div>
       <div><b>Обновления сами</b><span>Новая версия ставится после закрытия CorelDRAW — ничего скачивать не нужно.</span></div>
       <div><b>Проблема — в одно касание</b><span>Опишите, что не так, и отправьте прямо из панели. Макеты не уходят.</span></div>
       <div><b>Видно, что куплено</b><span>Некупленные части в панели с замком — понятно, что докупить.</span></div>
@@ -346,60 +484,46 @@
   <!-- Цены -->
   <section class="buy" id="buy">
     <h2>Сколько стоит</h2>
-    <p class="sub">Подписка на месяц. Установку и первый тираж проходим вместе.</p>
+    <p class="sub">Платите только за своё оборудование. Подписка на месяц, установку и первый заказ проходим вместе.</p>
 
     <div class="trial">
       <div class="big"><span>7 дней</span> бесплатно</div>
-      <p>Пробный ключ на неделю со всеми частями. Пройдём ваш настоящий заказ — и будет видно, стоит ли оно того.</p>
+      <p>Пробная неделя со всеми частями. Пройдём ваш настоящий заказ — и будет видно, какие части нужны.</p>
       <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%207%20%D0%B4%D0%BD%D0%B5%D0%B9.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D1%87%D1%82%D0%BE%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         Взять на пробу
       </a>
     </div>
 
-    <div class="plans">
-      <div class="plan">
-        <div class="name">База</div>
-        <div class="price">100 000 <span class="per">сум / месяц</span></div>
-        <ul>
-          <li><i>→</i><span>Раскладка: лист и брошюра</span></li>
-          <li><i>→</i><span>Переменные данные: номера, таблицы, коды, брак и журнал</span></li>
-          <li class="off"><i>—</i><span>УФ и DTF, офсет, рулон и плоттер</span></li>
-        </ul>
-        <a class="btn" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%91%D0%B0%D0%B7%D0%B0%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">Взять базу</a>
-      </div>
-
-      <div class="plan best">
-        <div class="name">Полная</div>
-        <div class="price">200 000 <span class="per">сум / месяц</span></div>
-        <ul>
-          <li><i>→</i><span>Всё, что в базе</span></li>
-          <li><i>→</i><span>УФ и DTF: белила, лак, шаблон стола</span></li>
-          <li><i>→</i><span>Офсет и препресс: метки, оборот, проверка макета</span></li>
-          <li><i>→</i><span>Рулон и плоттер: рулон, укладка по форме, вылет, люверсы</span></li>
-        </ul>
-        <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D1%82%D1%8C%20%D0%B8%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C.">
+    <div class="kit" id="kit">
+      <div class="kit-h"><b>Соберите свой набор</b><button type="button" id="kitAll">Отметить всё</button></div>
+      <div id="kitList"></div>
+      <div class="kit-sum">
+        <div class="total" id="kitTotal">Ничего не выбрано</div>
+        <p class="note" id="kitNote">Отметьте части, которые нужны, — отправлю цену набора в Telegram.</p>
+        <a class="btn solid" id="kitGo" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D1%86%D0%B5%D0%BD%D1%83.">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-          Взять полную
+          <span id="kitGoText">Узнать цену набора</span>
         </a>
       </div>
     </div>
 
+    <div class="free"><b>Без ключа бесплатно навсегда:</b> проверка макета, правка текста, простая раскладка на лист, превью для клиента и справочник.</div>
+
     <div class="terms">
       <div><i>→</i><span><b>Оплата раз в месяц, переводом на карту.</b> Ключ действует до даты, записанной в нём.</span></div>
-      <div><i>→</i><span><b>Продление — новый ключ.</b> Вставляете в панель, переустанавливать ничего не нужно.</span></div>
-      <div><i>→</i><span><b>Не продлили — программа не запускается,</b> макеты и выведенные файлы остаются у вас.</span></div>
-      <div><i>→</i><span><b>С базы на полную — тоже ключом,</b> части включаются сразу.</span></div>
+      <div><i>→</i><span><b>Докупить часть — новый ключ.</b> Вставляете в панель, части включаются сразу.</span></div>
+      <div><i>→</i><span><b>Не продлили — остаётся бесплатное,</b> макеты и выведенные файлы у вас.</span></div>
     </div>
 
     <div class="faq">
       <details>
-        <summary>Какой нужен CorelDRAW?</summary>
-        <p>CorelDRAW 2026 на Windows, с поддержкой макросов. Если макросы в вашей сборке отключены, панель прямо скажет об этом и подскажет, что сделать.</p>
+        <summary>Можно взять только одну часть?</summary>
+        <p>Да. Например, только лазер или только календари. Остальное в панели будет с замком — докупить можно в любой момент.</p>
       </details>
       <details>
-        <summary>Что нужно для белил?</summary>
-        <p>Программа сама готовит слой белил и выводит TIFF с каналами или PDF с плашками — под то, что ждёт ваш принтер.</p>
+        <summary>Какой нужен CorelDRAW?</summary>
+        <p>CorelDRAW 2026 на Windows, с поддержкой макросов. Если макросы в вашей сборке отключены, панель прямо скажет об этом и подскажет, что сделать.</p>
       </details>
       <details>
         <summary>Можно поставить на два компьютера?</summary>
@@ -414,10 +538,74 @@
 </div>
 
 <script>
+// Набор частей. Цены вписываются здесь — сум в месяц; null — цену скажу в Telegram.
+var PARTS = [
+  { k: 'D', name: 'Номера и данные',  hint: 'номера, таблицы, коды, брак',        price: null },
+  { k: 'C', name: 'Цифровая печать',  hint: 'листы, оборот, пробный лист',        price: null },
+  { k: 'O', name: 'Офсет',            hint: 'пластины типографий, метки, PDF',    price: null },
+  { k: 'U', name: 'УФ-планшет',       hint: 'белила и лак, шаблон стола',         price: null },
+  { k: 'W', name: 'Рулонная печать',  hint: 'рулон, вылет, люверсы',              price: null },
+  { k: 'P', name: 'Плоттерная резка', hint: 'укладка по форме, файл реза',        price: null },
+  { k: 'L', name: 'Лазерная резка',   hint: 'стык в стык, режимы, цена резки',    price: null },
+  { k: 'M', name: 'Фрезеровка',       hint: 'объёмные буквы, файл для станка',    price: null },
+  { k: 'K', name: 'Календари',        hint: '6 видов, 16 стилей',                 price: null }
+];
+(function () {
+  var list = document.getElementById('kitList'); if (!list) return;
+  var money = function (n) { return n.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' сум'; };
+  var tick = '<svg viewBox="0 0 12 12" fill="none" stroke-width="2.2"><path d="M2 6.3 4.8 9 10 3"/></svg>';
+  list.innerHTML = PARTS.map(function (p) {
+    return '<label class="opt"><input type="checkbox" value="' + p.k + '"><span class="box">' + tick + '</span>'
+      + '<span class="nm"><b>' + p.name + '</b><span>' + p.hint + '</span></span>'
+      + '<span class="pr">' + (p.price ? money(p.price) : '') + '</span></label>';
+  }).join('');
+
+  // Метки на разделах: как только цена части вписана, вместо «отдельная часть» — цена
+  document.querySelectorAll('[data-price]').forEach(function (el) {
+    var p = PARTS.filter(function (x) { return x.k === el.getAttribute('data-price'); })[0];
+    if (p && p.price) el.textContent = money(p.price) + ' / мес';
+  });
+
+  var boxes = list.querySelectorAll('input');
+  var go = document.getElementById('kitGo'), goText = document.getElementById('kitGoText');
+  var total = document.getElementById('kitTotal'), note = document.getElementById('kitNote');
+  var allBtn = document.getElementById('kitAll');
+
+  function update() {
+    var picked = PARTS.filter(function (p, i) { return boxes[i].checked; });
+    var known = picked.length && picked.every(function (p) { return p.price; });
+    var sum = picked.reduce(function (s, p) { return s + (p.price || 0); }, 0);
+    if (!picked.length) {
+      total.textContent = 'Ничего не выбрано';
+      note.textContent = 'Отметьте части, которые нужны, — отправлю цену набора в Telegram.';
+    } else if (known) {
+      total.innerHTML = money(sum) + ' <small>/ месяц</small>';
+      note.textContent = 'Частей: ' + picked.length + '. Отправьте набор — пришлю ключ и помогу поставить.';
+    } else {
+      total.innerHTML = 'Частей: ' + picked.length + ' <small>из ' + PARTS.length + '</small>';
+      note.textContent = 'Отправьте набор в Telegram — отвечу ценой и помогу поставить.';
+    }
+    goText.textContent = known ? 'Взять этот набор' : 'Узнать цену набора';
+    var msg = 'Здравствуйте! Интересует PS · Автоматизация'
+      + (picked.length ? ', части: ' + picked.map(function (p) { return p.name; }).join(', ') + '.' : '.')
+      + (known ? ' Сумма по сайту: ' + money(sum) + ' в месяц.' : ' Подскажите цену.');
+    go.href = 'https://t.me/iMexx?text=' + encodeURIComponent(msg);
+    allBtn.textContent = picked.length === PARTS.length ? 'Снять всё' : 'Отметить всё';
+  }
+
+  allBtn.addEventListener('click', function () {
+    var on = [].some.call(boxes, function (b) { return !b.checked; });
+    boxes.forEach(function (b) { b.checked = on; });
+    update();
+  });
+  boxes.forEach(function (b) { b.addEventListener('change', update); });
+  update();
+})();
+
 // Появление блоков при прокрутке
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var targets = document.querySelectorAll('.chip, .vs > div, .nums, .feat, .vis, .shot, .care div, .trial, .plan, .faq');
+  var targets = document.querySelectorAll('.chip, .vs > div, .nums, .feat, .vis, .shot, .care div, .trial, .kit, .free, .faq');
   targets.forEach(function (el) { el.classList.add('rise'); });
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e, i) {
