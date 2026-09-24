@@ -142,13 +142,13 @@
   /* Цены */
   .buy { padding: 32px 18px max(34px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); scroll-margin-top: 10px; }
   .buy h2 { font-weight: 800; font-size: 26px; text-transform: uppercase; }
-  .trial { margin-top: 22px; border: 1px solid var(--cy); background: rgba(3,214,244,.06); padding: 20px 18px; display: grid; gap: 14px; }
+  .trial { scroll-margin-top: 14px; margin-top: 22px; border: 1px solid var(--cy); background: rgba(3,214,244,.06); padding: 20px 18px; display: grid; gap: 14px; }
   .trial .big { font: 800 22px/1.15 "Montserrat", sans-serif; }
   .trial .big span { color: var(--cy); }
   .trial p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
   .trial .btn { width: 100%; }
   /* Наборы */
-  .bundles { margin-top: 12px; display: grid; gap: 12px; }
+  .bundles { scroll-margin-top: 14px; margin-top: 12px; display: grid; gap: 12px; }
   .bundle { border: 1px solid var(--line); background: #0f161b; padding: 18px; }
   .bundle.best { border-color: var(--cy); background: linear-gradient(160deg, #0f161b 40%, #0b2a31 100%); position: relative; }
   .bundle .flag { position: absolute; top: -1px; right: -1px; background: var(--cy); color: var(--dark); font: 700 10.5px "Montserrat", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px; }
@@ -162,7 +162,7 @@
   .bundle li { display: flex; gap: 9px; font-size: 14px; color: #dfe6ec; line-height: 1.4; }
   .bundle li i { font-style: normal; color: var(--cy); }
   .bundle .btn { width: 100%; }
-  .kit-title { margin: 28px 0 0; font: 800 20px "Montserrat", sans-serif; text-transform: uppercase; }
+  .kit-title { scroll-margin-top: 14px; margin: 28px 0 0; font: 800 20px "Montserrat", sans-serif; text-transform: uppercase; }
   .kit-title + .sub { margin-top: 8px; }
   .opt.base { cursor: default; background: rgba(3,214,244,.05); }
   .opt.base .box { background: var(--cy); border-color: var(--cy); }
@@ -230,11 +230,11 @@
     <p class="lead">Номера и раскладка, белила и лак для УФ, метки для офсета, файлы для плоттера, лазера и фрезера, объёмные буквы и календари. Отмечаете своё оборудование — в панели остаётся только нужное.</p>
 
     <div class="cta">
-      <a class="btn solid" href="#buy">
+      <a class="btn solid" href="#trial">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         7 дней бесплатно
       </a>
-      <a class="btn" href="#buy">Цены и наборы</a>
+      <a class="btn" href="#kit">Цены и наборы</a>
     </div>
 
     <div class="pick">
@@ -293,7 +293,7 @@
       <li><i>→</i><span><b>Панель сама замечает</b>, что вы поменяли в документе</span></li>
     </ul>
     <div class="shot tall">
-      <img src="s-eq.jpg" alt="Выбор оборудования в панели" loading="lazy">
+      <img width="680" height="824" src="s-eq.jpg" alt="Выбор оборудования в панели" loading="lazy">
       <p><b>Первый запуск.</b> Отметили цифру, УФ, лазер и календарь — остальные значки спрятались. Поменять можно в любой момент внизу панели.</p>
     </div>
   </section>
@@ -309,9 +309,9 @@
       <li><i>→</i><span><b>Простая раскладка на лист</b> с метками реза — сразу видно, сколько поместится</span></li>
       <li><i>→</i><span><b>Правка текста и превью для клиента</b> на согласование</span></li>
     </ul>
-    <div class="vis"><img src="d2.svg" alt="Изделия разложены по листу с метками реза" loading="lazy"></div>
+    <div class="vis"><img width="640" height="320" src="d2.svg" alt="Изделия разложены по листу с метками реза" loading="lazy"></div>
     <div class="shot">
-      <img src="s-check.jpg" alt="Проверка макета в панели" loading="lazy">
+      <img width="680" height="608" src="s-check.jpg" alt="Проверка макета в панели" loading="lazy">
       <p><b>«Проверка».</b> Выбираете вид печати и жмёте «Проверить» — программа покажет, что не так, и поправит то, что можно.</p>
     </div>
   </section>
@@ -328,10 +328,10 @@
       <li><i>→</i><span><b>Журнал номеров</b> предупредит, если номер уже печатался в прошлом заказе</span></li>
       <li><i>→</i><span><b>Ведомость листов</b> для Excel: на каком листе какие номера</span></li>
     </ul>
-    <div class="vis"><img src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
-    <div class="vis"><img src="d3.svg" alt="Штрихкод, QR и DataMatrix" loading="lazy"></div>
+    <div class="vis"><img width="640" height="250" src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
+    <div class="vis"><img width="640" height="140" src="d3.svg" alt="Штрихкод, QR и DataMatrix" loading="lazy"></div>
     <div class="shot tall">
-      <img src="s-num.jpg" alt="Номера в панели" loading="lazy">
+      <img width="680" height="1492" src="s-num.jpg" alt="Номера в панели" loading="lazy">
       <p><b>«Номера».</b> Выделяете надпись на карте, жмёте «Номер или текст» и выбираете, откуда брать значения: по порядку или из файла клиента.</p>
     </div>
     <div class="gain">Тираж на 10 000 штук делается так же, как на 10</div>
@@ -364,9 +364,9 @@
       <li><i>→</i><span><b>Брошюра на скрепку</b> — спуск полос со сдвигом на сползание</span></li>
       <li><i>→</i><span><b>Пакетная обработка</b> — много файлов за раз, и упаковка заказа</span></li>
     </ul>
-    <div class="vis"><img src="d7.svg" alt="Офсетный лист с клапаном, шкалой и крестами приводки" loading="lazy"></div>
+    <div class="vis"><img width="640" height="270" src="d7.svg" alt="Офсетный лист с клапаном, шкалой и крестами приводки" loading="lazy"></div>
     <div class="shot tall">
-      <img src="s-offset.jpg" alt="Раскладка для офсета в панели" loading="lazy">
+      <img width="680" height="1800" src="s-offset.jpg" alt="Раскладка для офсета в панели" loading="lazy">
       <p><b>Раскладка для офсета.</b> Лист, карта, зазоры — и сразу видно, сколько поместится. Ниже выбираете печатника: пластина и клапан подставятся.</p>
     </div>
     <div class="gain">Меньше возвратов из типографии</div>
@@ -384,14 +384,14 @@
       <li><i>→</i><span><b>Шаблон стола и пробный лист</b> в PDF</span></li>
       <li><i>→</i><span><b>Край карты и допуск заготовки</b> на столе вместо линий реза</span></li>
     </ul>
-    <div class="vis"><img src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном" loading="lazy"></div>
+    <div class="vis"><img width="640" height="200" src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном" loading="lazy"></div>
     <div class="files">
       <span><b>Лист 01 — Лицо — Фон</b>.tif</span>
       <span><b>Лист 01 — Лицо — Белила</b>.tif</span>
       <span><b>Лист 01 — Лицо — Лак</b>.tif</span>
     </div>
     <div class="shot">
-      <img src="s-uv.jpg" alt="Белила и лак в панели" loading="lazy">
+      <img width="680" height="702" src="s-uv.jpg" alt="Белила и лак в панели" loading="lazy">
       <p><b>«Белила, лак».</b> Одна кнопка для выделенного — или только белила, только лак. Сразу видно, на какой стороне что печатается.</p>
     </div>
     <div class="gain">Файлы совпадают при наложении — приводка не поедет</div>
@@ -409,9 +409,9 @@
       <li><i>→</i><span><b>Люверсы для баннера</b> — метки по периметру с вашим шагом</span></li>
       <li><i>→</i><span><b>Белила и лак</b> — для печати на прозрачной плёнке</span></li>
     </ul>
-    <div class="vis"><img src="d6.svg" alt="Метки люверсов по периметру баннера" loading="lazy"></div>
+    <div class="vis"><img width="640" height="240" src="d6.svg" alt="Метки люверсов по периметру баннера" loading="lazy"></div>
     <div class="shot tall">
-      <img src="s-wide.jpg" alt="Раскладка на рулон в панели" loading="lazy">
+      <img width="680" height="1640" src="s-wide.jpg" alt="Раскладка на рулон в панели" loading="lazy">
       <p><b>Раскладка на рулон.</b> Ширина, тираж, контур реза и метки плоттера — на одном экране. Контур и метки ложатся отдельными слоями.</p>
     </div>
     <div class="gain">Меньше отходов плёнки и ни одного ручного сдвига</div>
@@ -428,9 +428,9 @@
       <li><i>→</i><span><b>Файл для плоттера:</b> PLT, DXF или AI, с метками</span></li>
       <li><i>→</i><span><b>Стоимость резки</b> по длине реза и врезкам</span></li>
     </ul>
-    <div class="vis"><img src="nest-sheet.svg" alt="Лист 1220 × 2440: буквы вывески уложены по форме, мелкие внутри крупных, справа свободный остаток; бледным — обычная раскладка, которая не помещается" loading="lazy"></div>
+    <div class="vis"><img width="640" height="388" src="nest-sheet.svg" alt="Лист 1220 × 2440: буквы вывески уложены по форме, мелкие внутри крупных, справа свободный остаток; бледным — обычная раскладка, которая не помещается" loading="lazy"></div>
     <div class="shot">
-      <img src="s-plot.jpg" alt="Файл для плоттера в панели" loading="lazy">
+      <img width="680" height="812" src="s-plot.jpg" alt="Файл для плоттера в панели" loading="lazy">
       <p><b>«Файл».</b> Контур реза уходит отдельным файлом в формате, который понимает ваш плоттер, — с метками или без.</p>
     </div>
     <div class="gain">Вывеска «ГОРОД» и подпись «ЦВЕТЫ И ПОДАРКИ» на одном листе 1220 × 2440: по форме всё вошло и 400 мм осталось, обычной раскладкой — не влезает</div>
@@ -449,7 +449,7 @@
       <li><i>→</i><span><b>Укладка по форме</b> и файл для станка</span></li>
     </ul>
     <div class="shot tall">
-      <img src="s-laser.jpg" alt="Лазер: стык в стык и порядок реза в панели" loading="lazy">
+      <img width="680" height="1202" src="s-laser.jpg" alt="Лазер: стык в стык и порядок реза в панели" loading="lazy">
       <p><b>«Стык, порядок».</b> Разложить стык в стык, выбрать материал из вашей таблицы режимов и одной кнопкой оптимизировать резку. Передумали — «Вернуть как было».</p>
     </div>
     <div class="gain">Цена резки известна до того, как лазер включился</div>
@@ -468,7 +468,7 @@
       <li><i>→</i><span><b>Стоимость резки</b> по длине и врезкам</span></li>
     </ul>
     <div class="shot tall">
-      <img src="s-mill.jpg" alt="Объёмные буквы в панели" loading="lazy">
+      <img width="680" height="1390" src="s-mill.jpg" alt="Объёмные буквы в панели" loading="lazy">
       <p><b>«Буквы».</b> Три шага: полосы для бортов на листы, задник и выборка на лице, исправление косяков шрифта.</p>
     </div>
     <div class="gain">Смета на вывеску — до того, как фреза коснулась листа</div>
@@ -487,7 +487,7 @@
       <li><i>→</i><span><b>Разметка</b> под картинку, пружину и рекламу</span></li>
     </ul>
     <div class="shot tall">
-      <img src="s-cal.jpg" alt="Календарь в панели" loading="lazy">
+      <img width="680" height="1332" src="s-cal.jpg" alt="Календарь в панели" loading="lazy">
       <p><b>«Календарь».</b> Вид, год, число месяцев и формат — превью внизу панели сразу показывает, как выйдет страница.</p>
     </div>
     <div class="gain">Двенадцать месяцев собираются разом, а не по одному</div>
@@ -510,7 +510,7 @@
     <h2>Сколько стоит</h2>
     <p class="sub">Подписка на месяц. «Старт» — номера, данные и раскладка — есть в любом наборе, к нему добавляется ваше оборудование. Установку и первый заказ проходим вместе.</p>
 
-    <div class="trial">
+    <div class="trial" id="trial">
       <div class="big"><span>7 дней</span> бесплатно</div>
       <p>Пробная неделя со всеми частями. Пройдём ваш настоящий заказ — и будет видно, какие части нужны.</p>
       <a class="btn solid" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%207%20%D0%B4%D0%BD%D0%B5%D0%B9.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D1%87%D1%82%D0%BE%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.">
@@ -554,7 +554,7 @@
       </div>
     </div>
 
-    <h3 class="kit-title">Или соберите <span class="cy">своё</span></h3>
+    <h3 class="kit-title" id="calc">Или соберите <span class="cy">своё</span></h3>
     <p class="sub">«Старт» входит в любой набор — дальше добавляете только своё оборудование.</p>
     <div class="kit">
       <div id="kitList"></div>
@@ -683,6 +683,17 @@ var BUNDLES = [
   boxes.forEach(function (b) { b.addEventListener('change', update); });
   update();
 })();
+
+// Кнопки-якоря («Цены и наборы», разделы): доводим прокрутку, даже если страница успела сдвинуться
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a[href^="#"]'); if (!a) return;
+  var el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
+  e.preventDefault();
+  var go = function (smooth) { el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' }); };
+  go(true);
+  setTimeout(function () { if (Math.abs(el.getBoundingClientRect().top) > 12) go(true); }, 700);
+  setTimeout(function () { if (Math.abs(el.getBoundingClientRect().top) > 12) go(false); }, 1500);
+});
 
 // Появление блоков при прокрутке
 (function () {
