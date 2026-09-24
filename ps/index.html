@@ -147,6 +147,30 @@
   .trial .big span { color: var(--cy); }
   .trial p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
   .trial .btn { width: 100%; }
+  /* Наборы */
+  .bundles { margin-top: 12px; display: grid; gap: 12px; }
+  .bundle { border: 1px solid var(--line); background: #0f161b; padding: 18px; }
+  .bundle.best { border-color: var(--cy); background: linear-gradient(160deg, #0f161b 40%, #0b2a31 100%); position: relative; }
+  .bundle .flag { position: absolute; top: -1px; right: -1px; background: var(--cy); color: var(--dark); font: 700 10.5px "Montserrat", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px; }
+  .bundle .name { font: 700 12px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
+  .bundle .who { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .bundle .price { font: 800 28px/1 "Montserrat", sans-serif; margin: 12px 0 4px; }
+  .bundle .price .per { font: 500 13px "Raleway", sans-serif; color: var(--muted); }
+  .bundle .was { font-size: 12.5px; color: #7f8d98; }
+  .bundle .was b { color: var(--cy); font-weight: 600; }
+  .bundle ul { list-style: none; margin: 14px 0 16px; padding: 0; display: grid; gap: 7px; }
+  .bundle li { display: flex; gap: 9px; font-size: 14px; color: #dfe6ec; line-height: 1.4; }
+  .bundle li i { font-style: normal; color: var(--cy); }
+  .bundle .btn { width: 100%; }
+  .kit-title { margin: 28px 0 0; font: 800 20px "Montserrat", sans-serif; text-transform: uppercase; }
+  .kit-title + .sub { margin-top: 8px; }
+  .opt.base { cursor: default; background: rgba(3,214,244,.05); }
+  .opt.base .box { background: var(--cy); border-color: var(--cy); }
+  .opt.base .box svg { opacity: 1; }
+  .opt.base .pr { color: #fff; }
+  .kit-hint { margin: 0; padding: 12px 14px; border-left: 3px solid var(--cy); background: rgba(3,214,244,.08); font-size: 13.5px; line-height: 1.45; color: #dfe6ec; }
+  .kit-hint b { color: #fff; }
+
   /* Калькулятор набора */
   .kit { margin-top: 12px; border: 1px solid var(--line); background: #0f161b; scroll-margin-top: 10px; }
   .kit-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 16px 12px; }
@@ -210,7 +234,7 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
         7 дней бесплатно
       </a>
-      <a class="btn" href="#kit">Собрать свой набор</a>
+      <a class="btn" href="#buy">Цены и наборы</a>
     </div>
 
     <div class="pick">
@@ -293,7 +317,7 @@
   </section>
 
   <section class="deep part" id="p-data">
-    <div class="part-head"><span class="part-no">Часть · Номера и данные</span><span class="plan-tag part" data-price="D">отдельная часть</span></div>
+    <div class="part-head"><span class="part-no">Старт · Номера и данные</span><span class="plan-tag part" data-price="D">отдельная часть</span></div>
     <h2>Каждый экземпляр — <span class="cy">свой</span></h2>
     <p class="promise">Номера, имена, коды и картинки берутся из файла клиента и расходятся по всему тиражу.</p>
     <ul class="feat">
@@ -484,7 +508,7 @@
   <!-- Цены -->
   <section class="buy" id="buy">
     <h2>Сколько стоит</h2>
-    <p class="sub">Платите только за своё оборудование. Подписка на месяц, установку и первый заказ проходим вместе.</p>
+    <p class="sub">Подписка на месяц. «Старт» — номера, данные и раскладка — есть в любом наборе, к нему добавляется ваше оборудование. Установку и первый заказ проходим вместе.</p>
 
     <div class="trial">
       <div class="big"><span>7 дней</span> бесплатно</div>
@@ -495,15 +519,52 @@
       </a>
     </div>
 
-    <div class="kit" id="kit">
-      <div class="kit-h"><b>Соберите свой набор</b><button type="button" id="kitAll">Отметить всё</button></div>
+    <div class="bundles" id="kit">
+      <div class="bundle best" data-bundle="all"><span class="flag">Выгоднее всего</span>
+        <div class="name">Всё включено</div>
+        <div class="who">для производства полного цикла</div>
+        <div class="price"></div>
+        <div class="was"></div>
+        <ul><li><i>→</i><span>Старт: номера, данные, раскладка</span></li><li><i>→</i><span>Цифра, офсет, УФ-планшет, рулон</span></li><li><i>→</i><span>Плоттер, лазер, фрезер с объёмными буквами</span></li><li><i>→</i><span>Календари</span></li></ul>
+        <a class="btn solid" href="https://t.me/iMexx"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>Взять набор</a>
+      </div>
+      <div class="bundle" data-bundle="print">
+        <div class="name">Типография</div>
+        <div class="who">цифровая и офсетная печать</div>
+        <div class="price"></div>
+        <div class="was"></div>
+        <ul><li><i>→</i><span>Старт: номера, данные, раскладка</span></li><li><i>→</i><span>Цифровая печать</span></li><li><i>→</i><span>Офсет</span></li><li><i>→</i><span>Календари</span></li></ul>
+        <a class="btn" href="https://t.me/iMexx">Взять набор</a>
+      </div>
+      <div class="bundle" data-bundle="sign">
+        <div class="name">Наружная реклама</div>
+        <div class="who">вывески, баннеры, наклейки</div>
+        <div class="price"></div>
+        <div class="was"></div>
+        <ul><li><i>→</i><span>Старт: номера, данные, раскладка</span></li><li><i>→</i><span>Рулонная печать</span></li><li><i>→</i><span>Плоттерная резка</span></li><li><i>→</i><span>Фрезеровка и объёмные буквы</span></li></ul>
+        <a class="btn" href="https://t.me/iMexx">Взять набор</a>
+      </div>
+      <div class="bundle" data-bundle="uv">
+        <div class="name">Сувенирка и УФ</div>
+        <div class="who">печать на изделиях и резка</div>
+        <div class="price"></div>
+        <div class="was"></div>
+        <ul><li><i>→</i><span>Старт: номера, данные, раскладка</span></li><li><i>→</i><span>УФ-планшет: белила и лак</span></li><li><i>→</i><span>Лазерная резка</span></li></ul>
+        <a class="btn" href="https://t.me/iMexx">Взять набор</a>
+      </div>
+    </div>
+
+    <h3 class="kit-title">Или соберите <span class="cy">своё</span></h3>
+    <p class="sub">«Старт» входит в любой набор — дальше добавляете только своё оборудование.</p>
+    <div class="kit">
       <div id="kitList"></div>
       <div class="kit-sum">
-        <div class="total" id="kitTotal">Ничего не выбрано</div>
-        <p class="note" id="kitNote">Отметьте части, которые нужны, — отправлю цену набора в Telegram.</p>
-        <a class="btn solid" id="kitGo" href="https://t.me/iMexx?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20PS%20%C2%B7%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D1%86%D0%B5%D0%BD%D1%83.">
+        <div class="total" id="kitTotal"></div>
+        <p class="note" id="kitNote"></p>
+        <p class="kit-hint" id="kitHint" hidden></p>
+        <a class="btn solid" id="kitGo" href="https://t.me/iMexx">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-          <span id="kitGoText">Узнать цену набора</span>
+          <span id="kitGoText">Взять этот набор</span>
         </a>
       </div>
     </div>
@@ -512,14 +573,14 @@
 
     <div class="terms">
       <div><i>→</i><span><b>Оплата раз в месяц, переводом на карту.</b> Ключ действует до даты, записанной в нём.</span></div>
-      <div><i>→</i><span><b>Докупить часть — новый ключ.</b> Вставляете в панель, части включаются сразу.</span></div>
+      <div><i>→</i><span><b>Докупить оборудование — новый ключ.</b> Вставляете в панель, части включаются сразу. Набрали на сумму больше набора — пересчитаю по цене набора.</span></div>
       <div><i>→</i><span><b>Не продлили — остаётся бесплатное,</b> макеты и выведенные файлы у вас.</span></div>
     </div>
 
     <div class="faq">
       <details>
-        <summary>Можно взять только одну часть?</summary>
-        <p>Да. Например, только лазер или только календари. Остальное в панели будет с замком — докупить можно в любой момент.</p>
+        <summary>Можно взять только лазер?</summary>
+        <p>Да: «Старт» плюс лазер. Остальное в панели будет с замком — докупить можно в любой момент, новым ключом.</p>
       </details>
       <details>
         <summary>Какой нужен CorelDRAW?</summary>
@@ -538,66 +599,87 @@
 </div>
 
 <script>
-// Набор частей. Цены — сум в месяц (всё целиком — 400 000); null — цену скажу в Telegram.
+// Цены, сум в месяц. «Старт» обязателен; оборудование — надбавкой к нему; наборы — со скидкой.
+var BASE = { k: 'D', name: 'Старт', price: 100000 };
 var PARTS = [
-  { k: 'D', name: 'Номера и данные',  hint: 'номера, коды, раскладка тиража',      price: 100000 },
-  { k: 'C', name: 'Цифровая печать',  hint: 'листы, оборот, пробный лист',        price: 30000 },
-  { k: 'O', name: 'Офсет',            hint: 'пластины типографий, метки, PDF',    price: 40000 },
-  { k: 'U', name: 'УФ-планшет',       hint: 'белила и лак, шаблон стола',         price: 50000 },
-  { k: 'W', name: 'Рулонная печать',  hint: 'рулон, вылет, люверсы',              price: 35000 },
-  { k: 'P', name: 'Плоттерная резка', hint: 'укладка по форме, файл реза',        price: 35000 },
-  { k: 'L', name: 'Лазерная резка',   hint: 'стык в стык, режимы, цена резки',    price: 45000 },
-  { k: 'M', name: 'Фрезеровка',       hint: 'объёмные буквы, файл для станка',    price: 45000 },
-  { k: 'K', name: 'Календари',        hint: '6 видов, 16 стилей',                 price: 20000 }
+  { k: 'C', name: 'Цифровая печать',  hint: 'листы, оборот, пробный лист',      price: 40000 },
+  { k: 'O', name: 'Офсет',            hint: 'пластины типографий, метки, PDF',  price: 50000 },
+  { k: 'U', name: 'УФ-планшет',       hint: 'белила и лак, шаблон стола',       price: 70000 },
+  { k: 'W', name: 'Рулонная печать',  hint: 'рулон, вылет, люверсы',            price: 50000 },
+  { k: 'P', name: 'Плоттерная резка', hint: 'укладка по форме, файл реза',      price: 50000 },
+  { k: 'L', name: 'Лазерная резка',   hint: 'стык в стык, режимы, цена резки',  price: 70000 },
+  { k: 'M', name: 'Фрезеровка',       hint: 'объёмные буквы, файл для станка',  price: 70000 },
+  { k: 'K', name: 'Календари',        hint: '6 видов, 16 стилей',               price: 30000 }
 ];
-(function () {
-  var list = document.getElementById('kitList'); if (!list) return;
-  var money = function (n) { return n.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' сум'; };
-  var tick = '<svg viewBox="0 0 12 12" fill="none" stroke-width="2.2"><path d="M2 6.3 4.8 9 10 3"/></svg>';
-  list.innerHTML = PARTS.map(function (p) {
-    return '<label class="opt"><input type="checkbox" value="' + p.k + '"><span class="box">' + tick + '</span>'
-      + '<span class="nm"><b>' + p.name + '</b><span>' + p.hint + '</span></span>'
-      + '<span class="pr">' + (p.price ? money(p.price) : '') + '</span></label>';
-  }).join('');
+var BUNDLES = [
+  { id: 'print', name: 'Типография',       parts: 'COK',      price: 180000 },
+  { id: 'sign',  name: 'Наружная реклама', parts: 'WPM',      price: 220000 },
+  { id: 'uv',    name: 'Сувенирка и УФ',   parts: 'UL',       price: 190000 },
+  { id: 'all',   name: 'Всё включено',     parts: 'COUWPLMK', price: 400000 }
+];
 
-  // Метки на разделах: как только цена части вписана, вместо «отдельная часть» — цена
+(function () {
+  var money = function (n) { return n.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' сум'; };   // без переноса внутри числа
+  var byKey = function (k) { return PARTS.filter(function (p) { return p.k === k; })[0]; };
+  var fullPrice = function (keys) { return BASE.price + keys.split('').reduce(function (s, k) { return s + byKey(k).price; }, 0); };
+  var tg = function (msg) { return 'https://t.me/iMexx?text=' + encodeURIComponent(msg); };
+
+  // Метки на разделах программы
   document.querySelectorAll('[data-price]').forEach(function (el) {
-    var p = PARTS.filter(function (x) { return x.k === el.getAttribute('data-price'); })[0];
-    if (p && p.price) el.textContent = money(p.price) + ' / мес';
+    var k = el.getAttribute('data-price');
+    if (k === BASE.k) { el.textContent = 'Старт · ' + money(BASE.price); return; }
+    var p = byKey(k); if (p) el.textContent = '+' + money(p.price) + ' к Старту';
   });
 
-  var boxes = list.querySelectorAll('input');
-  var go = document.getElementById('kitGo'), goText = document.getElementById('kitGoText');
+  // Карточки наборов: цена, зачёркнутая сумма по частям, выгода, кнопка
+  document.querySelectorAll('[data-bundle]').forEach(function (card) {
+    var b = BUNDLES.filter(function (x) { return x.id === card.getAttribute('data-bundle'); })[0];
+    var full = fullPrice(b.parts);
+    card.querySelector('.price').innerHTML = money(b.price) + ' <span class="per">/ месяц</span>';
+    card.querySelector('.was').innerHTML = 'по частям <s>' + money(full) + '</s> · <b>выгода ' + money(full - b.price) + '</b>';
+    card.querySelector('.btn').href = tg('Здравствуйте! Хочу PS · Автоматизация, набор «' + b.name + '» за ' + money(b.price) + ' в месяц.');
+  });
+
+  // Калькулятор: «Старт» всегда в наборе, отмечается оборудование
+  var list = document.getElementById('kitList'); if (!list) return;
+  var tick = '<svg viewBox="0 0 12 12" fill="none" stroke-width="2.2"><path d="M2 6.3 4.8 9 10 3"/></svg>';
+  list.innerHTML = '<label class="opt base"><input type="checkbox" checked disabled><span class="box">' + tick + '</span>'
+    + '<span class="nm"><b>Старт</b><span>номера и данные, раскладка тиража — входит всегда</span></span>'
+    + '<span class="pr">' + money(BASE.price) + '</span></label>'
+    + PARTS.map(function (p) {
+      return '<label class="opt"><input type="checkbox" value="' + p.k + '"><span class="box">' + tick + '</span>'
+        + '<span class="nm"><b>' + p.name + '</b><span>' + p.hint + '</span></span>'
+        + '<span class="pr">+' + money(p.price) + '</span></label>';
+    }).join('');
+  var boxes = list.querySelectorAll('input:not([disabled])');
   var total = document.getElementById('kitTotal'), note = document.getElementById('kitNote');
-  var allBtn = document.getElementById('kitAll');
+  var hint = document.getElementById('kitHint'), go = document.getElementById('kitGo'), goText = document.getElementById('kitGoText');
 
   function update() {
-    var picked = PARTS.filter(function (p, i) { return boxes[i].checked; });
-    var known = picked.length && picked.every(function (p) { return p.price; });
-    var sum = picked.reduce(function (s, p) { return s + (p.price || 0); }, 0);
-    if (!picked.length) {
-      total.textContent = 'Ничего не выбрано';
-      note.textContent = 'Отметьте части, которые нужны, — отправлю цену набора в Telegram.';
-    } else if (known) {
-      total.innerHTML = money(sum) + ' <small>/ месяц</small>';
-      note.textContent = 'Частей: ' + picked.length + '. Отправьте набор — пришлю ключ и помогу поставить.';
+    var keys = PARTS.filter(function (p, i) { return boxes[i].checked; }).map(function (p) { return p.k; }).join('');
+    var sum = fullPrice(keys);
+    // самый выгодный набор, куда входит всё отмеченное
+    var best = null;
+    BUNDLES.forEach(function (b) {
+      var covers = keys.split('').every(function (k) { return b.parts.indexOf(k) >= 0; });
+      if (keys && covers && b.price < sum && (!best || b.price < best.price)) best = b;
+    });
+    var names = keys ? keys.split('').map(function (k) { return byKey(k).name; }) : [];
+    total.innerHTML = money(sum) + ' <small>/ месяц</small>';
+    note.textContent = keys ? 'Старт + ' + names.join(', ') + '.' : 'Только Старт: номера, данные и раскладка.';
+    if (best) {
+      var extra = best.parts.split('').filter(function (k) { return keys.indexOf(k) < 0; }).map(function (k) { return byKey(k).name; });
+      hint.hidden = false;
+      hint.innerHTML = '<b>Выгоднее набор «' + best.name + '» — ' + money(best.price) + '.</b> Дешевле на ' + money(sum - best.price)
+        + (extra.length ? ', и в придачу: ' + extra.join(', ').toLowerCase() + '.' : '.');
+      go.href = tg('Здравствуйте! Хочу PS · Автоматизация, набор «' + best.name + '» за ' + money(best.price) + ' в месяц.');
+      goText.textContent = 'Взять «' + best.name + '»';
     } else {
-      total.innerHTML = 'Частей: ' + picked.length + ' <small>из ' + PARTS.length + '</small>';
-      note.textContent = 'Отправьте набор в Telegram — отвечу ценой и помогу поставить.';
+      hint.hidden = true;
+      go.href = tg('Здравствуйте! Хочу PS · Автоматизация: Старт' + (names.length ? ' + ' + names.join(', ') : '') + '. По сайту — ' + money(sum) + ' в месяц.');
+      goText.textContent = 'Взять этот набор';
     }
-    goText.textContent = known ? 'Взять этот набор' : 'Узнать цену набора';
-    var msg = 'Здравствуйте! Интересует PS · Автоматизация'
-      + (picked.length ? ', части: ' + picked.map(function (p) { return p.name; }).join(', ') + '.' : '.')
-      + (known ? ' Сумма по сайту: ' + money(sum) + ' в месяц.' : ' Подскажите цену.');
-    go.href = 'https://t.me/iMexx?text=' + encodeURIComponent(msg);
-    allBtn.textContent = picked.length === PARTS.length ? 'Снять всё' : 'Отметить всё';
   }
-
-  allBtn.addEventListener('click', function () {
-    var on = [].some.call(boxes, function (b) { return !b.checked; });
-    boxes.forEach(function (b) { b.checked = on; });
-    update();
-  });
   boxes.forEach(function (b) { b.addEventListener('change', update); });
   update();
 })();
@@ -605,7 +687,7 @@ var PARTS = [
 // Появление блоков при прокрутке
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var targets = document.querySelectorAll('.chip, .vs > div, .nums, .feat, .vis, .shot, .care div, .trial, .kit, .free, .faq');
+  var targets = document.querySelectorAll('.chip, .vs > div, .nums, .feat, .vis, .shot, .care div, .trial, .bundle, .kit, .free, .faq');
   targets.forEach(function (el) { el.classList.add('rise'); });
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e, i) {
