@@ -95,6 +95,11 @@
 
   <section class="list">
     <h2>Ещё пригодится</h2>
+    <a class="row" href="https://t.me/graph_designer">
+      <img src="../graph_designer.jpg" alt="">
+      <span class="tx"><b>Дизайнеры — Ai|Ps</b><i>Сам чат: задать вопрос по дизайну</i></span>
+      <span class="arr">→</span>
+    </a>
     <a class="row" href="https://t.me/graph_academy">
       <img src="../graph_academy.jpg" alt="">
       <span class="tx"><b>Академия графики</b><i>Уроки и разборы — как работать в этих программах</i></span>
@@ -103,11 +108,6 @@
     <a class="row" href="https://t.me/graph_private">
       <img src="../graph_private.jpg" alt="">
       <span class="tx"><b>Задизайнено!</b><i>Шрифты, мокапы и материалы</i></span>
-      <span class="arr">→</span>
-    </a>
-    <a class="row" href="https://t.me/graph_designer">
-      <img src="../graph_designer.jpg" alt="">
-      <span class="tx"><b>Дизайнеры — Ai|Ps</b><i>Сам чат: задать вопрос по дизайну</i></span>
       <span class="arr">→</span>
     </a>
     <a class="row" href="https://www.adobe.com/creativecloud.html">
@@ -156,6 +156,34 @@
     try { opener(href); done = true; } catch (err) {}
     setTimeout(function () { if (document.visibilityState === 'visible') location.href = href; }, done ? 900 : 0);
   });
+})();
+</script>
+<script>
+// Счётчик: кто открыл страницу и какие кнопки нажимал. Имя и номер в Telegram
+// сверяются на хостинге по подписи Telegram; смотреть — /stats в @imexxbot.
+(function () {
+  try {
+    var tg = window.Telegram && window.Telegram.WebApp;
+    var page = location.pathname.replace(/\//g, '') || 'visitka';
+    var start = (tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || '';
+    if (page === 'visitka' && (start === 'soft' || start === 'ps')) return;   // сейчас уйдём на нужную страницу — отметит она
+    var data = (tg && tg.initData) || '';
+    var send = function (extra) {
+      var body = JSON.stringify(Object.assign({ p: page, d: data }, extra || {}));
+      var blob = new Blob([body], { type: 'text/plain' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon('https://davinchi.uz/imexx-stat.php', blob))) {
+        fetch('https://davinchi.uz/imexx-stat.php', { method: 'POST', body: body, keepalive: true, mode: 'no-cors' }).catch(function () {});
+      }
+    };
+    send();
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a || /^#/.test(a.getAttribute('href') || '')) return;
+      var head = a.querySelector('b, strong, h3, h4');
+      var label = (a.getAttribute('data-stat') || (head || a).textContent || '').replace(/\s+/g, ' ').trim();
+      if (label) send({ c: label });
+    }, true);
+  } catch (err) { /* счётчик не должен мешать странице */ }
 })();
 </script>
 </body>
