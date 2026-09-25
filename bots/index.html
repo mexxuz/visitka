@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>Telegram-боты и мини-приложения — Макс Бондаренко</title>
-<meta name="description" content="Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram.">
+<meta name="description" content="Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram; сайты, CRM и интеграции.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Telegram-боты и мини-приложения — Макс Бондаренко">
-<meta property="og:description" content="Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram.">
+<meta property="og:description" content="Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram; сайты, CRM и интеграции.">
 <meta property="og:image" content="https://max.davinchi.uz/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,6 +119,16 @@
   .steps b { font-weight: 600; }
 
   .cta { padding: 30px 18px 0; }
+
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); margin: 22px 18px 0; border: 1px solid var(--line);
+           background: linear-gradient(120deg, var(--dark) 0%, var(--teal) 100%); }
+  .facts div { padding: 14px 10px; text-align: center; }
+  .facts div + div { border-left: 1px solid var(--line); }
+  .facts b { display: block; font: 800 24px/1 "Montserrat", sans-serif; color: var(--cy); }
+  .facts span { display: block; margin-top: 6px; font-size: 11.5px; line-height: 1.35; color: var(--muted); }
+  .case.sq { aspect-ratio: 1 / 1; }
+  .clients { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 700 13px "Montserrat", sans-serif; color: #dfe6ec; }
+  .clients span { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -135,9 +145,10 @@
     <h2>Что можно сделать</h2>
     <ul class="does">
       <li><div><b>Заказы и запись</b><span>Клиент выбирает и оформляет прямо в Telegram — без сайта и звонков.</span></div></li>
-      <li><div><b>Оплата</b><span>Внутри того же чата.</span></div></li>
-      <li><div><b>Рассылки</b><span>Сообщения своим клиентам — тем, кто сам подписался на бота.</span></div></li>
+      <li><div><b>Оплата</b><span>Click, Payme и другие платёжные системы.</span></div></li>
+      <li><div><b>Рассылки</b><span>Сообщения клиентам, которые сами подписались на бота.</span></div></li>
       <li><div><b>Личный кабинет</b><span>Заказы, история и настройки — в мини-приложении.</span></div></li>
+      <li><div><b>Связка с вашими системами</b><span>CRM (Bitrix24, AmoCRM), аналитика, SMS — чтобы данные не терялись.</span></div></li>
     </ul>
   </section>
 
@@ -177,12 +188,21 @@
     </ol>
   </section>
 
+  <section class="list">
+    <h2>Если нужно больше, чем бот</h2>
+    <a class="row" href="https://ps.com.uz/it.html">
+      <span class="ic"><img src="../ps-mark.svg" alt=""></span>
+      <span class="tx"><b>Premium Selection</b><i>IT-решения: сайты, мобильные приложения, CRM, интеграции</i></span>
+      <span class="arr">→</span>
+    </a>
+  </section>
+
   <div class="cta">
     <a class="btn" href="https://t.me/iMexx">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
       Обсудить задачу
     </a>
-    <p class="hint">Откроется личный чат со мной в Telegram.</p>
+    <p class="hint">Откроется личный чат со мной в Telegram. Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
   </div>
 
   <a class="me" href="/?home=1">
