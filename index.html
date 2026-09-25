@@ -559,7 +559,11 @@
   // Открыли из сообщения бота с пометкой раздела — сразу ведём туда (…?startapp=soft)
   try {
     var go = { soft: '/soft/', ps: '/ps/' }[(tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || ''];
-    if (go && location.pathname === '/') { location.replace(go); return; }
+    // только при запуске: если человек потом сам вернулся на главную, оставляем его тут
+    var once = 'imexx.landed';
+    var landed = false;
+    try { landed = sessionStorage.getItem(once) === '1'; sessionStorage.setItem(once, '1'); } catch (e) {}
+    if (go && location.pathname === '/' && !landed) { window.imexxLeaving = true; location.replace(go); return; }
   } catch (e) {}
 
   if (!tg || !tg.platform || tg.platform === 'unknown') {
@@ -627,8 +631,7 @@
   try {
     var tg = window.Telegram && window.Telegram.WebApp;
     var page = location.pathname.replace(/\//g, '') || 'visitka';
-    var start = (tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || '';
-    if (page === 'visitka' && (start === 'soft' || start === 'ps')) return;   // сейчас уйдём на нужную страницу — отметит она
+    if (window.imexxLeaving) return;   // сейчас уйдём на нужную страницу — отметит она
     var data = (tg && tg.initData) || '';
     var send = function (extra) {
       var body = JSON.stringify(Object.assign({ p: page, d: data }, extra || {}));

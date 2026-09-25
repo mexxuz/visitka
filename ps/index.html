@@ -749,8 +749,7 @@ document.addEventListener('click', function (e) {
   try {
     var tg = window.Telegram && window.Telegram.WebApp;
     var page = location.pathname.replace(/\//g, '') || 'visitka';
-    var start = (tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || '';
-    if (page === 'visitka' && (start === 'soft' || start === 'ps')) return;   // сейчас уйдём на нужную страницу — отметит она
+    if (window.imexxLeaving) return;   // сейчас уйдём на нужную страницу — отметит она
     var data = (tg && tg.initData) || '';
     var send = function (extra) {
       var body = JSON.stringify(Object.assign({ p: page, d: data }, extra || {}));
