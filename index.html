@@ -563,7 +563,8 @@
     var once = 'imexx.landed';
     var landed = false;
     try { landed = sessionStorage.getItem(once) === '1'; sessionStorage.setItem(once, '1'); } catch (e) {}
-    if (go && location.pathname === '/' && !landed) { window.imexxLeaving = true; location.replace(go); return; }
+    var home = /[?&]home=1/.test(location.search);   // вернулся на главную сам — не перекидываем
+    if (go && location.pathname === '/' && !landed && !home) { window.imexxLeaving = true; location.replace(go); return; }
   } catch (e) {}
 
   if (!tg || !tg.platform || tg.platform === 'unknown') {
