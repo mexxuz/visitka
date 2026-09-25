@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>ИИ, генеративный контент и дизайн — Макс Бондаренко</title>
+<meta name="description" content="Ролики, картинки и рекламные креативы на нейросетях, фирменный стиль и визуал для соцсетей.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ИИ, генеративный контент и дизайн — Макс Бондаренко">
+<meta property="og:description" content="Ролики, картинки и рекламные креативы на нейросетях, фирменный стиль и визуал для соцсетей.">
+<meta property="og:image" content="https://max.davinchi.uz/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root { --cy: #03d6f4; --badge: linear-gradient(90deg,#9b16c8,#03d6f4); --dark: #0a0e12; --teal: #0b3a44; --panel: #12181d; --line: #23303a; --muted: #aab2bd; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--dark); color: #fff; font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+  .app { max-width: 520px; margin: 0 auto; min-height: 100vh; background: linear-gradient(170deg, var(--dark) 45%, var(--teal) 160%); }
+  h1, h2 { font-family: "Montserrat", sans-serif; margin: 0; letter-spacing: -.01em; }
+  .cy { color: var(--cy); }
+
+  .back { display: inline-flex; gap: 8px; padding: max(14px, env(safe-area-inset-top)) 18px 0; font: 600 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+  .back:hover { color: var(--cy); }
+
+  .hero { padding: 22px 18px 8px; }
+  .top { display: flex; gap: 16px; align-items: center; }
+  .top img { width: 72px; height: 72px; flex: none; }
+  .badge { display: inline-block; background: var(--badge); font: 600 10.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px; }
+  h1 { font-weight: 800; font-size: clamp(30px, 8.6vw, 40px); line-height: 1.03; text-transform: uppercase; margin-top: 18px; }
+  .lead { margin: 14px 0 0; color: var(--muted); font-size: 15.5px; }
+
+  .apps { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 20px; }
+  .apps span { display: inline-flex; align-items: center; gap: 8px; font: 600 13px "Raleway", sans-serif; color: #dfe6ec; }
+  .apps span img { width: 22px; height: 22px; flex: none; }
+  .apps span.more { color: var(--muted); font-weight: 500; }
+
+  .main { padding: 22px 18px 0; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 54px; padding: 0 20px; width: 100%;
+    border: 2px solid var(--cy); background: var(--cy); color: var(--dark);
+    font: 700 13px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; transition: background .18s ease, color .18s ease;
+  }
+  .btn svg { width: 17px; height: 17px; }
+  .btn:active { background: transparent; color: #fff; }
+  @media (hover: hover) { .btn:hover { background: transparent; color: #fff; } }
+  .hint { margin: 10px 2px 0; font-size: 13px; color: #6d7884; line-height: 1.45; }
+
+  .list { padding: 26px 18px 0; }
+  .list h2 { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6d7884; margin-bottom: 10px; }
+  .row { display: flex; align-items: center; gap: 13px; border: 1px solid var(--line); background: var(--panel); padding: 12px 14px; transition: border-color .18s ease; }
+  .row + .row { margin-top: 8px; }
+  .row img { width: 44px; height: 44px; flex: none; object-fit: cover; }
+  .row .tx { flex: 1; min-width: 0; }
+  .row b { display: block; font: 700 14.5px/1.25 "Montserrat", sans-serif; }
+  .row i { display: block; font-style: normal; font-size: 12.5px; line-height: 1.35; color: var(--muted); margin-top: 3px; }
+  .row .arr { color: var(--cy); }
+  .row:active { border-color: var(--cy); }
+  @media (hover: hover) { .row:hover { border-color: var(--cy); } }
+
+  .me { margin: 34px 18px 0; padding: 22px 0 max(30px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
+        display: flex; align-items: center; justify-content: center; gap: 14px; color: #fff; -webkit-tap-highlight-color: transparent; }
+  .me .ph { width: 58px; height: 58px; flex: none; border-radius: 50%; padding: 2px; background: var(--badge); transition: transform .18s ease; }
+  .me .ph img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; filter: grayscale(1); border: 2px solid var(--dark); display: block; transition: filter .18s ease; }
+  .me .who { flex: 0 1 auto; min-width: 0; }
+  .me b { display: block; font: 700 15px "Montserrat", sans-serif; white-space: nowrap; }
+  .me i { display: block; margin-top: 3px; font-style: normal; font-size: 12.5px; color: var(--muted); }
+  .me .more { flex: none; margin-left: 10px; display: inline-flex; align-items: center; gap: 7px; color: var(--cy);
+              font: 700 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; white-space: nowrap; }
+  .me .arr { font: 400 20px/1 "Raleway", sans-serif; letter-spacing: 0; transition: transform .18s ease; }
+  @media (max-width: 380px) { .me { gap: 11px; } .me .ph { width: 52px; height: 52px; } .me b { font-size: 14px; } .me .more { margin-left: 4px; letter-spacing: .05em; } }
+  .me:active .ph { transform: scale(.96); }
+  .me:active .arr { transform: translateX(4px); }
+  @media (hover: hover) { .me:hover .ph img { filter: none; } .me:hover .arr { transform: translateX(4px); } }
+
+  .num { font: 800 13px "Montserrat", sans-serif; letter-spacing: .12em; color: var(--cy); }
+  .hero h1 { margin-top: 10px; }
+
+  .sec { padding: 30px 18px 0; }
+  .sec > h2 { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6d7884; margin-bottom: 12px; }
+
+  .does { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .does li { display: flex; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .does li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: 8px; background: var(--cy); }
+  .does b { display: block; font: 700 15px/1.3 "Montserrat", sans-serif; }
+  .does span { display: block; font-size: 13.5px; line-height: 1.45; color: var(--muted); margin-top: 3px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .case { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+  .case img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.22,.9,.3,1); }
+  .case::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,18,0) 45%, rgba(10,14,18,.92) 100%); }
+  .case .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 10px 11px 12px; }
+  .case .kind { display: block; font: 600 10px/1.3 "Raleway", sans-serif; letter-spacing: .05em; color: var(--cy); text-transform: uppercase; }
+  .case h3 { margin: 4px 0 0; font: 800 15px/1.1 "Montserrat", sans-serif; text-transform: uppercase; }
+  .case:active { border-color: var(--cy); }
+  @media (hover: hover) { .case:hover { border-color: var(--cy); } .case:hover img { transform: scale(1.04); } }
+  .more-link { display: inline-flex; gap: 8px; margin-top: 12px; font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: var(--cy); }
+
+  .demo { border: 1px solid var(--line); background: var(--panel); }
+  .demo video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #0d141a; }
+  .demo p { margin: 0; padding: 12px 14px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .demo p b { color: #fff; font-weight: 600; }
+
+  .row .ic { width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; background: #0d141a; }
+  .row .ic img { width: 30px; height: 30px; }
+  .row .ic svg { width: 24px; height: 24px; color: var(--cy); }
+  .row .tag { display: inline-block; margin-top: 6px; font: 600 10.5px "Raleway", sans-serif; letter-spacing: .03em; color: #dfe6ec; background: #1b242b; padding: 3px 7px; }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 8px; }
+  .steps li { counter-increment: s; display: flex; gap: 12px; align-items: baseline; font-size: 14.5px; line-height: 1.45; }
+  .steps li::before { content: counter(s); flex: none; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--cy); color: var(--cy); font: 700 12px "Montserrat", sans-serif; transform: translateY(-2px); }
+  .steps b { font-weight: 600; }
+
+  .cta { padding: 30px 18px 0; }
+</style>
+</head>
+<body>
+<div class="app">
+  <a class="back" href="/?home=1">← Визитка Макса</a>
+
+  <header class="hero">
+    <div class="num">Направление 01</div>
+    <h1>ИИ, генеративный <span class="cy">контент</span> и дизайн</h1>
+    <p class="lead">Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
+  </header>
+
+  <section class="sec">
+    <h2>Что делаю</h2>
+    <ul class="does">
+      <li><div><b>Ролики на нейросетях</b><span>От идеи и сценария до готового ролика.</span></div></li>
+      <li><div><b>Картинки и рекламные креативы</b></div></li>
+      <li><div><b>Фирменный стиль и макеты</b><span>Логотип, фирменный стиль, макеты — с опытом брендингового агентства Davinchi.</span></div></li>
+      <li><div><b>Визуал для соцсетей</b></div></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>Как работаем</h2>
+    <ol class="steps">
+      <li><span><b>Пишете задачу</b> в Telegram — своими словами, как есть.</span></li>
+      <li><span><b>Отвечаю, сколько стоит и сколько займёт.</b></span></li>
+      <li><span><b>Договорились — беру в работу.</b></span></li>
+    </ol>
+  </section>
+
+  <div class="cta">
+    <a class="btn" href="https://t.me/iMexx">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      Обсудить задачу
+    </a>
+    <p class="hint">Откроется личный чат со мной в Telegram.</p>
+  </div>
+
+  <a class="me" href="/?home=1">
+    <span class="ph"><img src="../photo.jpg" alt="" width="54" height="54"></span>
+    <span class="who"><b>Макс Бондаренко</b><i>Дизайн, печать, ИИ</i></span>
+    <span class="more">Обо мне <span class="arr">→</span></span>
+  </a>
+</div>
+
+<script>
+// Внутри Telegram: полный экран и ссылки, которые не уводят в браузер
+(function () {
+  var tg = window.Telegram && window.Telegram.WebApp;
+  if (!tg || !tg.platform || tg.platform === 'unknown') return;
+
+  tg.ready();
+  tg.expand();
+  if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
+  try { tg.setHeaderColor('#0a0e12'); tg.setBackgroundColor('#0a0e12'); } catch (e) {}
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#' || href.charAt(0) === '/') return;
+
+    var inner = /^https?:\/\/(t\.me|telegram\.me)\//i.test(href);
+    if (!inner && !/^https?:\/\//i.test(href)) return;
+
+    var can = function (v) { try { return tg.isVersionAtLeast ? tg.isVersionAtLeast(v) : false; } catch (err) { return false; } };
+    var opener = inner
+      ? (can('6.1') && typeof tg.openTelegramLink === 'function' ? tg.openTelegramLink.bind(tg) : null)
+      : (can('6.1') && typeof tg.openLink === 'function' ? tg.openLink.bind(tg) : null);
+    if (!opener) return;
+
+    e.preventDefault();
+    var done = false;
+    try { opener(href); done = true; } catch (err) {}
+    setTimeout(function () { if (document.visibilityState === 'visible') location.href = href; }, done ? 900 : 0);
+  });
+})();
+</script>
+<script>
+// Счётчик: кто открыл страницу и какие кнопки нажимал. Имя и номер в Telegram
+// сверяются на хостинге по подписи Telegram; смотреть — /stats в @imexxbot.
+(function () {
+  try {
+    var tg = window.Telegram && window.Telegram.WebApp;
+    var page = location.pathname.replace(/\//g, '') || 'visitka';
+    if (window.imexxLeaving) return;   // сейчас уйдём на нужную страницу — отметит она
+    var data = (tg && tg.initData) || '';
+    var send = function (extra) {
+      var body = JSON.stringify(Object.assign({ p: page, d: data }, extra || {}));
+      var blob = new Blob([body], { type: 'text/plain' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon('https://davinchi.uz/imexx-stat.php', blob))) {
+        fetch('https://davinchi.uz/imexx-stat.php', { method: 'POST', body: body, keepalive: true, mode: 'no-cors' }).catch(function () {});
+      }
+    };
+    send();
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a || /^#/.test(a.getAttribute('href') || '')) return;
+      var head = a.querySelector('b, strong, h3, h4');
+      var label = (a.getAttribute('data-stat') || (head || a).textContent || '').replace(/\s+/g, ' ').trim();
+      if (label) send({ c: label });
+    }, true);
+  } catch (err) { /* счётчик не должен мешать странице */ }
+})();
+</script>
+</body>
+</html>
