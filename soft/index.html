@@ -69,9 +69,12 @@
   .me .ph { width: 58px; height: 58px; flex: none; border-radius: 50%; padding: 2px; background: var(--badge); transition: transform .18s ease; }
   .me .ph img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; filter: grayscale(1); border: 2px solid var(--dark); display: block; transition: filter .18s ease; }
   .me .who { flex: 0 1 auto; min-width: 0; }
-  .me b { display: block; font: 700 15px "Montserrat", sans-serif; }
+  .me b { display: block; font: 700 15px "Montserrat", sans-serif; white-space: nowrap; }
   .me i { display: block; margin-top: 3px; font-style: normal; font-size: 12.5px; color: var(--muted); }
-  .me .arr { flex: none; margin-left: 8px; color: var(--cy); font-size: 20px; transition: transform .18s ease; }
+  .me .more { flex: none; margin-left: 10px; display: inline-flex; align-items: center; gap: 7px; color: var(--cy);
+              font: 700 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; white-space: nowrap; }
+  .me .arr { font: 400 20px/1 "Raleway", sans-serif; letter-spacing: 0; transition: transform .18s ease; }
+  @media (max-width: 380px) { .me { gap: 11px; } .me .ph { width: 52px; height: 52px; } .me b { font-size: 14px; } .me .more { margin-left: 4px; letter-spacing: .05em; } }
   .me:active .ph { transform: scale(.96); }
   .me:active .arr { transform: translateX(4px); }
   @media (hover: hover) { .me:hover .ph img { filter: none; } .me:hover .arr { transform: translateX(4px); } }
@@ -128,7 +131,7 @@
   <a class="me" href="/">
     <span class="ph"><img src="../photo.jpg" alt="" width="54" height="54"></span>
     <span class="who"><b>Макс Бондаренко</b><i>Дизайн, печать, ИИ</i></span>
-    <span class="arr">→</span>
+    <span class="more">Обо мне <span class="arr">→</span></span>
   </a>
 </div>
 
