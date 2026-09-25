@@ -64,11 +64,18 @@
   .row:active { border-color: var(--cy); }
   @media (hover: hover) { .row:hover { border-color: var(--cy); } }
 
-  .me { margin: 28px 18px 0; padding-bottom: max(28px, env(safe-area-inset-bottom)); }
-  .me a { display: flex; align-items: center; gap: 13px; padding: 14px; border: 1px solid var(--line); background: #0d141a; }
-  .me img { width: 48px; height: 48px; object-fit: cover; filter: grayscale(1); flex: none; }
-  .me b { display: block; font: 700 14.5px "Montserrat", sans-serif; }
-  .me i { font-style: normal; font-size: 12.5px; color: var(--muted); }
+  .me { margin: 34px 18px 0; padding: 22px 0 max(30px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
+        display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .me .ph { width: 58px; height: 58px; flex: none; border-radius: 50%; padding: 2px; background: var(--badge); }
+  .me .ph img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; filter: grayscale(1); border: 2px solid var(--dark); display: block; }
+  .me .who { flex: 1; min-width: 150px; }
+  .me b { display: block; font: 700 15px "Montserrat", sans-serif; }
+  .me i { display: block; margin-top: 3px; font-style: normal; font-size: 12.5px; color: var(--muted); }
+  .me .go { flex: none; display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border: 2px solid var(--cy); color: var(--cy);
+            font: 700 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; transition: background .18s ease, color .18s ease; }
+  .me .go:active { background: var(--cy); color: var(--dark); }
+  @media (hover: hover) { .me .go:hover { background: var(--cy); color: var(--dark); } }
+  @media (max-width: 380px) { .me .go { width: 100%; justify-content: center; } }
 </style>
 </head>
 <body>
@@ -120,10 +127,9 @@
   </section>
 
   <div class="me">
-    <a href="/">
-      <img src="../photo.jpg" alt="">
-      <span><b>Макс Бондаренко</b><i>Дизайн, печать, ИИ — визитка и контакты</i></span>
-    </a>
+    <span class="ph"><img src="../photo.jpg" alt="" width="54" height="54"></span>
+    <span class="who"><b>Макс Бондаренко</b><i>Дизайн, печать, ИИ</i></span>
+    <a class="go" href="/">Визитка</a>
   </div>
 </div>
 
