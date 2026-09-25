@@ -37,7 +37,9 @@
   .lead { margin: 14px 0 0; color: var(--muted); font-size: 15.5px; }
 
   .apps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-  .apps span { font: 600 12px "Raleway", sans-serif; color: #dfe6ec; border: 1px solid var(--line); background: var(--panel); padding: 6px 10px; }
+  .apps span { display: inline-flex; align-items: center; gap: 7px; font: 600 12px "Raleway", sans-serif; color: #dfe6ec; border: 1px solid var(--line); background: var(--panel); padding: 5px 10px 5px 6px; }
+  .apps span img { width: 20px; height: 20px; flex: none; }
+  .apps span.more { padding-left: 10px; }
 
   .main { padding: 22px 18px 0; }
   .btn {
@@ -81,7 +83,7 @@
     <h1>Программы <span class="cy">для дизайна</span></h1>
     <p class="lead">В нашем чате собрана подборка программ для дизайнеров и помогают с установкой. Не получается — спросите там, ответят.</p>
     <div class="apps">
-      <span>Photoshop</span><span>Illustrator</span><span>InDesign</span><span>After Effects</span><span>CorelDRAW</span><span>и другие</span>
+      <span><img src="../apps/photoshop.svg" alt="" width="20" height="20">Photoshop</span><span><img src="../apps/illustrator.svg" alt="" width="20" height="20">Illustrator</span><span><img src="../apps/indesign.svg" alt="" width="20" height="20">InDesign</span><span><img src="../apps/aftereffects.svg" alt="" width="20" height="20">After Effects</span><span><img src="../apps/coreldraw.png" alt="" width="20" height="20">CorelDRAW</span><span><img src="../apps/office.svg" alt="" width="20" height="20">Office</span><span class="more">и другие</span>
     </div>
   </header>
 
