@@ -150,6 +150,20 @@
     scrollbar-width: none; -webkit-overflow-scrolling: touch;
   }
   .strip::-webkit-scrollbar { display: none; }
+  /* Мышью: колесо, перетаскивание и стрелки по краям (только на компьютере) */
+  .strip-wrap { position: relative; }
+  .strip.drag { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+  .strip.drag .case { pointer-events: none; }
+  .strip-nav { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .strip { cursor: grab; }
+    .strip-nav { display: flex; align-items: center; justify-content: center; position: absolute; top: calc(50% - 22px); z-index: 2;
+      width: 44px; height: 44px; border: 1px solid var(--line); background: rgba(10,14,18,.86); color: var(--cy); font-size: 20px;
+      cursor: pointer; transition: opacity .18s ease, background .18s ease, color .18s ease; }
+    .strip-nav:hover { background: var(--cy); color: var(--dark); }
+    .strip-nav.prev { left: 8px; } .strip-nav.next { right: 8px; }
+    .strip-nav[hidden] { display: flex; opacity: 0; pointer-events: none; }
+  }
   .case {
     position: relative; flex: 0 0 68%; max-width: 300px; aspect-ratio: 4 / 5;
     scroll-snap-align: start; overflow: hidden; background: var(--panel); border: 1px solid var(--line);
@@ -329,6 +343,7 @@
     <h2 class="h2">Работы <span class="cy">Davinchi</span></h2>
     <p class="lead">Кейсы агентства: как придумывали и что получилось. Каждый открывается на сайте.</p>
 
+    <div class="strip-wrap">
     <div class="strip">
       <a class="case" href="https://davinchi.uz/portfolio/codex/">
         <img src="work/codex.jpg" alt="" width="560" height="700" loading="lazy">
@@ -370,6 +385,9 @@
         <span>Логотипы, упаковка, реклама и интерьеры на сайте агентства</span>
         <i>→</i>
       </a>
+    </div>
+      <button class="strip-nav prev" type="button" aria-label="Назад" hidden>←</button>
+      <button class="strip-nav next" type="button" aria-label="Дальше">→</button>
     </div>
   </section>
 
@@ -623,6 +641,58 @@
       if (document.visibilityState === 'visible') { location.href = href; }
     }, done ? 900 : 0);
   });
+})();
+</script>
+<script>
+// Лента работ мышью: колесо листает вбок (у краёв отдаёт прокрутку странице),
+// перетаскивание зажатой кнопкой и стрелки. Пальцем всё работает как раньше.
+(function () {
+  var strip = document.querySelector('.strip');
+  if (!strip) return;
+  var prev = document.querySelector('.strip-nav.prev'), next = document.querySelector('.strip-nav.next');
+  var max = function () { return strip.scrollWidth - strip.clientWidth; };
+  var step = function () { var c = strip.querySelector('.case'); return c ? c.getBoundingClientRect().width + 10 : 300; };
+  var sync = function () {
+    if (prev) prev.hidden = strip.scrollLeft < 4;
+    if (next) next.hidden = strip.scrollLeft > max() - 4;
+  };
+  strip.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync);
+  sync();
+  if (prev) prev.addEventListener('click', function () { strip.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  if (next) next.addEventListener('click', function () { strip.scrollBy({ left: step(), behavior: 'smooth' }); });
+
+  strip.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;          // тачпад уже листает вбок сам
+    var d = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY;
+    if ((d > 0 && strip.scrollLeft >= max() - 1) || (d < 0 && strip.scrollLeft <= 0)) return;
+    e.preventDefault();
+    strip.scrollBy({ left: d, behavior: 'auto' });
+  }, { passive: false });
+
+  var down = null, moved = false;
+  strip.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = { x: e.clientX, left: strip.scrollLeft }; moved = false;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!down) return;
+    var dx = e.clientX - down.x;
+    if (!moved && Math.abs(dx) > 5) { moved = true; strip.classList.add('drag'); }
+    if (moved) strip.scrollLeft = down.left - dx;
+  });
+  window.addEventListener('pointerup', function () {
+    if (!down) return;
+    down = null;
+    if (moved) {
+      // отпустили — карточка доезжает до края, как при листании пальцем
+      var left = strip.scrollLeft;
+      strip.classList.remove('drag');
+      strip.scrollLeft = left;
+    }
+  });
+  strip.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  strip.addEventListener('dragstart', function (e) { e.preventDefault(); });
 })();
 </script>
 <script>
