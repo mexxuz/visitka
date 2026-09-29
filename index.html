@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0e12">
 <title>Макс — дизайн, печать, ИИ</title>
 <meta name="description" content="Дизайн и макеты, печать и производство, ИИ для рекламы, Telegram-боты. Ташкент.">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -17,7 +18,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root {
     --cy: #03d6f4;
@@ -31,7 +31,7 @@
     --muted: #aab2bd;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; color-scheme: dark; }
   body {
     margin: 0; background: var(--dark); color: #fff;
     font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
@@ -45,7 +45,7 @@
 
   .badge {
     display: inline-block; background: var(--badge); color: #fff;
-    font: 600 10.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px;
+    font: 600 11.5px/1 "Raleway", sans-serif; letter-spacing: .03em; padding: 6px 10px;
   }
 
   .btn {
@@ -84,6 +84,7 @@
   .hero .badge { margin-top: 10px; }
   .hero .sub { margin: 12px 0 0; color: var(--muted); font-size: min(14.5px, max(11px, calc((100vw - 36px) / 28))); line-height: 1.55; }
   .hero .sub .ln { display: block; white-space: nowrap; }   /* каждая строка — целиком, без переноса */
+  @media (max-width: 359px) { .hero .sub { font-size: 13px; } .hero .sub .ln { white-space: normal; } }   /* на самых узких — строка переносится, а не обрезается */
 
 
   /* Компании */
@@ -116,11 +117,11 @@
   .nums div { padding: 18px 10px; text-align: center; }
   .nums div + div { border-left: 1px solid rgba(255,255,255,.08); }
   .nums b { display: block; font: 800 26px/1 "Montserrat", sans-serif; color: var(--cy); }
-  .nums span { font-size: 11.5px; color: var(--muted); letter-spacing: .03em; }
+  .nums span { display: block; margin-top: 6px; font-size: 12px; line-height: 1.3; color: var(--muted); letter-spacing: .02em; }
 
   /* Разделы */
   section { padding: 34px 18px; }
-  section.light { background: var(--paper); color: var(--ink); }
+  section.light { background: var(--paper); color: var(--ink); --cy: #037586; }
   section.deep { background: linear-gradient(160deg, var(--dark) 0%, var(--teal) 150%); padding-bottom: max(38px, env(safe-area-inset-bottom)); }
   .h2 { font-weight: 800; font-size: clamp(25px, 7vw, 32px); line-height: 1.1; text-transform: uppercase; }
   .lead { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; }
@@ -171,10 +172,10 @@
   .case img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.22,.9,.3,1); }
   .case::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(10,14,18,0) 38%, rgba(10,14,18,.94) 100%);
+    background: linear-gradient(180deg, rgba(10,14,18,0) 30%, rgba(10,14,18,.96) 100%);
   }
   .case .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 14px 14px 16px; }
-  .case .kind { font: 600 10.5px/1.3 "Raleway", sans-serif; letter-spacing: .05em; color: var(--cy); text-transform: uppercase; }
+  .case .kind { font: 600 11.5px/1.3 "Raleway", sans-serif; letter-spacing: .03em; color: #fff; text-transform: uppercase; }
   .case h3 { font-weight: 800; font-size: 19px; line-height: 1.1; text-transform: uppercase; margin-top: 6px; }
   .case .wa { position: absolute; right: 14px; bottom: 16px; z-index: 1; color: var(--cy); font-size: 16px; }
   .case.all { display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 18px;
@@ -215,7 +216,7 @@
   .work h3 { font-weight: 700; font-size: 17px; margin-bottom: 5px; }
   .work p { margin: 0; font-size: 14px; color: var(--muted); }
   .work .st {
-    display: inline-block; margin-top: 10px; font: 600 10.5px "Raleway", sans-serif;
+    display: inline-block; margin-top: 10px; font: 600 11.5px "Raleway", sans-serif;
     letter-spacing: .05em; padding: 4px 9px; color: #cfe9ef; background: rgba(255,255,255,.07);
   }
   .work .st.live { color: var(--dark); background: var(--cy); }
@@ -224,27 +225,6 @@
   a.work:active { border-color: var(--cy); background: #161d23; }
   @media (hover: hover) { a.work:hover { border-color: var(--cy); background: #161d23; } }
 
-
-  /* Полоса для тех, кто открыл сайт в браузере */
-  .toTg {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-    display: none; align-items: center; justify-content: center; gap: 10px;
-    padding: 14px 18px max(14px, env(safe-area-inset-bottom));
-    background: rgba(10,14,18,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--line);
-  }
-  body.web .toTg { display: flex; }
-  body.web { padding-bottom: 84px; }
-  .toTg a {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    min-height: 46px; padding: 0 22px; background: var(--cy); color: var(--dark);
-    font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
-  }
-  .toTg a svg { width: 16px; height: 16px; }
-  .toTg a.stay {
-    background: none; color: var(--muted); border: 0; min-height: 0; padding: 0 4px;
-    font: 500 12px "Raleway", sans-serif; text-transform: none; letter-spacing: 0;
-  }
 
 
   /* ——— Движение ———
@@ -303,6 +283,8 @@
     </div>
   </header>
 
+  <main>
+
 
   <div class="roles">
     <a class="role" href="https://davinchi.uz">
@@ -338,6 +320,32 @@
     <div><b>240+</b><span>проектов Premium Selection</span></div>
     <div><b>3&nbsp;700+</b><span>в сообществах</span></div>
   </div>
+
+  <section class="light">
+    <h2 class="h2">Что я <span class="cy">делаю</span></h2>
+    <p class="lead">Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
+
+    <div class="svc">
+      <a href="/ai/">
+        <div class="n">01</div>
+        <h3>ИИ, генеративный контент и дизайн</h3>
+        <p>Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
+        <span class="go">Подробнее <i>→</i></span>
+      </a>
+      <a href="/print/">
+        <div class="n">02</div>
+        <h3>Печать и производство</h3>
+        <p>Наружная реклама и вывески, полиграфия и тиражи, сувенирная продукция. Беру заказ целиком — от макета до готовой партии в ваших руках.</p>
+        <span class="go">Подробнее <i>→</i></span>
+      </a>
+      <a href="/bots/">
+        <div class="n">03</div>
+        <h3>Telegram-боты и мини-приложения</h3>
+        <p>Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram. Эта визитка — тоже мини-приложение, вы смотрите её внутри мессенджера.</p>
+        <span class="go">Подробнее <i>→</i></span>
+      </a>
+    </div>
+  </section>
 
   <section class="cases">
     <h2 class="h2">Работы <span class="cy">Davinchi</span></h2>
@@ -391,30 +399,6 @@
     </div>
   </section>
 
-  <section class="light">
-    <h2 class="h2">Что я <span class="cy">делаю</span></h2>
-    <p class="lead">Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
-
-    <div class="svc">
-      <a href="/ai/">
-        <div class="n">01</div>
-        <h3>ИИ, генеративный контент и дизайн</h3>
-        <p>Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
-        <span class="go">Подробнее <i>→</i></span>
-      </a>
-      <a href="/print/">
-        <div class="n">02</div>
-        <h3>Печать и производство</h3>
-        <p>Наружная реклама и вывески, полиграфия и тиражи, сувенирная продукция. Беру заказ целиком — от макета до готовой партии в ваших руках.</p>
-        <span class="go">Подробнее <i>→</i></span>
-      </a>
-      <a href="/bots/">
-        <div class="n">03</div>
-        <h3>Telegram-боты и мини-приложения</h3>
-        <p>Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram. Эта визитка — тоже мини-приложение, вы смотрите её внутри мессенджера.</p>
-        <span class="go">Подробнее <i>→</i></span>
-      </a>
-  </section>
 
 
   <section class="light">
@@ -446,7 +430,7 @@
         </span>
         <span class="arr">→</span>
       </a>
-      <a class="club" href="https://t.me/graph_designer/143487/199719">
+      <a class="club" href="/soft/">
         <img src="adobe-icon.svg" alt="" width="52" height="52">
         <span class="tx">
           <b>Программы</b>
@@ -494,16 +478,10 @@
     </a>
   </section>
 
+  </main>
 </div>
 
-<div class="toTg">
-  <a href="https://t.me/imexxbot?startapp" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
-    Открыть в Telegram
-  </a>
-  <a class="stay" href="?web=1">Остаться на сайте</a>
-</div>
-
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
 // ——— Движение: проявление разделов, счёт чисел, заливка кнопок от точки нажатия ———
 (function () {
@@ -511,7 +489,7 @@
   if (slow) return;
 
   // 1. Разделы и карточки появляются, когда до них доходит прокрутка
-  var targets = document.querySelectorAll('.roles .role, .cta-row, .nums, section .h2, section .lead, .strip, .svc a, .club, .work');
+  var targets = document.querySelectorAll('.nums, section .h2, section .lead, .strip, .svc a, .club, .work');
   targets.forEach(function (el) { el.classList.add('rise'); });
 
   var io = new IntersectionObserver(function (entries) {
@@ -586,16 +564,14 @@
   } catch (e) {}
 
   if (!tg || !tg.platform || tg.platform === 'unknown') {
-    // Сайт открыт в браузере
-    document.body.classList.add('web');
-
-    return;
+    return;   // сайт открыт в браузере
   }
 
   tg.ready();
   tg.expand();
   if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
   try { tg.setHeaderColor('#0a0e12'); tg.setBackgroundColor('#0a0e12'); } catch (e) {}
+  try { if (tg.BackButton) tg.BackButton.hide(); } catch (e) {}
 
   // ?diag=1 — показать, что за версия Telegram и какие способы открытия ей доступны
   if (new URLSearchParams(location.search).has('diag')) {
@@ -703,6 +679,7 @@
     var tg = window.Telegram && window.Telegram.WebApp;
     var page = location.pathname.replace(/\//g, '') || 'visitka';
     if (window.imexxLeaving) return;   // сейчас уйдём на нужную страницу — отметит она
+    if (location.hostname !== 'max.davinchi.uz') return;   // проверка у себя на компьютере — не считаем
     var data = (tg && tg.initData) || '';
     var send = function (extra) {
       var body = JSON.stringify(Object.assign({ p: page, d: data }, extra || {}));
