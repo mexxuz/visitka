@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0a0e12">
-<title>Макс — дизайн, печать, ИИ</title>
+<title>Макс Бондаренко — дизайн, печать, ИИ</title>
 <meta name="description" content="Дизайн и макеты, печать и производство, ИИ для рекламы, Telegram-боты. Ташкент.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="me-icon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="me-icon-180.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Макс — дизайн, печать, ИИ">
+<meta property="og:title" content="Макс Бондаренко — дизайн, печать, ИИ">
 <meta property="og:description" content="Макеты, тиражи и автоматизация. Ташкент.">
 <meta property="og:image" content="https://max.davinchi.uz/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -22,6 +22,7 @@
   :root {
     --cy: #03d6f4;
     --badge: linear-gradient(90deg, #9b16c8 0%, #03d6f4 100%);
+    --badge-text: linear-gradient(90deg, #9b16c8 0%, #037586 100%);
     --dark: #0a0e12;
     --teal: #0b3a44;
     --panel: #12181d;
@@ -31,7 +32,12 @@
     --muted: #aab2bd;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; color-scheme: dark; }
+  html { -webkit-text-size-adjust: 100%; color-scheme: dark; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3 { text-wrap: balance; }
+  .lead, .svc p, .work p, .club i, .role i { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  span.nw.nw { display: inline; white-space: nowrap; }   /* внутри подписей, где span — отдельная строка */
+  h1 span.nw.nw { white-space: normal; }
   body {
     margin: 0; background: var(--dark); color: #fff;
     font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
@@ -44,21 +50,21 @@
   .cy { color: var(--cy); }
 
   .badge {
-    display: inline-block; background: var(--badge); color: #fff;
+    display: inline-block; background: var(--badge-text); color: #fff;
     font: 600 11.5px/1 "Raleway", sans-serif; letter-spacing: .03em; padding: 6px 10px;
   }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    min-height: 48px; padding: 0 22px; border: 2px solid var(--cy); background: transparent;
-    color: #fff; font: 700 12.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
-    transition: background .18s ease, color .18s ease;
+    min-height: 52px; padding: 0 22px; border: 2px solid var(--cy); background: transparent;
+    color: #fff; font: 700 13px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em;
+    transition: background .18s ease, color .18s ease, transform .16s cubic-bezier(.23,1,.32,1);
   }
   .btn svg { width: 16px; height: 16px; }
-  .btn:active { background: var(--cy); color: var(--dark); }
-  @media (hover: hover) { .btn:hover { background: var(--cy); color: var(--dark); } }
+  .btn:active { background: var(--cy); color: var(--dark); transform: scale(.97); }
+  @media (hover: hover) { .btn:hover { color: var(--dark); } }
   .btn.solid { background: var(--cy); color: var(--dark); }
-  @media (hover: hover) { .btn.solid:hover { background: transparent; color: #fff; } }
+  @media (hover: hover) { .btn.solid:hover { color: #fff; } }
 
   /* Шапка с фотографией */
   .hero { position: relative; }
@@ -92,7 +98,7 @@
   .role {
     display: flex; align-items: center; gap: 13px;
     border: 1px solid var(--line); background: var(--panel); padding: 12px 14px;
-    transition: border-color .18s ease, background .18s ease;
+    transition: border-color .18s ease, background .18s ease, transform .16s cubic-bezier(.23,1,.32,1);
   }
   .role .mark { width: 46px; height: 46px; flex: none; object-fit: contain; }
   .role .tx { flex: 1; min-width: 0; }
@@ -103,7 +109,7 @@
   @media (hover: hover) { .role:hover { border-color: var(--cy); background: #161d23; } }
 
   .cta-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 22px 18px 26px; background: var(--dark); }
-  .cta-row .btn { flex: 1 1 auto; }
+  .cta-row .btn { flex: 1 1 0; min-width: max-content; padding: 0 14px; white-space: nowrap; }
   .cta-row .btn.wide { flex: 1 0 100%; }
 
 
@@ -116,7 +122,8 @@
   }
   .nums div { padding: 18px 10px; text-align: center; }
   .nums div + div { border-left: 1px solid rgba(255,255,255,.08); }
-  .nums b { display: block; font: 800 26px/1 "Montserrat", sans-serif; color: var(--cy); }
+  .nums b { display: block; font: 800 26px/1 "Montserrat", sans-serif; color: var(--cy); font-variant-numeric: tabular-nums; }
+  .nums span { text-wrap: balance; }
   .nums span { display: block; margin-top: 6px; font-size: 12px; line-height: 1.3; color: var(--muted); letter-spacing: .02em; }
 
   /* Разделы */
@@ -129,11 +136,10 @@
 
   /* Услуги */
   .svc { margin-top: 24px; }
-  .svc a { display: block; padding: 18px 0; border-top: 1px solid #dfe3e6; transition: padding-left .2s ease; }
+  .svc a { display: block; padding: 18px 0; border-top: 1px solid #dfe3e6; transition: background .18s ease; }
   .svc a:last-child { border-bottom: 1px solid #dfe3e6; }
-  @media (hover: hover) { .svc a:hover { padding-left: 8px; } }
   .svc .n { font: 700 11.5px "Montserrat", sans-serif; color: var(--cy); letter-spacing: .1em; }
-  .svc h3 { font-weight: 700; font-size: 18px; margin: 6px 0; }
+  .svc h3 { font-weight: 700; font-size: 18px; line-height: 1.25; margin: 6px 0; }
   .svc p { margin: 0; font-size: 14.5px; color: #5c6772; text-wrap: pretty; }
   .svc .go {
     display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
@@ -163,7 +169,7 @@
       cursor: pointer; transition: opacity .18s ease, background .18s ease, color .18s ease; }
     .strip-nav:hover { background: var(--cy); color: var(--dark); }
     .strip-nav.prev { left: 8px; } .strip-nav.next { right: 8px; }
-    .strip-nav[hidden] { display: flex; opacity: 0; pointer-events: none; }
+    .strip-nav[hidden] { display: flex; opacity: 0; visibility: hidden; pointer-events: none; }
   }
   .case {
     position: relative; flex: 0 0 68%; max-width: 300px; aspect-ratio: 4 / 5;
@@ -175,7 +181,7 @@
     background: linear-gradient(180deg, rgba(10,14,18,0) 30%, rgba(10,14,18,.96) 100%);
   }
   .case .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 14px 14px 16px; }
-  .case .kind { font: 600 11.5px/1.3 "Raleway", sans-serif; letter-spacing: .03em; color: #fff; text-transform: uppercase; }
+  .case .kind { display: block; font: 600 11.5px/1.3 "Raleway", sans-serif; letter-spacing: .06em; color: #fff; text-transform: uppercase; }
   .case h3 { font-weight: 800; font-size: 19px; line-height: 1.1; text-transform: uppercase; margin-top: 6px; }
   .case .wa { position: absolute; right: 14px; bottom: 16px; z-index: 1; color: var(--cy); font-size: 16px; }
   .case.all { display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 18px;
@@ -192,7 +198,7 @@
   .club {
     display: flex; align-items: center; gap: 13px;
     border: 1px solid #dfe3e6; background: #fff; padding: 12px 14px;
-    transition: border-color .18s ease, transform .18s ease;
+    transition: border-color .18s ease, transform .16s cubic-bezier(.23,1,.32,1);
   }
   .club img { width: 46px; height: 46px; flex: none; object-fit: cover; }
   .club .tx { flex: 1; min-width: 0; }
@@ -213,7 +219,7 @@
   .work .mk.ps { background: rgba(3,214,244,.12); color: var(--cy); }
   .work .mk svg { width: 30px; height: 30px; }
   .work .mk.vzaimno svg { width: 36px; height: 26px; }
-  .work h3 { font-weight: 700; font-size: 17px; margin-bottom: 5px; }
+  .work h3 { font-weight: 700; font-size: 17px; line-height: 1.25; margin-bottom: 5px; }
   .work p { margin: 0; font-size: 14px; color: var(--muted); }
   .work .st {
     display: inline-block; margin-top: 10px; font: 600 11.5px "Raleway", sans-serif;
@@ -221,7 +227,9 @@
   }
   .work .st.live { color: var(--dark); background: var(--cy); }
   .work .wa { align-self: center; color: var(--cy); font-size: 16px; flex: none; }
-  a.work { transition: border-color .18s ease, background .18s ease; }
+  a.work { transition: border-color .18s ease, background .18s ease, transform .16s cubic-bezier(.23,1,.32,1); }
+  .role:active, .club:active, .case:active, a.work:active { transform: scale(.985); }
+  .svc a:active { background: rgba(3,117,134,.06); }
   a.work:active { border-color: var(--cy); background: #161d23; }
   @media (hover: hover) { a.work:hover { border-color: var(--cy); background: #161d23; } }
 
@@ -236,12 +244,12 @@
   .btn { position: relative; overflow: hidden; isolation: isolate; }
   .btn::after {
     content: ""; position: absolute; left: var(--x, 50%); top: var(--y, 50%);
-    width: 0; height: 0; border-radius: 50%; background: var(--cy);
-    transform: translate(-50%, -50%); transition: width .45s ease, height .45s ease, opacity .3s ease;
-    z-index: -1; opacity: .18;
+    width: var(--d, 640px); height: var(--d, 640px); border-radius: 50%; background: var(--cy);
+    transform: translate(-50%, -50%) scale(0); transition: transform .42s cubic-bezier(.23,1,.32,1);
+    z-index: -1; pointer-events: none;
   }
-  @media (hover: hover) { .btn:hover::after { width: 320px; height: 320px; opacity: 1; } }
-  .btn:active::after { width: 320px; height: 320px; opacity: 1; }
+  .btn.solid::after { background: var(--dark); }
+  @media (hover: hover) { .btn:hover::after { transform: translate(-50%, -50%) scale(1); } }
 
   /* Строки-ссылки: стрелка подаётся вперёд */
   .role .arr, .club .arr, .work .wa, .svc .go i { transition: transform .22s cubic-bezier(.3,.9,.3,1); }
@@ -250,7 +258,7 @@
   }
 
   /* Разделы проявляются при прокрутке */
-  .rise { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s cubic-bezier(.22,.9,.3,1); }
+  .rise { opacity: 0; transform: translateY(12px); transition: opacity .4s cubic-bezier(.23,1,.32,1), transform .4s cubic-bezier(.23,1,.32,1); }
   .rise.seen { opacity: 1; transform: none; }
 
   /* Фото чуть «дышит» при прокрутке */
@@ -259,6 +267,8 @@
   @media (prefers-reduced-motion: reduce) {
     .rise { opacity: 1 !important; transform: none !important; }
     .btn::after { display: none; }
+    .btn:active, .role:active, .club:active, .case:active, a.work:active { transform: none; }
+    .hero img { will-change: auto; }
   }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -269,7 +279,7 @@
 
   <header class="hero">
     <div class="shot">
-      <img src="photo.jpg" alt="Макс">
+      <img src="photo.jpg" alt="">
       <div class="fade"></div>
     </div>
     <div class="top">
@@ -277,8 +287,8 @@
     </div>
     <div class="copy">
       <h1>Макс</h1>
-      <span class="badge">Ташкент · ИИ, реклама и производство</span>
-      <p class="sub"><span class="ln">Основатель <span class="cy">Davinchi</span> и директор <span class="cy">Premium Selection</span></span>
+      <span class="badge">Ташкент · ИИ, реклама и производство</span>
+      <p class="sub"><span class="ln">Основатель <span class="cy">Davinchi</span> и директор <span class="cy"><span class="nw">Premium Selection</span></span></span>
         <span class="ln">Архитектор-проектировщик · Дизайнер · ИИ-специалист</span></p>
     </div>
   </header>
@@ -293,109 +303,109 @@
         <b>Davinchi Communications</b>
         <i>Брендинговое агентство · основатель</i>
       </span>
-      <span class="arr">→</span>
+      <span class="arr" aria-hidden="true">→</span>
     </a>
     <a class="role" href="https://ps.com.uz">
       <img class="mark" src="ps-logo.svg" alt="" width="52" height="52">
       <span class="tx">
-        <b>Premium Selection</b>
+        <b><span class="nw">Premium Selection</span></b>
         <i>Рекламно-производственная компания · директор</i>
       </span>
-      <span class="arr">→</span>
+      <span class="arr" aria-hidden="true">→</span>
     </a>
   </div>
 
   <div class="cta-row">
     <a class="btn solid" href="https://t.me/iMexx">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
       Написать
     </a>
-    <a class="btn" href="https://t.me/i_mexx">Канал</a>
+    <a class="btn" href="https://t.me/i_mexx">Читать канал</a>
   </div>
 
 
 
   <div class="nums">
-    <div><b>19+</b><span>лет в дизайне</span></div>
-    <div><b>240+</b><span>проектов Premium Selection</span></div>
-    <div><b>3&nbsp;700+</b><span>в сообществах</span></div>
+    <div><b>19+</b><span>лет в дизайне</span></div>
+    <div><b>240+</b><span>проектов <span class="nw">Premium Selection</span></span></div>
+    <div><b>3&nbsp;700+</b><span>в сообществах</span></div>
   </div>
 
   <section class="light">
     <h2 class="h2">Что я <span class="cy">делаю</span></h2>
-    <p class="lead">Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
+    <p class="lead">Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
 
     <div class="svc">
       <a href="/ai/">
         <div class="n">01</div>
-        <h3>ИИ, генеративный контент и дизайн</h3>
-        <p>Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
-        <span class="go">Подробнее <i>→</i></span>
+        <h3>ИИ, генеративный контент и дизайн</h3>
+        <p>Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
+        <span class="go">Подробнее <i aria-hidden="true">→</i></span>
       </a>
       <a href="/print/">
         <div class="n">02</div>
-        <h3>Печать и производство</h3>
-        <p>Наружная реклама и вывески, полиграфия и тиражи, сувенирная продукция. Беру заказ целиком — от макета до готовой партии в ваших руках.</p>
-        <span class="go">Подробнее <i>→</i></span>
+        <h3>Печать и производство</h3>
+        <p>Наружная реклама и вывески, полиграфия и тиражи, сувенирная продукция. Беру заказ целиком — от макета до готовой партии в ваших руках.</p>
+        <span class="go">Подробнее <i aria-hidden="true">→</i></span>
       </a>
       <a href="/bots/">
         <div class="n">03</div>
-        <h3>Telegram-боты и мини-приложения</h3>
-        <p>Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram. Эта визитка — тоже мини-приложение, вы смотрите её внутри мессенджера.</p>
-        <span class="go">Подробнее <i>→</i></span>
+        <h3>Telegram-боты и <span class="nw">мини-приложения</span></h3>
+        <p>Заказы, запись, оплата, рассылки и личный кабинет прямо в Telegram. Эта визитка — тоже <span class="nw">мини-приложение</span>, вы смотрите её внутри мессенджера.</p>
+        <span class="go">Подробнее <i aria-hidden="true">→</i></span>
       </a>
     </div>
   </section>
 
   <section class="cases">
     <h2 class="h2">Работы <span class="cy">Davinchi</span></h2>
-    <p class="lead">Кейсы агентства: как придумывали и что получилось. Каждый открывается на сайте.</p>
+    <p class="lead">Кейсы агентства: как придумывали и что получилось. Каждый открывается на сайте.</p>
 
     <div class="strip-wrap">
     <div class="strip">
       <a class="case" href="https://davinchi.uz/portfolio/codex/">
         <img src="work/codex.jpg" alt="" width="560" height="700" loading="lazy">
         <span class="cap"><span class="kind">Фирменный стиль · экипировка</span><h3>Codex</h3></span>
-        <span class="wa">→</span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/myata-lounge/">
         <img src="work/myata-lounge.jpg" alt="" width="560" height="700" loading="lazy">
-        <span class="cap"><span class="kind">Брендинг и запуск франшизы</span><h3>Мята Lounge</h3></span>
-        <span class="wa">→</span>
+        <span class="cap"><span class="kind">Брендинг и запуск франшизы</span><h3>Мята Lounge</h3></span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/digitalrazor/">
         <img src="work/digitalrazor.jpg" alt="" width="560" height="700" loading="lazy">
-        <span class="cap"><span class="kind">Логотип и фирменный стиль</span><h3>DigitalRazor</h3></span>
-        <span class="wa">→</span>
+        <span class="cap"><span class="kind">Логотип и фирменный стиль</span><h3>DigitalRazor</h3></span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/sifat-sut/">
         <img src="work/sifat-sut.jpg" alt="" width="560" height="700" loading="lazy">
         <span class="cap"><span class="kind">Упаковка</span><h3>Sifat Sut</h3></span>
-        <span class="wa">→</span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/tashkent-metro/">
         <img src="work/tashkent-metro.jpg" alt="" width="560" height="700" loading="lazy">
         <span class="cap"><span class="kind">Концепция схемы</span><h3>Метро Ташкента</h3></span>
-        <span class="wa">→</span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/nasibtour/">
         <img src="work/nasibtour.jpg" alt="" width="560" height="700" loading="lazy">
         <span class="cap"><span class="kind">Наружная реклама</span><h3>NasibTour</h3></span>
-        <span class="wa">→</span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/caro/">
         <img src="work/caro.jpg" alt="" width="560" height="700" loading="lazy">
         <span class="cap"><span class="kind">Оформление конгресса</span><h3>CARO</h3></span>
-        <span class="wa">→</span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case all" href="https://davinchi.uz/%d0%bf%d0%be%d1%80%d1%82%d1%84%d0%be%d0%bb%d0%b8%d0%be/">
         <b>Всё портфолио</b>
-        <span>Логотипы, упаковка, реклама и интерьеры на сайте агентства</span>
-        <i>→</i>
+        <span>Логотипы, упаковка, реклама и интерьеры на сайте агентства</span>
+        <i aria-hidden="true">→</i>
       </a>
     </div>
-      <button class="strip-nav prev" type="button" aria-label="Назад" hidden>←</button>
-      <button class="strip-nav next" type="button" aria-label="Дальше">→</button>
+      <button class="strip-nav prev" type="button" aria-label="Предыдущие работы" hidden>←</button>
+      <button class="strip-nav next" type="button" aria-label="Следующие работы">→</button>
     </div>
   </section>
 
@@ -403,66 +413,66 @@
 
   <section class="light">
     <h2 class="h2">Мои <span class="cy">сообщества</span></h2>
-    <p class="lead">Учу дизайну и держу чат, где разбираем задачи. Вход свободный.</p>
+    <p class="lead">Учу дизайну и держу чат, где разбираем задачи. Вход свободный.</p>
 
     <div class="clubs">
       <a class="club" href="https://t.me/graph_academy">
         <img src="graph_academy.jpg" alt="" width="52" height="52">
         <span class="tx">
           <b>Академия графики</b>
-          <i>Канал с уроками и разборами · 1 880 подписчиков</i>
+          <i>Канал с уроками и разборами · 1 880 подписчиков</i>
         </span>
-        <span class="arr">→</span>
+        <span class="arr" aria-hidden="true">→</span>
       </a>
       <a class="club" href="https://t.me/graph_designer">
         <img src="graph_designer.jpg" alt="" width="52" height="52">
         <span class="tx">
-          <b>Дизайнеры — Ai|Ps</b>
-          <i>Чат: спрашивают и помогают · 1 636 участников</i>
+          <b>Дизайнеры — Ai|Ps</b>
+          <i>Чат: спрашивают и помогают · 1 636 участников</i>
         </span>
-        <span class="arr">→</span>
+        <span class="arr" aria-hidden="true">→</span>
       </a>
       <a class="club" href="https://t.me/graph_private">
         <img src="graph_private.jpg" alt="" width="52" height="52">
         <span class="tx">
           <b>Задизайнено!</b>
-          <i>Шрифты, мокапы, материалы · 206 участников</i>
+          <i>Шрифты, мокапы, материалы · 206 участников</i>
         </span>
-        <span class="arr">→</span>
+        <span class="arr" aria-hidden="true">→</span>
       </a>
       <a class="club" href="/soft/">
         <img src="adobe-icon.svg" alt="" width="52" height="52">
         <span class="tx">
           <b>Программы</b>
-          <i>Подборка программ для дизайнеров — в закреплённом сообщении чата</i>
+          <i>Подборка программ для дизайнеров — в закреплённом сообщении чата</i>
         </span>
-        <span class="arr">→</span>
+        <span class="arr" aria-hidden="true">→</span>
       </a>
     </div>
   </section>
 
   <section class="deep">
     <h2 class="h2">Мои <span class="cy">проекты</span></h2>
-    <p class="lead">Кроме заказов делаю и своё.</p>
+    <p class="lead">Кроме заказов делаю и своё.</p>
 
     <a class="work" href="https://t.me/sarafanibot?start=twtiegnh">
       <img class="mk" src="sarafan-icon.png" alt="" width="52" height="52">
       <div>
         <h3>Сарафан</h3>
-        <p>Нужен мастер — спрашиваешь у своих. Тут то же самое, только в Telegram: сразу видно, кто из знакомых его советует.</p>
+        <p>Нужен мастер — спрашиваешь у своих. Тут то же самое, только в Telegram: сразу видно, кто из знакомых его советует.</p>
         <span class="st">Прототип готов</span>
       </div>
-      <span class="wa">→</span>
+      <span class="wa" aria-hidden="true">→</span>
     </a>
 
     <a class="work" href="https://t.me/vzaimnodatingbot">
       <img class="mk" src="vzaimno-icon.png" alt="" width="52" height="52">
       <div>
         <h3>Взаимно</h3>
-        <p>Работа, дом, работа — а знакомиться негде. Каждый вечер приложение само присылает несколько человек, которые вам подходят, и объясняет, почему именно они.</p>
+        <p>Работа, дом, работа — а знакомиться негде. Каждый вечер приложение само присылает несколько человек, которые вам подходят, и объясняет, почему именно они.</p>
         <span class="st">Скоро запуск</span>
       </div>
-      <span class="wa">→</span>
+      <span class="wa" aria-hidden="true">→</span>
     </a>
 
     <a class="work" href="/ps/">
@@ -471,10 +481,10 @@
       </span>
       <div>
         <h3>PS · Автоматизация</h3>
-        <p>Подготовка к печати и резке в CorelDRAW: номера, белила для УФ, офсет, плоттер, лазер, фрезер с объёмными буквами, календари. 7 дней бесплатно.</p>
-        <span class="st live">Работает у типографий</span>
+        <p>Подготовка к печати и резке в CorelDRAW: номера, белила для УФ, офсет, плоттер, лазер, фрезер с объёмными буквами, календари. 7 дней бесплатно.</p>
+        <span class="st live">Работает у типографий</span>
       </div>
-      <span class="wa">→</span>
+      <span class="wa" aria-hidden="true">→</span>
     </a>
   </section>
 
@@ -489,14 +499,14 @@
   if (slow) return;
 
   // 1. Разделы и карточки появляются, когда до них доходит прокрутка
-  var targets = document.querySelectorAll('.nums, section .h2, section .lead, .strip, .svc a, .club, .work');
+  var targets = document.querySelectorAll('.nums, .svc, .strip-wrap, .clubs, section.deep .work');
   targets.forEach(function (el) { el.classList.add('rise'); });
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en, i) {
       if (!en.isIntersecting) return;
       var el = en.target;
-      setTimeout(function () { el.classList.add('seen'); }, Math.min(i * 60, 240));
+      setTimeout(function () { el.classList.add('seen'); }, Math.min(i * 50, 150));
       io.unobserve(el);
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
@@ -532,6 +542,7 @@
         var r = b.getBoundingClientRect();
         b.style.setProperty('--x', (e.clientX - r.left) + 'px');
         b.style.setProperty('--y', (e.clientY - r.top) + 'px');
+        b.style.setProperty('--d', Math.ceil(2 * Math.hypot(r.width, r.height)) + 'px');
       });
     });
   });
@@ -543,7 +554,11 @@
       var y = Math.min(window.scrollY, 600);
       shot.style.transform = 'translateY(' + (y * 0.06) + 'px) scale(' + (1 + y * 0.00012) + ')';
     };
-    addEventListener('scroll', tick, { passive: true });
+    var queued = 0;
+    addEventListener('scroll', function () {
+      if (queued || window.scrollY > 700) return;
+      queued = requestAnimationFrame(function () { queued = 0; tick(); });
+    }, { passive: true });
     tick();
   }
 })();

@@ -16,9 +16,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --cy: #03d6f4; --badge: linear-gradient(90deg,#9b16c8,#03d6f4); --dark: #0a0e12; --teal: #0b3a44; --panel: #12181d; --line: #23303a; --muted: #aab2bd; }
+  :root { --cy: #03d6f4; --badge: linear-gradient(90deg,#9b16c8,#03d6f4); --badge-text: linear-gradient(90deg,#9b16c8,#037586); --dark: #0a0e12; --teal: #0b3a44; --panel: #12181d; --line: #23303a; --muted: #aab2bd; }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; color-scheme: dark; }
+  html { -webkit-text-size-adjust: 100%; color-scheme: dark; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3 { text-wrap: balance; }
+  .nw { white-space: nowrap; }
+  span.nw.nw { display: inline; white-space: nowrap; }   /* внутри подписей, где span — отдельная строка */
+  h1 span.nw.nw { white-space: normal; }   /* в огромном заголовке длинное слово целиком не помещается */
   body { margin: 0; background: var(--dark); color: #fff; font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
@@ -32,7 +36,7 @@
   .hero { padding: 22px 18px 8px; }
   .top { display: flex; gap: 16px; align-items: center; }
   .top img { width: 72px; height: 72px; flex: none; }
-  .badge { display: inline-block; background: var(--badge); font: 600 11.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px; }
+  .badge { display: inline-block; background: var(--badge-text); font: 600 11.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px; }
   h1 { font-weight: 800; font-size: clamp(30px, 8.6vw, 40px); line-height: 1.03; text-transform: uppercase; margin-top: 18px; }
   .lead { margin: 14px 0 0; color: var(--muted); font-size: 15.5px; }
 
@@ -43,25 +47,29 @@
 
   .main { padding: 22px 18px 0; }
   .btn {
-    display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 54px; padding: 0 20px; width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 20px; width: 100%;
     border: 2px solid var(--cy); background: var(--cy); color: var(--dark);
-    font: 700 13px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; transition: background .18s ease, color .18s ease;
+    font: 700 13px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; transition: background .18s ease, color .18s ease, transform .16s cubic-bezier(.23,1,.32,1);
   }
   .btn svg { width: 17px; height: 17px; }
-  .btn:active { background: transparent; color: #fff; }
+  .btn:active { background: transparent; color: #fff; transform: scale(.97); }
   @media (hover: hover) { .btn:hover { background: transparent; color: #fff; } }
-  .hint { margin: 10px 2px 0; font-size: 13px; color: #8691a0; line-height: 1.45; }
+  .hint { margin: 10px 0 0; text-wrap: pretty; font-size: 13px; color: #8691a0; line-height: 1.45; }
 
-  .list { padding: 26px 18px 0; }
-  .list h2 { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #8691a0; margin-bottom: 10px; }
+  .list { padding: 30px 18px 0; }
+  .list h2 { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #8691a0; margin-bottom: 12px; }
   .row { display: flex; align-items: center; gap: 13px; border: 1px solid var(--line); background: var(--panel); padding: 12px 14px; transition: border-color .18s ease; }
-  .row + .row { margin-top: 8px; }
+  .row + .row { margin-top: 10px; }
   .row img { width: 44px; height: 44px; flex: none; object-fit: cover; }
   .row .tx { flex: 1; min-width: 0; }
   .row b { display: block; font: 700 14.5px/1.25 "Montserrat", sans-serif; }
   .row i { display: block; font-style: normal; font-size: 12.5px; line-height: 1.35; color: var(--muted); margin-top: 3px; }
   .row .arr { color: var(--cy); }
-  .row:active { border-color: var(--cy); }
+  .row { transition: border-color .18s ease, transform .16s cubic-bezier(.23,1,.32,1); }
+  .row:active { border-color: var(--cy); transform: scale(.985); }
+  .lead, .row i { text-wrap: pretty; }
+  .back:active { opacity: .6; }
+  @media (prefers-reduced-motion: reduce) { .btn:active, .row:active { transform: none; } }
   @media (hover: hover) { .row:hover { border-color: var(--cy); } }
 
   .me { margin: 34px 18px 0; padding: 22px 0 max(30px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
@@ -79,7 +87,7 @@
   .me:active .arr { transform: translateX(4px); }
   @media (hover: hover) { .me:hover .ph img { filter: none; } .me:hover .arr { transform: translateX(4px); } }
 
-  .num { font: 800 13px "Montserrat", sans-serif; letter-spacing: .12em; color: var(--cy); }
+  .num { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
   .hero h1 { margin-top: 10px; }
 
   .sec { padding: 30px 18px 0; }
@@ -94,9 +102,9 @@
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .case { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
   .case img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.22,.9,.3,1); }
-  .case::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,18,0) 30%, rgba(10,14,18,.96) 100%); }
+  .case::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,18,0) 20%, rgba(10,14,18,.96) 100%); }
   .case .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 10px 11px 12px; }
-  .case .kind { display: block; font: 600 11.5px/1.3 "Raleway", sans-serif; letter-spacing: .03em; color: #fff; text-transform: uppercase; }
+  .case .kind { display: block; font: 600 11.5px/1.3 "Raleway", sans-serif; letter-spacing: .06em; color: #fff; text-transform: uppercase; }
   .case h3 { margin: 4px 0 0; font: 800 15px/1.1 "Montserrat", sans-serif; text-transform: uppercase; }
   .case:active { border-color: var(--cy); }
   @media (hover: hover) { .case:hover { border-color: var(--cy); } .case:hover img { transform: scale(1.04); } }
@@ -131,44 +139,47 @@
   .prices div { display: flex; align-items: baseline; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
   .prices b { flex: 1; font: 700 14.5px/1.3 "Montserrat", sans-serif; }
   .prices b i { display: block; margin-top: 2px; font: 400 12.5px/1.4 "Raleway", sans-serif; color: var(--muted); font-style: normal; }
-  .prices span { flex: none; font: 800 15px "Montserrat", sans-serif; color: var(--cy); white-space: nowrap; }
+  .prices span { flex: none; font: 800 15px "Montserrat", sans-serif; font-variant-numeric: tabular-nums; color: var(--cy); white-space: nowrap; }
   .hours { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
   .hours div { border: 1px solid var(--line); background: var(--panel); padding: 9px 4px; text-align: center; }
   .hours b { display: block; font: 800 15px "Montserrat", sans-serif; color: #fff; }
-  .hours span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.25; color: var(--muted); }
+  .hours span { display: block; margin-top: 3px; font-size: 11.5px; line-height: 1.25; color: var(--muted); }
   .clients { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 700 13px "Montserrat", sans-serif; color: #dfe6ec; }
   .clients span { white-space: nowrap; }
 
   .hero .btn { margin-top: 20px; }
+  .case .wa { position: absolute; right: 11px; bottom: 12px; z-index: 1; color: var(--cy); font: 400 16px/1 "Raleway", sans-serif; }
+  .facts span { text-wrap: balance; }
+  .does span, .demo p, .steps li { text-wrap: pretty; }
   .row .ic .n { font: 800 15px "Montserrat", sans-serif; color: var(--cy); letter-spacing: .04em; }
 </style>
 </head>
 <body>
 <div class="app">
-  <a class="back" href="/?home=1">← Визитка Макса</a>
+  <a class="back" href="/?home=1"><span aria-hidden="true">←</span> Визитка Макса</a>
 
   <header class="hero">
     <div class="num">Направление 01</div>
-    <h1>ИИ, генеративный <span class="cy">контент</span> и дизайн</h1>
-    <p class="lead">Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
+    <h1>ИИ, генеративный <span class="cy">контент</span> и дизайн</h1>
+    <p class="lead">Ролики, картинки и рекламные креативы на нейросетях. Фирменный стиль, макеты и визуал для соцсетей — от идеи и сценария до готового материала.</p>
     <a class="btn" href="https://t.me/iMexx">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
       Обсудить задачу
     </a>
   </header>
 
   <main>
-  <div class="facts"><div><b>с 2013</b><span>брендинговое агентство Davinchi</span></div><div><b>19+</b><span>лет в графическом дизайне</span></div></div>
+  <div class="facts"><div><b>с 2013</b><span>брендинговое агентство Davinchi</span></div><div><b>19+</b><span>лет в графическом дизайне</span></div></div>
 
   <section class="sec">
     <h2>Что делаю</h2>
-    <ul class="does">
-      <li><div><b>Ролики и креативы на нейросетях</b><span>Рекламные ролики, картинки и визуал для соцсетей — от идеи и сценария до готового материала.</span></div></li>
-      <li><div><b>Логотип и фирменный стиль</b><span>Знак, цвета, шрифты, носители; брендбук — чтобы бренд жил одинаково везде.</span></div></li>
-      <li><div><b>Упаковка и этикетки</b><span>Любой формат — от концепта до файлов для печати.</span></div></li>
-      <li><div><b>Рекламная полиграфия</b><span>Каталоги, буклеты, флаеры — дизайн всего, что можно напечатать.</span></div></li>
-      <li><div><b>Интерьер и проектирование</b><span>Дизайн-проект с 3D-визуализацией, чертежами и подбором материалов.</span></div></li>
-      <li><div><b>Дизайн-поддержка</b><span>Вместо штатного дизайнера: беру поток задач — полиграфия, стиль, наружка, 3D.</span></div></li>
+    <ul class="does" role="list">
+      <li><div><b>Ролики и креативы на нейросетях</b><span>Рекламные ролики, картинки и визуал для соцсетей — от идеи и сценария до готового материала.</span></div></li>
+      <li><div><b>Логотип и фирменный стиль</b><span>Знак, цвета, шрифты, носители; брендбук — чтобы бренд жил одинаково везде.</span></div></li>
+      <li><div><b>Упаковка и этикетки</b><span>Любой формат — от концепта до файлов для печати.</span></div></li>
+      <li><div><b>Рекламная полиграфия</b><span>Каталоги, буклеты, флаеры — дизайн всего, что можно напечатать.</span></div></li>
+      <li><div><b>Интерьер и проектирование</b><span>Дизайн-проект с 3D-визуализацией, чертежами и подбором материалов.</span></div></li>
+      <li><div><b>Дизайн-поддержка</b><span>Вместо штатного дизайнера: беру поток задач — полиграфия, стиль, наружка, 3D.</span></div></li>
     </ul>
   </section>
 
@@ -178,44 +189,48 @@
       <a class="case" href="https://davinchi.uz/portfolio/codex/">
         <img src="../work/codex.jpg" alt="" loading="lazy">
         <span class="cap"><span class="kind">Фирменный стиль · экипировка</span><h3>Codex</h3></span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/myata-lounge/">
         <img src="../work/myata-lounge.jpg" alt="" loading="lazy">
-        <span class="cap"><span class="kind">Брендинг и запуск франшизы</span><h3>Мята Lounge</h3></span>
+        <span class="cap"><span class="kind">Брендинг и запуск франшизы</span><h3>Мята Lounge</h3></span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/digitalrazor/">
         <img src="../work/digitalrazor.jpg" alt="" loading="lazy">
-        <span class="cap"><span class="kind">Логотип и фирменный стиль</span><h3>DigitalRazor</h3></span>
+        <span class="cap"><span class="kind">Логотип и фирменный стиль</span><h3>DigitalRazor</h3></span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
       <a class="case" href="https://davinchi.uz/portfolio/sifat-sut/">
         <img src="../work/sifat-sut.jpg" alt="" loading="lazy">
         <span class="cap"><span class="kind">Упаковка</span><h3>Sifat Sut</h3></span>
+        <span class="wa" aria-hidden="true">→</span>
       </a>
     </div>
-    <a class="more-link" href="https://davinchi.uz/%d0%bf%d0%be%d1%80%d1%82%d1%84%d0%be%d0%bb%d0%b8%d0%be/">Всё портфолио <span>→</span></a>
+    <a class="more-link" href="https://davinchi.uz/%d0%bf%d0%be%d1%80%d1%82%d1%84%d0%be%d0%bb%d0%b8%d0%be/">Всё портфолио <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="sec">
     <h2>Цены</h2>
     <div class="prices">
-      <div><b>Дизайн-поддержка<i>Платите за фактическое время — его считает программа до минуты</i></b><span>$20 / час</span></div>
-      <div><b>Фирменный стиль<i>Логотип, стиль, брендбук — то, что действительно нужно бизнесу</i></b><span>от $520</span></div>
-      <div><b>Упаковка и этикетки</b><span>от $200</span></div>
-      <div><b>Рекламная полиграфия<i>Каталог, буклет, флаер</i></b><span>от $60</span></div>
-      <div><b>Продвижение<i>SMM и другие рекламные мероприятия</i></b><span>от $300</span></div>
-      <div><b>Интерьер и проектирование</b><span>от $10 / м²</span></div>
+      <div><b>Дизайн-поддержка<i>Платите за фактическое время — его считает программа до минуты</i></b><span>$20 / час</span></div>
+      <div><b>Фирменный стиль<i>Логотип, стиль, брендбук — то, что действительно нужно бизнесу</i></b><span>от $520</span></div>
+      <div><b>Упаковка и этикетки</b><span>от $200</span></div>
+      <div><b>Рекламная полиграфия<i>Каталог, буклет, флаер</i></b><span>от $60</span></div>
+      <div><b>Продвижение<i>SMM и другие рекламные мероприятия</i></b><span>от $300</span></div>
+      <div><b>Интерьер и проектирование</b><span>от $10 / м²</span></div>
     </div>
     <p class="hint">Сколько обычно уходит времени:</p>
-    <div class="hours"><div><b>~1 ч</b><span>визитка</span></div><div><b>~2 ч</b><span>флаер</span></div><div><b>~4 ч</b><span>баннер, меню</span></div><div><b>~10 ч</b><span>этикетка</span></div><div><b>~16 ч</b><span>упаковка</span></div></div>
+    <div class="hours"><div><b>~1 ч</b><span>визитка</span></div><div><b>~2 ч</b><span>флаер</span></div><div><b>~4 ч</b><span>баннер, меню</span></div><div><b>~10 ч</b><span>этикетка</span></div><div><b>~16 ч</b><span>упаковка</span></div></div>
   </section>
 
   <section class="sec">
     <h2>Как работаем</h2>
-    <ol class="steps">
+    <ol class="steps" role="list">
       <li><span><b>Пишете задачу</b> — чем конкретнее цель, тем точнее оценка. Примеры, которые нравятся, очень помогают.</span></li>
-      <li><span><b>Отвечаю, сколько стоит и сколько займёт.</b></span></li>
-      <li><span><b>Предоплата 50%</b>, работа по договору. Стоимость оцениваю с точностью до часа и предупреждаю, если подходим к границе.</span></li>
-      <li><span><b>Готовые файлы</b> для печати — в CorelDRAW, Illustrator или PDF, после полной оплаты.</span></li>
+      <li><span><b>Отвечаю, сколько стоит и сколько займёт.</b></span></li>
+      <li><span><b>Предоплата 50%</b>, работа по договору. Стоимость оцениваю с точностью до часа и предупреждаю, если подходим к границе.</span></li>
+      <li><span><b>Готовые файлы</b> для печати — в CorelDRAW, Illustrator или PDF, после полной оплаты.</span></li>
     </ol>
   </section>
 
@@ -223,13 +238,13 @@
     <h2>Где это делается</h2>
     <a class="row" href="https://davinchi.uz">
       <span class="ic"><img src="../davinchi-mark.png" alt=""></span>
-      <span class="tx"><b>Davinchi Communications</b><i>Брендинговое агентство · я основатель</i></span>
-      <span class="arr">→</span>
+      <span class="tx"><b>Davinchi Communications</b><i>Брендинговое агентство · я основатель</i></span>
+      <span class="arr" aria-hidden="true">→</span>
     </a>
     <a class="row" href="https://ps.com.uz/design.html">
       <span class="ic"><img src="../ps-logo.svg" alt=""></span>
-      <span class="tx"><b>Premium Selection</b><i>Дизайн-команда на подписке с опытом работы с нейросетями</i></span>
-      <span class="arr">→</span>
+      <span class="tx"><b><span class="nw">Premium Selection</span></b><i>Дизайн-команда на подписке с опытом работы с нейросетями</i></span>
+      <span class="arr" aria-hidden="true">→</span>
     </a>
   </section>
 
@@ -237,29 +252,29 @@
     <h2>Другие направления</h2>
     <a class="row" href="/print/">
       <span class="ic"><span class="n">02</span></span>
-      <span class="tx"><b>Печать и производство</b><i>Наружная реклама и вывески, полиграфия, сувенирная продукция</i></span>
-      <span class="arr">→</span>
+      <span class="tx"><b>Печать и производство</b><i>Наружная реклама и вывески, полиграфия, сувенирная продукция</i></span>
+      <span class="arr" aria-hidden="true">→</span>
     </a>
     <a class="row" href="/bots/">
       <span class="ic"><span class="n">03</span></span>
-      <span class="tx"><b>Telegram-боты и мини-приложения</b><i>Заказы, запись, оплата и рассылки прямо в Telegram</i></span>
-      <span class="arr">→</span>
+      <span class="tx"><b>Telegram-боты и <span class="nw">мини-приложения</span></b><i>Заказы, запись, оплата и рассылки прямо в Telegram</i></span>
+      <span class="arr" aria-hidden="true">→</span>
     </a>
   </section>
 
   <div class="cta">
     <a class="btn" href="https://t.me/iMexx">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
       Обсудить задачу
     </a>
-    <p class="hint">Откроется личный чат со мной в Telegram. Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
+    <p class="hint">Откроется личный чат со мной в Telegram. Напишите задачу — отвечу, сколько это стоит и сколько займёт.</p>
   </div>
   </main>
 
   <a class="me" href="/?home=1">
     <span class="ph"><img src="../photo.jpg" alt="" width="54" height="54"></span>
     <span class="who"><b>Макс Бондаренко</b><i>Дизайн, печать, ИИ</i></span>
-    <span class="more">Обо мне <span class="arr">→</span></span>
+    <span class="more">Обо мне <span class="arr" aria-hidden="true">→</span></span>
   </a>
 </div>
 
@@ -290,6 +305,7 @@
     var a = e.target.closest('a[href]');
     if (!a) return;
     var href = a.getAttribute('href');
+    try { if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light'); } catch (err) {}
     if (!href || href.charAt(0) === '#' || href.charAt(0) === '/') return;
 
     var inner = /^https?:\/\/(t\.me|telegram\.me)\//i.test(href);
