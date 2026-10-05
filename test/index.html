@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0e12">
+<meta name="robots" content="noindex">
+<title>Открытый тест — PS · Автоматизация</title>
+<meta name="description" content="Попробуйте панель для типографий в CorelDRAW и Illustrator: 7 дней бесплатно, всё включено, срок закончится сам.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Открытый тест — PS · Автоматизация">
+<meta property="og:description" content="Панель для типографий в CorelDRAW и Illustrator. 7 дней бесплатно, всё включено.">
+<meta property="og:image" content="https://max.davinchi.uz/test/poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --cy: #03d6f4; --badge: linear-gradient(90deg,#9b16c8,#03d6f4); --dark: #0a0e12; --teal: #0b3a44; --panel: #12181d; --line: #23303a; --muted: #aab2bd; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; color-scheme: dark; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3 { text-wrap: balance; }
+  .nw { white-space: nowrap; }
+  span.nw.nw { display: inline; white-space: nowrap; }   /* внутри подписей, где span — отдельная строка */
+  h1 span.nw.nw { white-space: normal; }   /* в огромном заголовке длинное слово целиком не помещается */
+  body { margin: 0; background: var(--dark); color: #fff; font: 400 15.5px/1.6 "Raleway", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+  .app { max-width: 520px; margin: 0 auto; min-height: 100vh; background: linear-gradient(170deg, var(--dark) 45%, var(--teal) 160%); }
+  h1, h2 { font-family: "Montserrat", sans-serif; margin: 0; letter-spacing: -.01em; }
+  .cy { color: var(--cy); }
+
+  .back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: max(4px, env(safe-area-inset-top)) 18px 0; font: 600 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+  .back:hover { color: var(--cy); }
+
+  .hero { padding: 22px 18px 8px; }
+  .top { display: flex; gap: 16px; align-items: center; }
+  .top img { width: 72px; height: 72px; flex: none; }
+  .badge { display: inline-block; background: var(--badge); font: 600 11.5px/1 "Raleway", sans-serif; letter-spacing: .04em; padding: 6px 10px; }
+  h1 { font-weight: 800; font-size: clamp(30px, 8.6vw, 40px); line-height: 1.03; text-transform: uppercase; margin-top: 18px; }
+  .lead { margin: 14px 0 0; color: var(--muted); font-size: 15.5px; }
+
+  .apps { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 20px; }
+  .apps span { display: inline-flex; align-items: center; gap: 8px; font: 600 13px "Raleway", sans-serif; color: #dfe6ec; }
+  .apps span img { width: 22px; height: 22px; flex: none; }
+  .apps span.more { color: var(--muted); font-weight: 500; }
+
+  .main { padding: 22px 18px 0; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 20px; width: 100%;
+    border: 2px solid var(--cy); background: var(--cy); color: var(--dark);
+    font: 700 13px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; transition: background .18s ease, color .18s ease, transform .16s cubic-bezier(.23,1,.32,1);
+  }
+  .btn svg { width: 17px; height: 17px; }
+  .btn:active { background: transparent; color: #fff; transform: scale(.97); }
+  @media (hover: hover) { .btn:hover { background: transparent; color: #fff; } }
+  .hint { margin: 10px 0 0; text-wrap: pretty; font-size: 13px; color: #8691a0; line-height: 1.45; }
+
+  .list { padding: 30px 18px 0; }
+  .list h2 { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #8691a0; margin-bottom: 12px; }
+  .row { display: flex; align-items: center; gap: 13px; border: 1px solid var(--line); background: var(--panel); padding: 12px 14px; transition: border-color .18s ease; }
+  .row + .row { margin-top: 10px; }
+  .row img { width: 44px; height: 44px; flex: none; object-fit: cover; }
+  .row .tx { flex: 1; min-width: 0; }
+  .row b { display: block; font: 700 14.5px/1.25 "Montserrat", sans-serif; }
+  .row i { display: block; font-style: normal; font-size: 12.5px; line-height: 1.35; color: var(--muted); margin-top: 3px; }
+  .row .arr { color: var(--cy); }
+  .row { transition: border-color .18s ease, transform .16s cubic-bezier(.23,1,.32,1); }
+  .row:active { border-color: var(--cy); transform: scale(.985); }
+  .lead, .row i { text-wrap: pretty; }
+  .back:active { opacity: .6; }
+  @media (prefers-reduced-motion: reduce) { .btn:active, .row:active { transform: none; } }
+  @media (hover: hover) { .row:hover { border-color: var(--cy); } }
+
+  .me { margin: 34px 18px 0; padding: 22px 0 max(30px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
+        display: flex; align-items: center; justify-content: center; gap: 14px; color: #fff; -webkit-tap-highlight-color: transparent; }
+  .me .ph { width: 58px; height: 58px; flex: none; border-radius: 50%; padding: 2px; background: var(--badge); transition: transform .18s ease; }
+  .me .ph img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; filter: grayscale(1); border: 2px solid var(--dark); display: block; transition: filter .18s ease; }
+  .me .who { flex: 0 1 auto; min-width: 0; }
+  .me b { display: block; font: 700 15px "Montserrat", sans-serif; white-space: nowrap; }
+  .me i { display: block; margin-top: 3px; font-style: normal; font-size: 12.5px; color: var(--muted); }
+  .me .more { flex: none; margin-left: 10px; display: inline-flex; align-items: center; gap: 7px; color: var(--cy);
+              font: 700 11.5px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: .09em; white-space: nowrap; }
+  .me .arr { font: 400 20px/1 "Raleway", sans-serif; letter-spacing: 0; transition: transform .18s ease; }
+  @media (max-width: 380px) { .me { gap: 11px; } .me .ph { width: 52px; height: 52px; } .me b { font-size: 14px; } .me .more { margin-left: 4px; letter-spacing: .05em; } }
+  .me:active .ph { transform: scale(.96); }
+  .me:active .arr { transform: translateX(4px); }
+  @media (hover: hover) { .me:hover .ph img { filter: none; } .me:hover .arr { transform: translateX(4px); } }
+
+  .num { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--cy); }
+  .hero h1 { margin-top: 10px; }
+
+  .sec { padding: 30px 18px 0; }
+  .sec > h2 { font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #8691a0; margin-bottom: 12px; }
+
+  .does { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .does li { display: flex; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .does li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: 8px; background: var(--cy); }
+  .does b { display: block; font: 700 15px/1.3 "Montserrat", sans-serif; }
+  .does span { display: block; font-size: 13.5px; line-height: 1.45; color: var(--muted); margin-top: 3px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .case { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+  .case img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.22,.9,.3,1); }
+  .case::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,18,0) 20%, rgba(10,14,18,.96) 100%); }
+  .case .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 10px 11px 12px; }
+  .case .kind { display: block; font: 600 11.5px/1.3 "Raleway", sans-serif; letter-spacing: .06em; color: #fff; text-transform: uppercase; }
+  .case h3 { margin: 4px 0 0; font: 800 15px/1.1 "Montserrat", sans-serif; text-transform: uppercase; }
+  .case:active { border-color: var(--cy); }
+  @media (hover: hover) { .case:hover { border-color: var(--cy); } .case:hover img { transform: scale(1.04); } }
+  .more-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 4px; font: 700 11.5px "Montserrat", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: var(--cy); }
+
+  .demo { border: 1px solid var(--line); background: var(--panel); }
+  .demo video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #0d141a; }
+  .demo p { margin: 0; padding: 12px 14px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+  .demo p b { color: #fff; font-weight: 600; }
+
+  .row .ic { width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; background: #0d141a; }
+  .row .ic img { width: 30px; height: 30px; }
+  .row .ic svg { width: 24px; height: 24px; color: var(--cy); }
+  .row .tag { display: inline-block; margin-top: 6px; font: 600 11.5px "Raleway", sans-serif; letter-spacing: .03em; color: #dfe6ec; background: #1b242b; padding: 3px 7px; }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 8px; }
+  .steps li { counter-increment: s; display: flex; gap: 12px; align-items: baseline; font-size: 14.5px; line-height: 1.45; }
+  .steps li::before { content: counter(s); flex: none; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--cy); color: var(--cy); font: 700 12px "Montserrat", sans-serif; transform: translateY(-2px); }
+  .steps b { font-weight: 600; }
+
+  .cta { padding: 30px 18px 0; }
+
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); margin: 22px 18px 0; border: 1px solid var(--line);
+           background: linear-gradient(120deg, var(--dark) 0%, var(--teal) 100%); }
+  .facts div { padding: 14px 10px; text-align: center; }
+  .facts div + div { border-left: 1px solid var(--line); }
+  .facts b { display: block; font: 800 24px/1 "Montserrat", sans-serif; color: var(--cy); }
+  .facts span { display: block; margin-top: 6px; font-size: 11.5px; line-height: 1.35; color: var(--muted); }
+  .case.sq { aspect-ratio: 1 / 1; }
+  .prices { border-top: 1px solid var(--line); }
+  .prices div { display: flex; align-items: baseline; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .prices b { flex: 1; font: 700 14.5px/1.3 "Montserrat", sans-serif; }
+  .prices b i { display: block; margin-top: 2px; font: 400 12.5px/1.4 "Raleway", sans-serif; color: var(--muted); font-style: normal; }
+  .prices span { flex: none; font: 800 15px "Montserrat", sans-serif; font-variant-numeric: tabular-nums; color: var(--cy); white-space: nowrap; }
+  .hours { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+  .hours div { border: 1px solid var(--line); background: var(--panel); padding: 9px 4px; text-align: center; }
+  .hours b { display: block; font: 800 15px "Montserrat", sans-serif; color: #fff; }
+  .hours span { display: block; margin-top: 3px; font-size: 11.5px; line-height: 1.25; color: var(--muted); }
+  .clients { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 700 13px "Montserrat", sans-serif; color: #dfe6ec; }
+  .clients span { white-space: nowrap; }
+
+  .hero .btn { margin-top: 20px; }
+  .case .wa { position: absolute; right: 11px; bottom: 12px; z-index: 1; color: var(--cy); font: 400 16px/1 "Raleway", sans-serif; }
+  .facts span { text-wrap: balance; }
+  .does span, .demo p, .steps li { text-wrap: pretty; }
+  .row .ic .n { font: 800 15px "Montserrat", sans-serif; color: var(--cy); letter-spacing: .04em; }
+
+  .reel { margin: 22px 18px 0; border: 1px solid var(--line); background: #0b1116; }
+  .reel video { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; cursor: pointer; }
+  .free { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+  .free b { color: #fff; }
+  .faq { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .faq details { background: var(--dark); }
+  .faq summary { padding: 14px 16px; cursor: pointer; font: 700 14.5px "Montserrat", sans-serif; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+" / ""; color: var(--cy); font-weight: 700; }
+  .faq details[open] summary::after { content: "–" / ""; }
+  .faq p { margin: 0; padding: 0 16px 14px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .faq summary:active { opacity: .6; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="num">Открытый тест</div>
+    <h1>Ищем типографии <span class="cy">для теста</span></h1>
+    <p class="lead">PS · Автоматизация — панель в CorelDRAW и Illustrator, которая готовит файлы под ваше оборудование одной кнопкой. Попробуйте на своих заказах: 7 дней бесплатно, всё включено.</p>
+    <a class="btn" href="https://t.me/imexxbot?start=test" data-stat="Тест: получить программу">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      Получить программу
+    </a>
+  </header>
+
+  <main>
+  <div class="reel">
+    <video src="video.mp4" poster="poster.jpg" width="810" height="810" muted loop playsinline preload="none" aria-label="Ролик: что умеет PS · Автоматизация. Без звука, нажмите, чтобы остановить"></video>
+  </div>
+
+  <section class="sec">
+    <h2>Что попробовать</h2>
+    <ul class="does" role="list">
+      <li><div><b>Номера и коды</b><span>Нумерация и данные из Excel, CSV, TXT — 11 видов кодов и «Честный знак».</span></div></li>
+      <li><div><b>Проверка макета</b><span>25 проверок под ваш вид печати; безопасное исправляется одной кнопкой.</span></div></li>
+      <li><div><b>УФ-печать</b><span>Белила и лак под рисунком — TIFF с каналами без Фотошопа.</span></div></li>
+      <li><div><b>Плоттер, лазер, фрезер</b><span>Укладка по форме, стык в стык, порядок реза и файл для станка.</span></div></li>
+      <li><div><b>Офсет и цифра</b><span>Раскладка, лист на пластину CTP, брошюры тетрадями, формы по краскам.</span></div></li>
+      <li><div><b>Документы заказа</b><span>Лист согласования клиенту и задание в печать для цеха.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>Как проходит тест</h2>
+    <ol class="steps" role="list">
+      <li><span><b>Получите программу в боте</b> — он пришлёт установщик и короткую инструкцию.</span></li>
+      <li><span><b>Установите</b> — CorelDRAW X7 и новее или Illustrator 2022 и новее, на Windows.</span></li>
+      <li><span><b>Отметьте своё оборудование</b> и прогоните настоящий заказ — так быстрее всего видно пользу.</span></li>
+      <li><span><b>Нашли ошибку или чего-то не хватает</b> — «Сообщить о проблеме» прямо в панели или напишите мне.</span></li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <h2>Сколько стоит</h2>
+    <p class="free"><b>Ничего.</b> 7 дней работает всё. Потом пробный срок закончится сам — платить и отменять ничего не нужно. Проверка макета, простая раскладка и нумерация до 50 номеров останутся бесплатными насовсем.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Вопросы</h2>
+    <div class="faq">
+      <details><summary>Нужен ли интернет?</summary><p>Нет. Программа работает на компьютере; интернет нужен только для обновлений и сообщений о проблемах.</p></details>
+      <details><summary>Мои макеты куда-то уходят?</summary><p>Нет. В сообщении о проблеме уходит ваше описание и отчёт о том, что нажимали; снимок окна — только если сами отметите. Файлы клиентов не отправляются.</p></details>
+      <details><summary>Что будет через 7 дней?</summary><p>Платные части закроются с замком, бесплатное продолжит работать. Готовые файлы и макеты остаются у вас.</p></details>
+    </div>
+  </section>
+
+  <div class="cta">
+    <a class="btn" href="https://t.me/imexxbot?start=test" data-stat="Тест: получить программу">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8L18 6.3c.4-.3-.1-.5-.6-.2L6.6 12.9 2 11.5c-1-.3-1-1 .2-1.5L20.5 3c.8-.3 1.6.2 1.4 1.3z"/></svg>
+      Получить программу
+    </a>
+    <p class="hint">Откроется бот @imexxbot — нажмите «Старт», и он пришлёт установщик.</p>
+  </div>
+  </main>
+
+  <a class="me" href="/?home=1">
+    <span class="ph"><img src="../photo.jpg" alt="" width="54" height="54"></span>
+    <span class="who"><b>Макс Бондаренко</b><i>Автор программы</i></span>
+    <span class="more">Обо мне <span class="arr" aria-hidden="true">→</span></span>
+  </a>
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+// Внутри Telegram: полный экран и ссылки, которые не уводят в браузер
+(function () {
+  var tg = window.Telegram && window.Telegram.WebApp;
+  if (!tg || !tg.platform || tg.platform === 'unknown') return;
+
+  tg.ready();
+  tg.expand();
+  if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
+  try { tg.setHeaderColor('#0a0e12'); tg.setBackgroundColor('#0a0e12'); } catch (e) {}
+
+  // Системная кнопка «Назад» в шапке Telegram — на главную визитки
+  try {
+    if (tg.BackButton && tg.isVersionAtLeast && tg.isVersionAtLeast('6.1')) {
+      tg.BackButton.show();
+      tg.BackButton.onClick(function () {
+        var fromHome = document.referrer && document.referrer.indexOf(location.origin) === 0 && history.length > 1;
+        if (fromHome) history.back(); else location.href = '/?home=1';
+      });
+    }
+  } catch (e) {}
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    try { if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light'); } catch (err) {}
+    if (!href || href.charAt(0) === '#' || href.charAt(0) === '/') return;
+
+    var inner = /^https?:\/\/(t\.me|telegram\.me)\//i.test(href);
+    if (!inner && !/^https?:\/\//i.test(href)) return;
+
+    var can = function (v) { try { return tg.isVersionAtLeast ? tg.isVersionAtLeast(v) : false; } catch (err) { return false; } };
+    var opener = inner
+      ? (can('6.1') && typeof tg.openTelegramLink === 'function' ? tg.openTelegramLink.bind(tg) : null)
+      : (can('6.1') && typeof tg.openLink === 'function' ? tg.openLink.bind(tg) : null);
+    if (!opener) return;
+
+    e.preventDefault();
+    var done = false;
+    try { opener(href); done = true; } catch (err) {}
+    setTimeout(function () { if (document.visibilityState === 'visible') location.href = href; }, done ? 900 : 0);
+  });
+})();
+</script>
+<script>
+// Счётчик: кто открыл страницу и какие кнопки нажимал. Имя и номер в Telegram
+// сверяются на хостинге по подписи Telegram; смотреть — /stats в @imexxbot.
+(function () {
+  try {
+    var tg = window.Telegram && window.Telegram.WebApp;
+    var page = location.pathname.replace(/\//g, '') || 'visitka';
+    if (window.imexxLeaving) return;   // сейчас уйдём на нужную страницу — отметит она
+    if (location.hostname !== 'max.davinchi.uz') return;   // проверка у себя на компьютере — не считаем
+    var data = (tg && tg.initData) || '';
+    var send = function (extra) {
+      var body = JSON.stringify(Object.assign({ p: page, d: data }, extra || {}));
+      var blob = new Blob([body], { type: 'text/plain' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon('https://davinchi.uz/imexx-stat.php', blob))) {
+        fetch('https://davinchi.uz/imexx-stat.php', { method: 'POST', body: body, keepalive: true, mode: 'no-cors' }).catch(function () {});
+      }
+    };
+    send();
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a || /^#/.test(a.getAttribute('href') || '')) return;
+      var head = a.querySelector('b, strong, h3, h4');
+      var label = (a.getAttribute('data-stat') || (head || a).textContent || '').replace(/\s+/g, ' ').trim();
+      if (label) send({ c: label });
+    }, true);
+  } catch (err) { /* счётчик не должен мешать странице */ }
+})();
+</script>
+<script>
+// Ролик: играет, пока виден; при «уменьшить движение» — по нажатию
+(function () {
+  var v = document.querySelector('.reel video'); if (!v) return;
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches, user = false;
+  v.tabIndex = 0; v.setAttribute('role', 'button');
+  var toggle = function () { user = true; if (v.paused) v.play().catch(function () {}); else v.pause(); };
+  v.addEventListener('click', toggle);
+  v.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
+  if (calm || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (e) {
+    if (e[0].isIntersecting) { if (!user || !v.paused) v.play().catch(function () {}); } else v.pause();
+  }, { threshold: .5 }).observe(v);
+})();
+</script>
+</body>
+</html>
