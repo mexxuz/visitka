@@ -6,11 +6,11 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0a0e12">
 <title>PS · Автоматизация — подготовка к печати и резке в CorelDRAW и Illustrator</title>
-<meta name="description" content="Номера и раскладка, белила и лак для УФ, офсет, рулон, плоттер, лазер, фрезер с объёмными буквами и календари — внутри CorelDRAW и Illustrator. Платите только за своё оборудование. 7 дней бесплатно.">
+<meta name="description" content="Номера и раскладка, белила и лак для УФ, офсет, рулон, плоттер, лазер, фрезер с объёмными буквами и календари — внутри CorelDRAW и Illustrator.">
 <meta property="og:title" content="PS · Автоматизация — подготовка к печати и резке в CorelDRAW и Illustrator">
 <meta property="og:image" content="https://max.davinchi.uz/cards/ps.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Печать и резка в CorelDRAW и Illustrator: номера, белила для УФ, офсет, рулон, плоттер, лазер, фрезер, календари. 7 дней бесплатно.">
+<meta property="og:description" content="Печать и резка в CorelDRAW и Illustrator: номера, белила для УФ, офсет, рулон, плоттер, лазер, фрезер, календари.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
@@ -248,6 +248,10 @@
   .dock .btn { flex: 1 1 0; min-height: 46px; padding: 0 10px; letter-spacing: .05em; white-space: nowrap; }
   .dock .btn.solid { flex-grow: 1.6; }
 
+  /* ВРЕМЕННО, открытый тест: цены, сроки и ключи спрятаны (.sale), вместо них — .test.
+     Вернуть продажи: удалить эти две строки и строку .test ниже — и в meta-описания вернуть «Платите только за своё оборудование. 7 дней бесплатно». */
+  .sale, .plan-tag, .dock { display: none !important; }
+  .test { }
   .rise { opacity: 0; transform: translateY(12px); transition: opacity .4s cubic-bezier(.23,1,.32,1), transform .4s cubic-bezier(.23,1,.32,1); }
   .rise.seen { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .rise { opacity: 1 !important; transform: none !important; } .btn:active, .chip:active, .opt:active { transform: none; } }
@@ -264,10 +268,11 @@
     <p class="lead">Номера и коды, раскладка под цифру, офсет, УФ и рулон, белила и лак, пластины для CTP, брошюры, файлы для плоттера, лазера и фрезера, объёмные буквы и календари. Отмечаете своё оборудование — в панели остаётся только нужное.</p>
 
     <div class="cta">
-      <a class="btn solid" href="#trial">
-        7 дней бесплатно
+      <a class="btn solid sale" href="#trial">
+        7 дней бесплатно
       </a>
-      <a class="btn" href="#kit">Цены</a>
+      <a class="btn sale" href="#kit">Цены</a>
+      <a class="btn solid test" href="https://t.me/imexxbot?start=test" data-stat="Стать тестировщиком">Стать тестировщиком</a>
     </div>
 
     <div class="reel">
@@ -286,7 +291,8 @@
         <a class="chip" href="#p-cut"><b>Лазер и фрезер</b><span>стык в стык, объёмные буквы</span></a>
         <a class="chip" href="#p-cal"><b>Календари</b><span>6 видов, 16 готовых стилей</span></a>
         <a class="chip" href="#p-order"><b>Документы заказа</b><span>согласование, задание в цех</span></a>
-        <a class="chip" href="#p-free"><b>Бесплатно всегда</b><span>проверка макета и раскладка</span></a>
+        <a class="chip sale" href="#p-free"><b>Бесплатно всегда</b><span>проверка макета и раскладка</span></a>
+        <a class="chip test" href="#p-free"><b>Проверка макета</b><span>25 проверок, простая раскладка</span></a>
       </div>
     </div>
   </header>
@@ -317,7 +323,8 @@
   <div class="nums">
     <div><b>8</b><span>частей под оборудование</span></div>
     <div><b>25</b><span>проверок макета</span></div>
-    <div><b>7</b><span>дней бесплатно</span></div>
+    <div class="sale"><b>7</b><span>дней бесплатно</span></div>
+    <div class="test"><b>2</b><span>программы: Corel и Illustrator</span></div>
   </div>
 
   <!-- Панель под оборудование -->
@@ -326,7 +333,7 @@
     <h2>Только <span class="cy">ваше</span> оборудование</h2>
     <p class="promise">При первом запуске отмечаете, на чём работаете. Наверху панели остаются только ваши значки — лишнего нет.</p>
     <ul class="feat">
-      <li><i aria-hidden="true">→</i><span><b>Одна панель в CorelDRAW и Illustrator</b> — и один ключ на обе программы</span></li>
+      <li><i aria-hidden="true">→</i><span><b>Одна панель в CorelDRAW и Illustrator</b><span class="sale"> — и один ключ на обе программы</span></span></li>
       <li><i aria-hidden="true">→</i><span><b>Простой и расширенный режим</b> — в простом на виду только то, что влияет на результат каждый день</span></li>
       <li><i aria-hidden="true">→</i><span><b>Один порядок шагов</b> у любого оборудования: подготовка → раскладка → вывод → цена</span></li>
       <li><i aria-hidden="true">→</i><span><b>«?» у каждого поля</b> и справочник «как это работает» со схемами «было / стало»</span></li>
@@ -341,15 +348,17 @@
 
   <!-- Бесплатное -->
   <section class="light part" id="p-free">
-    <div class="part-head"><span class="part-no">Без ключа</span><span class="plan-tag gift">бесплатно всегда</span></div>
-    <h2>Проверка и раскладка — <span class="cy">даром</span></h2>
-    <p class="promise">Это работает и без ключа, и после пробной недели. Навсегда.</p>
+    <div class="part-head"><span class="part-no sale">Без ключа</span><span class="part-no test">Проверка</span><span class="plan-tag gift">бесплатно всегда</span></div>
+    <h2 class="sale">Проверка и раскладка — <span class="cy">даром</span></h2>
+    <h2 class="test">Макет проверен — <span class="cy">до печати</span></h2>
+    <p class="promise sale">Это работает и без ключа, и после пробной недели. Навсегда.</p>
+    <p class="promise test">Ошибки находятся в файле, а не на готовом тираже.</p>
     <ul class="feat">
       <li><i aria-hidden="true">→</i><span><b>Проверка макета — 25 проверок</b> под ваш вид печати: офсет, цифра, УФ, рулон. Краски, картинки, текст, линии, вылеты</span></li>
       <li><i aria-hidden="true">→</i><span><b>Исправляет кнопкой</b> — RGB в CMYK, лишнюю краску, мелкий чёрный текст, вылеты. Всё безопасное — разом, отмена одним Ctrl+Z</span></li>
       <li><i aria-hidden="true">→</i><span><b>Дубли и скрытые слои</b> — дубли уходят на отдельный слой, скрытое находится по названию</span></li>
       <li><i aria-hidden="true">→</i><span><b>Простая раскладка на лист</b> с метками реза — сразу видно, сколько поместится</span></li>
-      <li><i aria-hidden="true">→</i><span><b>Нумерация до 50 номеров</b> — для небольшого тиража ключ не нужен</span></li>
+      <li><i aria-hidden="true">→</i><span><b>Нумерация до 50 номеров</b><span class="sale"> — для небольшого тиража ключ не нужен</span></span></li>
       <li><i aria-hidden="true">→</i><span><b>Правка текста</b> — лишние пробелы, тире, «ёлочки», предлоги не в конце строки</span></li>
     </ul>
     <div class="vis anim"><img width="480" height="350" data-src="m-check.svg" alt="Проверка макета: программа находит ошибки и исправляет их одной кнопкой"></div>
@@ -550,15 +559,22 @@
     <div class="care">
       <div><b>Справочник</b><span>«?» у каждого поля: что оно делает, со схемой «было / стало».</span></div>
       <div><b>Обновления сами</b><span>Раз в сутки панель проверяет новую версию и ставит её после закрытия программы.</span></div>
-      <div><b>Работает без интернета</b><span>Ключ проверяется прямо на компьютере. Интернет нужен только для обновлений.</span></div>
+      <div><b>Работает без интернета</b><span>Всё считается прямо на компьютере. Интернет нужен только для обновлений.</span></div>
       <div><b>Проблема — в одно касание</b><span>Опишите, что не так, и отправьте из панели. Файлы клиентов не уходят.</span></div>
-      <div><b>Видно, что куплено</b><span>Некупленные части в панели с замком — понятно, что докупить.</span></div>
+      <div class="sale"><b>Видно, что куплено</b><span>Некупленные части в панели с замком — понятно, что докупить.</span></div>
       <div><b>Установка за пару минут</b><span>Установщик сам находит CorelDRAW и Illustrator и ставит панель.</span></div>
     </div>
   </section>
 
+  <!-- ВРЕМЕННО, открытый тест: вместо цен -->
+  <section class="plain test" id="test">
+    <h2 class="h2">Ищем типографии <span class="cy">для теста</span></h2>
+    <p class="sub">Попробуйте панель на своих заказах и расскажите, чего не хватает. Бот пришлёт установщик и короткую инструкцию.</p>
+    <div class="cta"><a class="btn solid" href="https://t.me/imexxbot?start=test" data-stat="Стать тестировщиком">Стать тестировщиком</a></div>
+  </section>
+
   <!-- Цены -->
-  <section class="buy" id="buy">
+  <section class="buy sale" id="buy">
     <h2>Сколько стоит</h2>
     <p class="sub">Подписка на месяц. «Старт» — номера, данные и раскладка — есть в любом наборе, к нему добавляется ваше оборудование. Установку и первый заказ проходим вместе.</p>
 
