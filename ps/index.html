@@ -123,7 +123,10 @@
 
   .vis { margin-top: 18px; border: 1px solid var(--line); background: #0b1116; }
   .vis img { display: block; width: 100%; height: auto; }
+  .vis.anim img:not([src]) { visibility: hidden; }
   .vis + .vis { margin-top: 10px; }
+  .reel { margin-top: 18px; border: 1px solid var(--line); background: #0b1116; }
+  .reel video { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; cursor: pointer; }
   .gain { margin-top: 12px; font: 600 13px "Raleway", sans-serif; color: var(--cy); }
   section.light .gain { color: #0590a6; }
 
@@ -267,6 +270,10 @@
       <a class="btn" href="#kit">Цены</a>
     </div>
 
+    <div class="reel">
+      <video src="demo.mp4" poster="demo-poster.jpg" width="810" height="810" muted loop playsinline preload="none" aria-label="Ролик: что умеет PS · Автоматизация — номера, проверка макета, офсет, УФ, рулон, резка, календари, документы заказа. Без звука, нажмите, чтобы остановить"></video>
+    </div>
+
     <div class="pick">
       <div class="q">Какое у вас оборудование?</div>
       <div class="chips">
@@ -345,7 +352,7 @@
       <li><i aria-hidden="true">→</i><span><b>Нумерация до 50 номеров</b> — для небольшого тиража ключ не нужен</span></li>
       <li><i aria-hidden="true">→</i><span><b>Правка текста</b> — лишние пробелы, тире, «ёлочки», предлоги не в конце строки</span></li>
     </ul>
-    <div class="vis"><img width="640" height="320" src="d2.svg" alt="Изделия разложены по листу с метками реза" loading="lazy"></div>
+    <div class="vis anim"><img width="480" height="350" data-src="m-check.svg" alt="Проверка макета: программа находит ошибки и исправляет их одной кнопкой"></div>
     <div class="shot">
       <img width="680" height="608" src="s-check.jpg" alt="Проверка макета в панели" loading="lazy">
       <p><b>«Проверка».</b> Выбираете вид печати и жмёте «Проверить» — программа покажет, что не так, и поправит то, что можно.</p>
@@ -365,8 +372,7 @@
       <li><i aria-hidden="true">→</i><span><b>Журнал номеров</b> предупредит, если номер уже печатался в прошлом заказе</span></li>
       <li><i aria-hidden="true">→</i><span><b>Ведомость листов</b> для Excel: на каком листе какие номера</span></li>
     </ul>
-    <div class="vis"><img width="640" height="250" src="d1.svg" alt="Строки таблицы превращаются в карточки с номерами" loading="lazy"></div>
-    <div class="vis"><img width="640" height="140" src="d3.svg" alt="Штрихкод, QR и DataMatrix" loading="lazy"></div>
+    <div class="vis anim"><img width="480" height="330" data-src="m-data.svg" alt="Строки из файла клиента превращаются в карты с именем, номером и кодом"></div>
     <div class="shot tall">
       <img width="680" height="1492" src="s-num.jpg" alt="Номера в панели" loading="lazy">
       <p><b>«Номера».</b> Выделяете надпись на карте, жмёте «Номер или текст» и выбираете, откуда брать значения: по порядку или из файла клиента.</p>
@@ -388,6 +394,7 @@
       <li><i aria-hidden="true">→</i><span><b>Вывод:</b> PDF, сразу на печать или TIFF и PDF по профилю принтера; стопкой — под резку пачкой</span></li>
       <li><i aria-hidden="true">→</i><span><b>PDF для типографии</b> — PDF/X-4, с вылетами и метками</span></li>
     </ul>
+    <div class="vis anim"><img width="480" height="340" data-src="m-digi.svg" alt="Лицо и оборот с одной страницы разносятся и раскладываются на лист"></div>
     <div class="gain">Пробный лист до тиража — и никаких сюрпризов на сотом</div>
   </section>
 
@@ -404,7 +411,7 @@
       <li><i aria-hidden="true">→</i><span><b>Файл пришёл разворотами?</b> «Разрезать на полосы» разрежет и разложит по порядку</span></li>
       <li><i aria-hidden="true">→</i><span><b>PDF для типографии</b> — PDF/X-1a, и «Формы по краскам»: каждая краска отдельной страницей</span></li>
     </ul>
-    <div class="vis"><img width="640" height="270" src="d7.svg" alt="Офсетный лист с клапаном, шкалой и крестами приводки" loading="lazy"></div>
+    <div class="vis anim"><img width="480" height="320" data-src="m-offset.svg" alt="Раскладка на лист, метки и шкала, пластина и формы по краскам"></div>
     <div class="shot tall">
       <img width="680" height="1800" src="s-offset.jpg" alt="Раскладка для офсета в панели" loading="lazy">
       <p><b>Раскладка для офсета.</b> Лист, карта, зазоры — и сразу видно, сколько поместится. Ниже выбираете печатника: пластина и клапан подставятся.</p>
@@ -425,12 +432,7 @@
       <li><i aria-hidden="true">→</i><span><b>Старт от любого угла стола</b> или блок по центру — карта 1 и номера там, где удобно</span></li>
       <li><i aria-hidden="true">→</i><span><b>Зеркально</b> — для печати с изнанки на стекле и акриле</span></li>
     </ul>
-    <div class="vis"><img width="640" height="200" src="d4.svg" alt="Цветной слой плюс белила дают печать на чёрном" loading="lazy"></div>
-    <div class="files">
-      <span><b>Лист 01 — Лицо — Фон</b>.tif</span>
-      <span><b>Лист 01 — Лицо — Белила</b>.tif</span>
-      <span><b>Лист 01 — Лицо — Лак</b>.tif</span>
-    </div>
+    <div class="vis anim"><img width="480" height="310" data-src="m-uv.svg" alt="Программа строит слой белил с поджатием и слой лака"></div>
     <div class="shot">
       <img width="680" height="702" src="s-uv.jpg" alt="Белила и лак в панели" loading="lazy">
       <p><b>«Белила, лак».</b> Одна кнопка для выделенного — или только белила, только лак. Сразу видно, на какой стороне что печатается.</p>
@@ -450,7 +452,7 @@
       <li><i aria-hidden="true">→</i><span><b>Люверсы для баннера</b> — по периметру с равным шагом, с подгибом</span></li>
       <li><i aria-hidden="true">→</i><span><b>Белила и лак</b> для прозрачной плёнки; «Зеркально» — для DTF</span></li>
     </ul>
-    <div class="vis"><img width="640" height="240" src="d6.svg" alt="Метки люверсов по периметру баннера" loading="lazy"></div>
+    <div class="vis anim"><img width="480" height="356" data-src="m-wide.svg" alt="Раскладка по ширине рулона, контур реза, метки плоттера и люверсы"></div>
     <div class="shot tall">
       <img width="680" height="1640" src="s-wide.jpg" alt="Раскладка на рулон в панели" loading="lazy">
       <p><b>Раскладка на рулон.</b> Ширина, тираж, контур реза и метки плоттера — на одном экране. Контур и метки ложатся отдельными слоями.</p>
@@ -470,7 +472,7 @@
       <li><i aria-hidden="true">→</i><span><b>Файл для плоттера:</b> PLT, DXF или AI</span></li>
       <li><i aria-hidden="true">→</i><span><b>Стоимость резки</b> — по длине, врезкам и цветам линий, с минимальной ценой заказа</span></li>
     </ul>
-    <div class="vis"><img width="640" height="388" src="nest-sheet.svg" alt="Лист 1220 × 2440: буквы вывески уложены по форме, мелкие внутри крупных, справа свободный остаток; бледным — обычная раскладка, которая не помещается" loading="lazy"></div>
+    <div class="vis anim"><img width="480" height="320" data-src="m-plot.svg" alt="Детали не влезали прямоугольниками — программа укладывает их по контуру"></div>
     <div class="shot">
       <img width="680" height="812" src="s-plot.jpg" alt="Файл для плоттера в панели" loading="lazy">
       <p><b>«Файл».</b> Контур реза уходит отдельным файлом в формате, который понимает ваш плоттер, — с метками или без.</p>
@@ -492,6 +494,8 @@
       <li><i aria-hidden="true">→</i><span><b>Файл для станка:</b> DXF для RDWorks, LightBurn, ArtCAM, Aspire и UCancam, а также AI и PLT</span></li>
       <li><i aria-hidden="true">→</i><span><b>Время и цена резки</b> — по длине реза и врезкам</span></li>
     </ul>
+    <div class="vis anim"><img width="480" height="330" data-src="m-cut.svg" alt="Детали встают стык в стык, общий край режется одной линией"></div>
+    <div class="vis anim"><img width="480" height="334" data-src="m-letters.svg" alt="Контур буквы разворачивается в полосу борта, вокруг появляется задник"></div>
     <div class="shot tall">
       <img width="680" height="1202" src="s-laser.jpg" alt="Лазер: стык в стык и порядок реза в панели" loading="lazy">
       <p><b>«Стык, порядок».</b> Разложить стык в стык, выбрать материал из вашей таблицы режимов и одной кнопкой оптимизировать резку. Передумали — «Вернуть как было».</p>
@@ -515,6 +519,7 @@
       <li><i aria-hidden="true">→</i><span><b>Живое превью</b> каждого месяца прямо в панели</span></li>
       <li><i aria-hidden="true">→</i><span><b>Сменить стиль</b> у уже собранного календаря — картинки остаются</span></li>
     </ul>
+    <div class="vis anim"><img width="480" height="356" data-src="m-cal.svg" alt="Сетка месяца с праздниками заполняется сама, стиль меняется"></div>
     <div class="shot tall">
       <img width="680" height="1332" src="s-cal.jpg" alt="Календарь в панели" loading="lazy">
       <p><b>«Календарь».</b> Вид, год, число месяцев и формат — превью внизу панели сразу показывает, как выйдет страница.</p>
@@ -534,6 +539,7 @@
       <li><i aria-hidden="true">→</i><span><b>Собрать заказ в папку:</b> макет, PDF, превью, картинки, шрифты и «Паспорт заказа»</span></li>
       <li><i aria-hidden="true">→</i><span><b>Проверить папку макетов</b> разом — с PDF каждого</span></li>
     </ul>
+    <div class="vis anim"><img width="480" height="356" data-src="m-order.svg" alt="Лист согласования для клиента и задание в печать для цеха"></div>
     <div class="gain">Что согласовано с клиентом, то и уходит в цех</div>
   </section>
 
@@ -773,6 +779,32 @@ document.addEventListener('click', function (e) {
   };
   new IntersectionObserver(function (e) { past = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; sync(); }).observe(top);
   new IntersectionObserver(function (e) { atBuy = e[0].isIntersecting; sync(); }).observe(buy);
+})();
+
+// Ролик наверху: играет, пока виден; при «уменьшить движение» — только по нажатию
+(function () {
+  var v = document.querySelector('.reel video'); if (!v) return;
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches, user = false;
+  v.tabIndex = 0; v.setAttribute('role', 'button');
+  var toggle = function () { user = true; if (v.paused) v.play().catch(function () {}); else v.pause(); };
+  v.addEventListener('click', toggle);
+  v.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
+  if (calm || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (e) {
+    if (e[0].isIntersecting) { if (!user || !v.paused) v.play().catch(function () {}); }
+    else v.pause();
+  }, { threshold: .5 }).observe(v);
+})();
+
+// Живые схемы: файл подгружается, когда схема на экране, — показ начинается с начала
+(function () {
+  var imgs = document.querySelectorAll('.vis.anim img[data-src]');
+  var load = function (img) { img.src = img.getAttribute('data-src'); img.removeAttribute('data-src'); };
+  if (!('IntersectionObserver' in window)) { imgs.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  imgs.forEach(function (img) { io.observe(img); });
 })();
 
 // Появление блоков при прокрутке
