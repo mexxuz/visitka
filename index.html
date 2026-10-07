@@ -568,7 +568,7 @@
 
   // Открыли из сообщения бота с пометкой раздела — сразу ведём туда (…?startapp=soft)
   try {
-    var go = { soft: '/soft/', ps: '/ps/', ai: '/ai/', print: '/print/', bots: '/bots/' }[(tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || ''];
+    var go = { soft: '/soft/', ps: '/ps/', ai: '/ai/', print: '/print/', bots: '/bots/', test: '/test/' }[(tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) || ''];
     // только при запуске: если человек потом сам вернулся на главную, оставляем его тут
     var once = 'imexx.landed';
     var landed = false;
